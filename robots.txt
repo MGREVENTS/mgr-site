@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://www.mgrevents.fr/sitemap.xml
+
