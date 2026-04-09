@@ -149,7 +149,7 @@ const SITE_CONFIG = {
   // Remplace les chemins quand tu as les vraies photos
   photos: {
     about: "assets/photos/raphael-wedding.jpg",        // section "Qui sommes-nous"
-    events_hero: "assets/photos/events-hero.jpg",     // modal MGR Events
+    events_hero: "assets/photos/events-hero.webp",     // modal MGR Events
     wedding_hero: "assets/photos/wedding.jpg",          // modal MGR Wedding
     nomames_hero: "assets/photos/nomames.jpg",          // modal No Mames
     school_hero: "assets/photos/school-hero.jpg",     // modal MGR School
@@ -172,6 +172,10 @@ const SITE_CONFIG = {
         { value: "15", label: "Établissements" },
         { value: "25", label: "DJs actifs" },
         { value: "2h", label: "Remplacement garanti" },
+      ],
+      gallery: [
+        "assets/photos/events-hero.webp",
+        "assets/photos/nomames.jpg",
       ],
       cta: { text: "Demander un audit", action: "contact" },
     },
@@ -206,6 +210,9 @@ const SITE_CONFIG = {
         { value: "12", label: "Événements / an" },
         { value: "500+", label: "Communauté" },
         { value: "100%", label: "Sold out" },
+      ],
+      gallery: [
+        "assets/photos/nomames.jpg",
       ],
       cta: { text: "Suivre @nomames_paris", action: "https://instagram.com/nomames_paris" },
     },
