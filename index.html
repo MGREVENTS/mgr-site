@@ -7,15 +7,15 @@
 <meta name="keywords" content="DJ Paris, booking DJ, direction artistique, programmation musicale, MGR Events, DJ mariage Paris, soirée latino Paris, No Mames, DJ club Paris, événementiel Paris">
 <meta name="author" content="MGR Events Paris">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mgrevents.fr/">
+<link rel="canonical" href="https://www.mgrevents.fr/">
 <meta name="theme-color" content="#0A0A0A">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mgrevents.fr/">
+<meta property="og:url" content="https://www.mgrevents.fr/">
 <meta property="og:title" content="MGR Events Paris — Direction Artistique & Booking DJ">
 <meta property="og:description" content="Programmation musicale sur mesure pour établissements, mariages et événements à Paris. 10 DJs résidents, 120+ bookings/mois.">
-<meta property="og:image" content="https://mgrevents.fr/assets/photos/nomames.jpg">
+<meta property="og:image" content="https://www.mgrevents.fr/assets/photos/nomames.jpg">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="MGR Events Paris">
 
@@ -23,7 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MGR Events Paris — Direction Artistique & Booking DJ">
 <meta name="twitter:description" content="Programmation musicale sur mesure pour établissements, mariages et événements à Paris.">
-<meta name="twitter:image" content="https://mgrevents.fr/assets/photos/nomames.jpg">
+<meta name="twitter:image" content="https://www.mgrevents.fr/assets/photos/nomames.jpg">
 
 <title>MGR Events Paris — Direction Artistique & Booking DJ</title>
 <link rel="icon" type="image/png" href="assets/waveform.png">
@@ -42,11 +42,11 @@
   "@type": "LocalBusiness",
   "name": "MGR Events Paris",
   "description": "Direction artistique, booking DJ et programmation musicale pour établissements, mariages et événements à Paris.",
-  "url": "https://mgrevents.fr",
+  "url": "https://www.mgrevents.fr",
   "email": "contact@mgrevents.fr",
   "foundingDate": "2016",
-  "image": "https://mgrevents.fr/assets/photos/nomames.jpg",
-  "logo": "https://mgrevents.fr/assets/waveform.png",
+  "image": "https://www.mgrevents.fr/assets/photos/nomames.jpg",
+  "logo": "https://www.mgrevents.fr/assets/waveform.png",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Paris",
@@ -355,7 +355,7 @@ function photoOrPlaceholder(src, label) {
   const img = new Image();
   img.src = src;
   // We'll use onerror in the HTML to show placeholder
-  return `<img src="${src}" alt="${label}" onerror="this.parentElement.classList.add('no-photo');this.style.display='none'">`;
+  return `<img src="${src}" alt="${label}" loading="lazy" onerror="this.parentElement.classList.add('no-photo');this.style.display='none'">`;
 }
 
 function buildSite() {
@@ -489,7 +489,7 @@ ${brandKeys.map(k => {
         </div>
         <div class="bm-visual">
           <div class="bm-gradient" style="background:${grad}"></div>
-          <img src="${C.photos[photoKey]}" alt="${brandNames[k]}" onerror="this.parentElement.classList.add('no-photo');this.style.display='none'" style="position:relative;z-index:1">
+          <img src="${C.photos[photoKey]}" alt="${brandNames[k]}" loading="lazy" onerror="this.parentElement.classList.add('no-photo');this.style.display='none'" style="position:relative;z-index:1">
           <div class="bm-placeholder"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".5"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M22 15l-6-6L4 21"/></svg><span>Photo ${brandNames[k]}</span></div>
         </div>
       </div>
