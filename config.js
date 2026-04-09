@@ -134,7 +134,7 @@ const SITE_CONFIG = {
   photos: {
     about: "assets/photos/raphael-wedding.jpg",        // section "Qui sommes-nous"
     events_hero: "assets/photos/events-hero.jpg",     // modal MGR Events
-    wedding_hero: "assets/photos/wedding-hero.jpg",   // modal MGR Wedding
+    wedding_hero: "assets/photos/wedding.jpg",          // modal MGR Wedding
     nomames_hero: "assets/photos/nomames.jpg",          // modal No Mames
     school_hero: "assets/photos/school-hero.jpg",     // modal MGR School
   },
