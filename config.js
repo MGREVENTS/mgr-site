@@ -132,7 +132,7 @@ const SITE_CONFIG = {
   // ── PHOTOS DES SECTIONS ──
   // Remplace les chemins quand tu as les vraies photos
   photos: {
-    about: "assets/photos/Raphael wedding.jpg",       // section "Qui sommes-nous"
+    about: "assets/photos/raphael-wedding.jpg",        // section "Qui sommes-nous"
     events_hero: "assets/photos/events-hero.jpg",     // modal MGR Events
     wedding_hero: "assets/photos/wedding-hero.jpg",   // modal MGR Wedding
     nomames_hero: "assets/photos/nomames-hero.jpg",   // modal No Mames
