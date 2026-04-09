@@ -187,7 +187,7 @@ const SITE_CONFIG = {
         { title: "Lieu d'exception", desc: "Le Duplex, club mythique des Champs-Élysées — notre résidence exclusive pour des soirées inoubliables." },
       ],
       stats: [
-        { value: "30+", label: "Événements / an" },
+        { value: "12", label: "Événements / an" },
         { value: "500+", label: "Communauté" },
         { value: "100%", label: "Sold out" },
       ],
