@@ -27,8 +27,8 @@
 <meta name="twitter:image" content="https://www.mgrevents.fr/assets/photos/nomames.jpg">
 
 <title>MGR Events Paris — Direction Artistique & Booking DJ</title>
-<link rel="icon" type="image/png" href="assets/waveform.png">
-<link rel="apple-touch-icon" href="assets/waveform.png">
+<link rel="icon" type="image/webp" href="assets/waveform.webp">
+<link rel="apple-touch-icon" href="assets/waveform.webp">
 
 <!-- Preconnect for performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -472,7 +472,7 @@ function buildSite() {
   </div>
   <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="#djs">Nos DJs</a><a onclick="openContact()">Contact</a></div>
   <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=>`<a onclick="openBrand('${k}')">${brandNames[k]}</a>`).join('')}</div>
-  <div class="footer-col"><h4>Contact</h4><a href="mailto:${C.brand.email}">${C.brand.email}</a><a>Paris, France</a><a style="margin-top:.8rem;color:rgba(255,255,255,.18);font-size:.72rem">Mentions légales</a></div>
+  <div class="footer-col"><h4>Contact</h4><a href="mailto:${C.brand.email}">${C.brand.email}</a><a>Paris, France</a><a href="/mentions.html" style="margin-top:.8rem;color:rgba(255,255,255,.18);font-size:.72rem">Mentions légales</a></div>
 </footer>
 <div class="footer-bottom">© ${new Date().getFullYear()} ${C.brand.name} — Tous droits réservés</div>
 

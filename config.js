@@ -11,7 +11,7 @@ const SITE_CONFIG = {
     name: "MGR Events Paris",
     email: "contact@mgrevents.fr",
     since: 2016,
-    logo: "assets/waveform.png",
+    logo: "assets/waveform.webp",
     socials: {
       instagram: "https://instagram.com/mgr.events",
       facebook: "https://facebook.com/MGR.Eventsparis",
@@ -39,7 +39,7 @@ const SITE_CONFIG = {
   djs: [
     {
       name: "DJ Logan",
-      photo: "assets/djs/Logan.png",
+      photo: "assets/djs/Logan.webp",
       style: "Open Format · Latino",
       venues: "Fluctuart, Duplex",
       instagram: "https://www.instagram.com/dj_lgn/",
@@ -47,7 +47,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Jem",
-      photo: "assets/djs/jem.png",
+      photo: "assets/djs/jem.webp",
       style: "Open Format · Caribéen",
       venues: "Duplex, Seguin Sound Club, Fluctuart",
       instagram: "https://www.instagram.com/dj_jem_officiel/",
@@ -55,7 +55,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Stevis",
-      photo: "assets/djs/stevis.png",
+      photo: "assets/djs/stevis.webp",
       style: "Open Format · Caribéen · Urban FR · Hip-Hop",
       venues: "Duplex, QG, Seguin Sound Club",
       instagram: "https://www.instagram.com/djstevis/",
@@ -63,7 +63,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Ny Aina",
-      photo: "assets/djs/nyaina.png",
+      photo: "assets/djs/nyaina.webp",
       style: "Open Format · Urban Music",
       venues: "Duplex, Seguin Sound Club, Fluctuart",
       instagram: "https://www.instagram.com/nyaina_vrn/",
@@ -71,7 +71,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Krislay",
-      photo: "assets/djs/Krislay.png",
+      photo: "assets/djs/Krislay.webp",
       style: "Open Format · Hip-Hop",
       venues: "Seguin Sound Club",
       instagram: "https://www.instagram.com/djkrislay/",
@@ -79,7 +79,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Deloums",
-      photo: "assets/djs/Deloums.png",
+      photo: "assets/djs/Deloums.webp",
       style: "Open Format · Caribéen",
       venues: "Seguin Sound Club",
       instagram: "https://www.instagram.com/djdeloums/",
@@ -87,7 +87,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Benka",
-      photo: "assets/djs/Benka.png",
+      photo: "assets/djs/Benka.webp",
       style: "Open Format · Caribéen",
       venues: "Duplex, Seguin Sound Club, Gastby",
       instagram: "https://www.instagram.com/djbenkaofficiel/",
@@ -95,7 +95,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Lixx",
-      photo: "assets/djs/Lixx.png",
+      photo: "assets/djs/Lixx.webp",
       style: "Open Format · Afrobeat · Amapiano",
       venues: "Seguin Sound Club, Fluctuart, Gastby",
       instagram: "https://www.instagram.com/djlixx.official/",
@@ -103,7 +103,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ West",
-      photo: "assets/djs/West.png",
+      photo: "assets/djs/West.webp",
       style: "Open Format",
       venues: "Fluctuart",
       instagram: "https://www.instagram.com/djwest_paris/",
@@ -111,7 +111,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Opal",
-      photo: "assets/djs/opal.png",
+      photo: "assets/djs/opal.webp",
       style: "Open Format · Bass House",
       venues: "Fluctuart, Gastby",
       instagram: "https://www.instagram.com/opal_sound/",
@@ -119,7 +119,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Nigelen",
-      photo: "assets/djs/Nigelen.png",
+      photo: "assets/djs/Nigelen.webp",
       style: "Open Format",
       venues: "Fluctuart",
       instagram: "https://www.instagram.com/djnigelen/",
@@ -127,7 +127,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Real",
-      photo: "assets/djs/real.png",
+      photo: "assets/djs/real.webp",
       style: "Latino · Reggaeton",
       venues: "Radio Latina, Duplex, No Mames",
       instagram: "https://www.instagram.com/dj__real_/",
