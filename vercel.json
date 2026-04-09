@@ -1,61 +1,39 @@
 {
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://spsnpknxqmogwymutvqu.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    { "source": "/app", "destination": "https://planniflow-4jrm.vercel.app/" },
-    { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" },
-    { "source": "/planning", "destination": "https://planniflow-4jrm.vercel.app/planning" },
-    { "source": "/mobile-planning", "destination": "https://planniflow-4jrm.vercel.app/mobile-planning" },
-    { "source": "/login", "destination": "https://planniflow-4jrm.vercel.app/login" },
-    { "source": "/employees", "destination": "https://planniflow-4jrm.vercel.app/employees" },
-    { "source": "/presences", "destination": "https://planniflow-4jrm.vercel.app/presences" },
-    { "source": "/postes", "destination": "https://planniflow-4jrm.vercel.app/postes" },
-    { "source": "/facturation", "destination": "https://planniflow-4jrm.vercel.app/facturation" },
-    { "source": "/rapport", "destination": "https://planniflow-4jrm.vercel.app/rapport" },
-    { "source": "/rapport-dj", "destination": "https://planniflow-4jrm.vercel.app/rapport-dj" },
-    { "source": "/notes", "destination": "https://planniflow-4jrm.vercel.app/notes" },
-    { "source": "/export", "destination": "https://planniflow-4jrm.vercel.app/export" },
-    { "source": "/chat", "destination": "https://planniflow-4jrm.vercel.app/chat" },
-    { "source": "/chat-page", "destination": "https://planniflow-4jrm.vercel.app/chat-page" },
-    { "source": "/_next/:path*", "destination": "https://planniflow-4jrm.vercel.app/_next/:path*" },
-    { "source": "/api/:path*", "destination": "https://planniflow-4jrm.vercel.app/api/:path*" },
-    { "source": "/sw.js", "destination": "https://planniflow-4jrm.vercel.app/sw.js" },
-    { "source": "/manifest.json", "destination": "https://planniflow-4jrm.vercel.app/manifest.json" },
-    { "source": "/icons/:path*", "destination": "https://planniflow-4jrm.vercel.app/icons/:path*" },
-    { "source": "/version.json", "destination": "https://planniflow-4jrm.vercel.app/version.json" },
-    { "source": "/logo-mgr.png", "destination": "https://planniflow-4jrm.vercel.app/logo-mgr.png" }
+      "src": "/(.*)",
+      "headers": {
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "geolocation=(), microphone=(), camera=(), payment=(), usb=()",
+        "X-XSS-Protection": "1; mode=block",
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://spsnpknxqmogwymutvqu.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+      },
+      "continue": true
+    },
+    { "src": "/app", "dest": "https://planniflow-4jrm.vercel.app/" },
+    { "src": "/app/(.*)", "dest": "https://planniflow-4jrm.vercel.app/$1" },
+    { "src": "/planning", "dest": "https://planniflow-4jrm.vercel.app/planning" },
+    { "src": "/mobile-planning", "dest": "https://planniflow-4jrm.vercel.app/mobile-planning" },
+    { "src": "/login", "dest": "https://planniflow-4jrm.vercel.app/login" },
+    { "src": "/employees", "dest": "https://planniflow-4jrm.vercel.app/employees" },
+    { "src": "/presences", "dest": "https://planniflow-4jrm.vercel.app/presences" },
+    { "src": "/postes", "dest": "https://planniflow-4jrm.vercel.app/postes" },
+    { "src": "/facturation", "dest": "https://planniflow-4jrm.vercel.app/facturation" },
+    { "src": "/rapport", "dest": "https://planniflow-4jrm.vercel.app/rapport" },
+    { "src": "/rapport-dj", "dest": "https://planniflow-4jrm.vercel.app/rapport-dj" },
+    { "src": "/notes", "dest": "https://planniflow-4jrm.vercel.app/notes" },
+    { "src": "/export", "dest": "https://planniflow-4jrm.vercel.app/export" },
+    { "src": "/chat", "dest": "https://planniflow-4jrm.vercel.app/chat" },
+    { "src": "/chat-page", "dest": "https://planniflow-4jrm.vercel.app/chat-page" },
+    { "src": "/_next/(.*)", "dest": "https://planniflow-4jrm.vercel.app/_next/$1" },
+    { "src": "/api/(.*)", "dest": "https://planniflow-4jrm.vercel.app/api/$1" },
+    { "src": "/sw.js", "dest": "https://planniflow-4jrm.vercel.app/sw.js" },
+    { "src": "/manifest.json", "dest": "https://planniflow-4jrm.vercel.app/manifest.json" },
+    { "src": "/icons/(.*)", "dest": "https://planniflow-4jrm.vercel.app/icons/$1" },
+    { "src": "/version.json", "dest": "https://planniflow-4jrm.vercel.app/version.json" },
+    { "src": "/logo-mgr.png", "dest": "https://planniflow-4jrm.vercel.app/logo-mgr.png" }
   ]
 }
