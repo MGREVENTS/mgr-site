@@ -498,6 +498,7 @@ ${brandKeys.map(k => {
           <div class="bm-placeholder"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".5"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M22 15l-6-6L4 21"/></svg><span>Photo ${brandNames[k]}</span></div>
         </div>
       </div>
+      ${k === 'wedding' ? `<div style="margin-bottom:4rem;border-radius:3px;overflow:hidden;aspect-ratio:16/9"><video src="assets/photos/wedding-promo.mp4" controls playsinline preload="metadata" poster="assets/photos/wedding.jpg" style="width:100%;height:100%;object-fit:cover"></video></div>` : ''}
       <div class="bm-features">${b.features.map(f => `<div class="bm-feature"><h4>${f.title}</h4><p>${f.desc}</p></div>`).join('')}</div>
       <div class="bm-stats">${b.stats.map(s => `<div class="stat"><div class="bm-stat-num">${s.value}</div><div class="bm-stat-label">${s.label}</div></div>`).join('')}</div>
       <div class="bm-cta"><h3>${b.cta.text}</h3><p>Contactez-nous pour en savoir plus.</p><button class="cta-btn" onclick="${b.cta.action==='contact' ? `closeBrand('${k}');setTimeout(openContact,400)` : `window.open('${b.cta.action}','_blank')`}">${b.cta.text} ${arrowBig}</button></div>
