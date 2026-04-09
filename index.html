@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MGR Events Paris — Direction artistique, booking DJ et programmation musicale pour établissements, mariages et événements à Paris.">
+<title>MGR Events Paris — Direction Artistique & Booking DJ</title>
+<link rel="icon" type="image/png" href="assets/waveform.png">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--noir:#0A0A0A;--blanc:#F5F0EB;--or:#C9A84C;--bordeaux:#6B0F1A;--gris:#1A1A1A;--gris2:#2A2A2A;--gris-texte:#999;--ff-display:'Playfair Display',Georgia,serif;--ff-body:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{background:var(--noir);color:var(--blanc);font-family:var(--ff-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,10,10,.78);border-bottom:1px solid rgba(201,168,76,.08)}
+.nav-logo img{height:32px;width:auto;filter:brightness(1.1)}
+.nav-links{display:flex;gap:2.2rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.nav-links a{color:var(--gris-texte);transition:color .3s;position:relative;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--or);transition:width .3s}
+.nav-links a:hover{color:var(--blanc)}.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.65rem 1.6rem;border:1px solid var(--or);color:var(--or);transition:all .3s;font-weight:500;cursor:pointer;background:none}
+.nav-cta:hover{background:var(--or);color:var(--noir)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
+.hamburger svg{width:24px;height:24px}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;padding:6rem 2rem 4rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 85%,rgba(107,15,26,.3) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(201,168,76,.05) 0%,transparent 45%)}
+.hero-tag{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:2.5rem;font-weight:500;opacity:0;animation:fadeUp .8s .3s forwards;display:flex;align-items:center;gap:1rem}
+.diamond{width:6px;height:6px;background:var(--or);transform:rotate(45deg);display:inline-block;flex-shrink:0}
+.hero h1{font-family:var(--ff-display);font-size:clamp(3rem,8vw,7.5rem);line-height:.95;font-weight:400;margin-bottom:1.8rem;opacity:0;animation:fadeUp .8s .5s forwards;position:relative;z-index:1}
+.hero h1 em{font-style:italic;color:var(--or)}
+.hero-sub{font-size:1.05rem;color:var(--gris-texte);max-width:500px;line-height:1.75;font-weight:300;opacity:0;animation:fadeUp .8s .7s forwards;position:relative;z-index:1}
+.hero-scroll{position:absolute;bottom:2.5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeUp .8s 1.2s forwards}
+.hero-scroll span{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gris-texte)}
+.hero-scroll .line{width:1px;height:45px;background:linear-gradient(to bottom,var(--or),transparent);animation:scrollPulse 2s infinite}
+
+.stats{display:flex;justify-content:center;gap:5rem;padding:3.5rem 2rem;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.01)}
+.stat{text-align:center;display:flex;flex-direction:column;align-items:center}
+.stat svg{margin-bottom:.6rem;opacity:.35}
+.stat-num{font-family:var(--ff-display);font-size:2.6rem;color:var(--or);line-height:1}
+.stat-label{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris-texte);margin-top:.4rem}
+
+.section-tag{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;font-weight:500;display:flex;align-items:center;gap:.7rem}
+.section-title{font-family:var(--ff-display);font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;margin-bottom:1.5rem}
+
+.about{padding:8rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:center}
+.about p{color:var(--gris-texte);line-height:1.85;font-weight:300;font-size:.92rem;margin-bottom:1.2rem}
+.about-visual{position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden}
+.about-visual img{width:100%;height:100%;object-fit:cover}
+.about-visual.no-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--bordeaux),var(--noir));opacity:.65}
+.about-visual .av-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;z-index:1}
+.about-visual .av-placeholder svg{opacity:.12}
+.av-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+
+.brands{padding:8rem 3rem;max-width:1400px;margin:0 auto}
+.brands-header{text-align:center;margin-bottom:5rem}
+.brands-header .section-tag{justify-content:center}
+.brands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.brand-card{position:relative;aspect-ratio:2/3;overflow:hidden;border-radius:3px;cursor:pointer;border:1px solid rgba(255,255,255,.05);transition:border-color .5s,transform .5s}
+.brand-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-8px)}
+.brand-bg{position:absolute;inset:0;transition:transform .7s}.brand-card:hover .brand-bg{transform:scale(1.06)}
+.brand-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:2rem}
+.brand-icon{margin-bottom:auto}
+.brand-icon img{height:50px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+.brand-label{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem}
+.brand-name{font-family:var(--ff-display);font-size:1.6rem;margin-bottom:.7rem}
+.brand-desc{font-size:.82rem;color:var(--gris-texte);line-height:1.7;font-weight:300;margin-bottom:1.2rem}
+.brand-link{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--or);display:inline-flex;align-items:center;gap:.5rem;transition:gap .3s}
+.brand-link svg{width:14px;height:14px;transition:transform .3s}.brand-card:hover .brand-link svg{transform:translateX(4px)}
+
+.djs{padding:8rem 3rem;max-width:1400px;margin:0 auto}
+.djs-header{text-align:center;margin-bottom:4rem}
+.djs-header .section-tag{justify-content:center}
+.djs-header p{color:var(--gris-texte);font-weight:300;font-size:.95rem;max-width:500px;margin:0 auto}
+.djs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.dj-card{border-radius:3px;overflow:hidden;border:1px solid rgba(255,255,255,.04);transition:border-color .4s,transform .4s;cursor:default}
+.dj-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-5px)}
+.dj-photo{aspect-ratio:3/4;background:var(--gris);position:relative;overflow:hidden}
+.dj-photo img{width:100%;height:100%;object-fit:cover;position:relative;z-index:0}
+.dj-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--noir),transparent 50%);z-index:1}
+.dj-photo .dj-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.dj-photo .dj-placeholder svg{opacity:.08}
+.dj-info{padding:1.2rem 1.4rem}
+.dj-name{font-family:var(--ff-display);font-size:1.1rem;margin-bottom:.3rem}
+.dj-style{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--or);font-weight:500}
+.dj-venues{font-size:.75rem;color:var(--gris-texte);margin-top:.5rem;font-weight:300;line-height:1.6}
+.dj-socials{display:flex;gap:.5rem;margin-top:.7rem}
+.dj-socials a{width:28px;height:28px;border:1px solid rgba(255,255,255,.06);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.dj-socials a:hover{border-color:var(--or);background:rgba(201,168,76,.1)}
+.dj-socials a svg{width:11px;height:11px}
+.djs-cta{text-align:center;margin-top:3.5rem}
+.djs-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 2.2rem;border:1px solid rgba(201,168,76,.3);color:var(--or);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:all .3s;cursor:pointer;background:none}
+.djs-cta-btn:hover{background:rgba(201,168,76,.08);border-color:var(--or)}
+
+.trust{padding:6rem 3rem;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+.trust .section-tag{justify-content:center;margin-bottom:3rem}
+.trust-logos{display:flex;justify-content:center;align-items:center;gap:3.5rem;flex-wrap:wrap}
+.trust-logo{opacity:.25;transition:opacity .4s;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris-texte)}.trust-logo:hover{opacity:.55}
+
+.cta-section{padding:9rem 3rem;text-align:center;position:relative}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,.07) 0%,transparent 55%)}
+.cta-section .section-title,.cta-section p,.cta-btn{position:relative}
+.cta-section p{color:var(--gris-texte);margin-bottom:2.8rem;font-size:1rem;font-weight:300}
+.cta-btn{display:inline-flex;align-items:center;gap:.8rem;padding:1.1rem 3rem;background:var(--or);color:var(--noir);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;transition:all .4s;border:none;cursor:pointer}
+.cta-btn:hover{background:var(--blanc);transform:translateY(-3px);box-shadow:0 15px 50px rgba(201,168,76,.2)}
+
+/* BRAND MODALS */
+.brand-modal{position:fixed;inset:0;z-index:200;background:var(--noir);overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .5s}
+.brand-modal.active{opacity:1;pointer-events:all}
+.brand-modal-inner{max-width:1100px;margin:0 auto;padding:6rem 3rem 4rem}
+.bm-back{position:fixed;top:1.2rem;left:1.5rem;z-index:210;display:flex;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);cursor:pointer;background:rgba(10,10,10,.8);backdrop-filter:blur(12px);padding:.6rem 1.2rem;border:1px solid rgba(255,255,255,.06);border-radius:2px;transition:all .3s}
+.bm-back:hover{color:var(--or);border-color:rgba(201,168,76,.3)}
+.bm-back svg{width:16px;height:16px}
+.bm-hero{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem;min-height:70vh;padding-top:2rem}
+.bm-tag{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;font-weight:500}
+.bm-hero h2{font-family:var(--ff-display);font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;margin-bottom:1.5rem}
+.bm-hero h2 em{font-style:italic;color:var(--or)}
+.bm-hero p{color:var(--gris-texte);line-height:1.85;font-weight:300;font-size:.95rem;margin-bottom:1rem}
+.bm-visual{aspect-ratio:4/5;border-radius:3px;overflow:hidden;position:relative}
+.bm-visual img{width:100%;height:100%;object-fit:cover}
+.bm-visual .bm-gradient{position:absolute;inset:0}
+.bm-visual .bm-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;z-index:1}
+.bm-visual .bm-placeholder svg{opacity:.1}
+.bm-visual .bm-placeholder span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+.bm-features{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:5rem}
+.bm-feature{padding:2rem;border:1px solid rgba(255,255,255,.04);border-radius:3px;transition:border-color .3s}
+.bm-feature:hover{border-color:rgba(201,168,76,.15)}
+.bm-feature h4{font-family:var(--ff-display);font-size:1.05rem;margin-bottom:.6rem}
+.bm-feature p{font-size:.82rem;color:var(--gris-texte);line-height:1.7;font-weight:300}
+.bm-stats{display:flex;justify-content:center;gap:4rem;padding:3rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);margin-bottom:5rem}
+.bm-stat-num{font-family:var(--ff-display);font-size:2.2rem;color:var(--or)}
+.bm-stat-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris-texte);margin-top:.3rem}
+.bm-cta{text-align:center;padding:4rem 0}
+.bm-cta h3{font-family:var(--ff-display);font-size:1.8rem;margin-bottom:1rem}
+.bm-cta p{color:var(--gris-texte);font-weight:300;margin-bottom:2rem}
+
+/* CONTACT MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal{background:var(--gris);border:1px solid rgba(201,168,76,.12);border-radius:4px;width:90%;max-width:520px;padding:3rem;position:relative;transform:translateY(30px) scale(.97);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.modal-overlay.active .modal{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;width:36px;height:36px;border:1px solid rgba(255,255,255,.08);border-radius:50%;background:none;color:var(--gris-texte);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.modal-close:hover{border-color:var(--or);color:var(--or)}
+.modal-close svg{width:16px;height:16px}
+.modal h3{font-family:var(--ff-display);font-size:1.6rem;margin-bottom:2rem}
+.form-row{margin-bottom:1.2rem}
+.form-row label{display:block;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris-texte);margin-bottom:.5rem;font-weight:500}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:2px;padding:.8rem 1rem;color:var(--blanc);font-family:var(--ff-body);font-size:.88rem;font-weight:300;transition:border-color .3s;outline:none}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--or)}
+.form-row input::placeholder,.form-row textarea::placeholder{color:rgba(255,255,255,.2)}
+.form-row select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer}
+.form-row select option{background:var(--gris);color:var(--blanc)}
+.form-row textarea{resize:vertical;min-height:100px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.form-submit{width:100%;padding:.9rem;background:var(--or);color:var(--noir);font-family:var(--ff-body);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;transition:all .3s;margin-top:.5rem;border-radius:2px}
+.form-submit:hover{background:var(--blanc)}
+.form-success{display:none;text-align:center;padding:2rem 0}
+.form-success h4{font-family:var(--ff-display);font-size:1.3rem;margin-bottom:.5rem}
+.form-success p{color:var(--gris-texte);font-size:.88rem;font-weight:300}
+
+footer{padding:5rem 3rem 2rem;border-top:1px solid rgba(255,255,255,.05);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1300px;margin:0 auto}
+.footer-brand img{height:28px;margin-bottom:1.2rem;filter:brightness(1.1)}
+.footer-brand p{font-size:.82rem;color:var(--gris-texte);line-height:1.8;font-weight:300;max-width:260px}
+.footer-socials{display:flex;gap:.8rem;margin-top:1.2rem}
+.footer-socials a{width:34px;height:34px;border:1px solid rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.footer-socials a:hover{border-color:var(--or);background:rgba(201,168,76,.08)}
+.footer-socials a svg{width:13px;height:13px}
+.footer-col h4{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);margin-bottom:1.2rem;font-weight:500}
+.footer-col a{font-size:.82rem;color:var(--gris-texte);line-height:2.2;font-weight:300;display:block;transition:color .3s;cursor:pointer}.footer-col a:hover{color:var(--or)}
+.footer-bottom{text-align:center;padding:2.5rem 3rem;font-size:.6rem;color:rgba(255,255,255,.13);letter-spacing:.15em;text-transform:uppercase}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
+[data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+[data-reveal].visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:1000px){.brands-grid,.djs-grid{grid-template-columns:repeat(2,1fr)}.brand-card{aspect-ratio:3/4}.bm-hero{grid-template-columns:1fr;gap:2rem}.bm-features{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}.hamburger{display:block}
+  .about{grid-template-columns:1fr;gap:2.5rem;padding:5rem 1.5rem}.about-visual{aspect-ratio:16/10}
+  .brands{padding:5rem 1.5rem}.brands-grid{grid-template-columns:1fr;gap:1rem}.brand-card{aspect-ratio:5/4}
+  .stats{gap:1.5rem;flex-wrap:wrap;padding:2.5rem 1rem}
+  .djs{padding:5rem 1.5rem}.djs-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  footer{grid-template-columns:1fr 1fr;gap:2rem;padding:3rem 1.5rem}.footer-brand{grid-column:1/-1}
+  .hero h1{font-size:clamp(2.5rem,10vw,4rem)}.cta-section{padding:5rem 1.5rem}.trust-logos{gap:2rem}
+  .modal{padding:2rem 1.5rem}.form-grid{grid-template-columns:1fr}
+  .brand-modal-inner{padding:5rem 1.5rem 3rem}.bm-hero{min-height:auto}.bm-visual{aspect-ratio:16/10}.bm-features{grid-template-columns:1fr}.bm-stats{gap:2rem;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- Skeleton — filled by JS from config.js -->
+<div id="app"></div>
+
+<script src="config.js"></script>
+<script>
+const C = SITE_CONFIG;
+const arrow = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>`;
+const arrowBig = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>`;
+const backArrow = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m7-7l-7 7 7 7"/></svg>`;
+const igIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="#C9A84C" stroke="none"/></svg>`;
+const fbIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>`;
+const scIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M3 18v-4m3 4V11m3 7V8m3 10V5m3 13V9m3 9v-6m3 6v-3"/></svg>`;
+const musicIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M9 18V5l12-2v13M6 18a3 3 0 100-6 3 3 0 000 6z"/></svg>`;
+
+const statIcons = {
+  calendar: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+  music: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.2"><path d="M9 18V5l12-2v13M6 18a3 3 0 100-6 3 3 0 000 6zm12-2a3 3 0 100-6 3 3 0 000 6z"/></svg>`,
+  building: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>`,
+  clock: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>`,
+};
+
+const brandIcons = {
+  events: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="22" stroke="#C9A84C" stroke-width=".6" opacity=".3"/><circle cx="26" cy="26" r="16" stroke="#C9A84C" stroke-width=".5" opacity=".25"/><circle cx="26" cy="26" r="10" stroke="#C9A84C" stroke-width=".5" opacity=".4"/><circle cx="26" cy="26" r="4" stroke="#C9A84C" stroke-width=".8"/><circle cx="26" cy="26" r="1.5" fill="#C9A84C"/><circle cx="44" cy="10" r="3.5" stroke="#C9A84C" stroke-width=".6" opacity=".5"/><line x1="44" y1="13.5" x2="44" y2="20" stroke="#C9A84C" stroke-width=".4" opacity=".3"/></svg>`,
+  wedding: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="19" cy="30" r="12" stroke="#C9A84C" stroke-width=".6"/><circle cx="33" cy="30" r="12" stroke="#C9A84C" stroke-width=".6"/><path d="M26 6l-3.5 8h7z" stroke="#C9A84C" stroke-width=".6" stroke-linejoin="round"/><circle cx="26" cy="4.5" r="1.8" fill="#C9A84C" opacity=".5"/></svg>`,
+  nomames: `<img src="assets/No_Mames2.png" alt="No Mames" style="height:55px;width:auto">`,
+  school: `<svg width="52" height="52" viewBox="0 0 52 52" fill="none"><path d="M11 30v-6a15 15 0 0130 0v6" stroke="#C9A84C" stroke-width=".7"/><rect x="6" y="28" width="7" height="12" rx="2.5" stroke="#C9A84C" stroke-width=".7"/><rect x="39" y="28" width="7" height="12" rx="2.5" stroke="#C9A84C" stroke-width=".7"/><path d="M19 22v-5m3 7V13m3 10V10m3 13V8m3 13v-8m3 6v-4m3 3v-1" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round" opacity=".4"/></svg>`,
+};
+
+const brandGradients = {
+  events: 'linear-gradient(165deg,#0c0c0c 25%,#6B0F1A)',
+  wedding: 'linear-gradient(165deg,#0c0c0c 25%,#2A1A0A)',
+  nomames: 'linear-gradient(165deg,#0c0c0c 20%,#2A1500)',
+  school: 'linear-gradient(165deg,#0c0c0c 25%,#0A1A2A)',
+};
+
+const brandLabels = { events:'Nightlife', wedding:'Mariages', nomames:'Événements', school:'Formation' };
+const brandNames = { events:'MGR Events', wedding:'MGR Wedding', nomames:'No Mames', school:'MGR School' };
+const brandDescs = { events:'Direction artistique et booking DJ pour les clubs et bars les plus exigeants de Paris.', wedding:'Playlists sur mesure pour chaque moment — cérémonie, cocktail, dîner, soirée.', nomames:'Soirées latines, afro et urbaines dans les plus beaux lieux de la capitale.', school:'Apprenez le DJing avec des professionnels en activité, en cabine réelle.' };
+
+function photoOrPlaceholder(src, label) {
+  const img = new Image();
+  img.src = src;
+  // We'll use onerror in the HTML to show placeholder
+  return `<img src="${src}" alt="${label}" onerror="this.parentElement.classList.add('no-photo');this.style.display='none'">`;
+}
+
+function buildSite() {
+  const brandKeys = ['events','wedding','nomames','school'];
+  
+  document.getElementById('app').innerHTML = `
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="${C.brand.logo}" alt="${C.brand.name}"></a>
+  <div class="nav-links">
+    <a href="#about">À propos</a>
+    <a href="#brands">Nos univers</a>
+    <a href="#djs">Nos DJs</a>
+  </div>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <button class="nav-cta" onclick="openContact()">Nous contacter</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag"><span class="diamond"></span> ${C.hero.tagline} <span class="diamond"></span></div>
+  <h1>${C.hero.title}</h1>
+  <p class="hero-sub">${C.hero.subtitle}</p>
+  <div class="hero-scroll"><span>Scroll</span><div class="line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats" data-reveal>
+  ${C.stats.map(s => `<div class="stat">${statIcons[s.icon]||''}<div class="stat-num">${s.value}</div><div class="stat-label">${s.label}</div></div>`).join('')}
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div data-reveal>
+    <div class="section-tag"><span class="diamond"></span> Qui sommes-nous</div>
+    <h2 class="section-title">Une équipe passionnée<br>au service de vos nuits.</h2>
+    <p>MGR Events Paris assure la direction artistique et la programmation musicale d'établissements parisiens. Nous sélectionnons, formons et plaçons les DJs qui transforment une soirée ordinaire en expérience mémorable.</p>
+    <p>Lounge, électro, afro-caribéen, open format — chaque lieu a son identité sonore. Nous la construisons avec vous.</p>
+  </div>
+  <div class="about-visual no-photo" data-reveal>
+    ${photoOrPlaceholder(C.photos.about, 'MGR Events')}
+    <div class="av-placeholder"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".6"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M22 15l-6-6L4 21"/></svg><div class="av-label">Votre photo ici</div></div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands" id="brands">
+  <div class="brands-header" data-reveal>
+    <div class="section-tag"><span class="diamond"></span> Nos univers</div>
+    <h2 class="section-title">Quatre marques,<br>une même exigence.</h2>
+  </div>
+  <div class="brands-grid">
+    ${brandKeys.map((k,i) => `<div class="brand-card" data-reveal style="transition-delay:${i*.1}s" onclick="openBrand('${k}')"><div class="brand-bg" style="background:${brandGradients[k]}"></div><div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div></div>`).join('')}
+  </div>
+</section>
+
+<!-- DJS -->
+<section class="djs" id="djs">
+  <div class="djs-header" data-reveal>
+    <div class="section-tag"><span class="diamond"></span> Le roster</div>
+    <h2 class="section-title">Nos DJs</h2>
+    <p>Une équipe de résidents triés sur le volet, chacun expert de son univers musical.</p>
+  </div>
+  <div class="djs-grid">
+    ${C.djs.map((dj,i) => `<div class="dj-card" data-reveal style="transition-delay:${i*.06}s">
+      <div class="dj-photo">
+        <img src="${dj.photo}" alt="${dj.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="dj-placeholder" style="display:none"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg></div>
+      </div>
+      <div class="dj-info">
+        <div class="dj-name">${dj.name}</div>
+        <div class="dj-style">${dj.style}</div>
+        <div class="dj-venues">${dj.venues}</div>
+        <div class="dj-socials">
+          ${dj.instagram ? `<a href="${dj.instagram}" target="_blank">${igIcon}</a>` : ''}
+          ${dj.soundcloud ? `<a href="${dj.soundcloud}" target="_blank">${musicIcon}</a>` : ''}
+        </div>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="djs-cta" data-reveal><button class="djs-cta-btn" onclick="openContact()">Booker un DJ ${arrow}</button></div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" data-reveal>
+  <div class="section-tag"><span class="diamond"></span> Ils nous font confiance</div>
+  <div class="trust-logos">${C.partners.map(p => `<div class="trust-logo">${p}</div>`).join('')}</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" data-reveal>
+  <h2 class="section-title">Un projet ?<br>Parlons-en.</h2>
+  <p>Booking DJ, direction artistique ou événement privé — on s'occupe de tout.</p>
+  <button class="cta-btn" onclick="openContact()">Contactez-nous ${arrowBig}</button>
+</section>
+
+<!-- FOOTER -->
+<footer data-reveal>
+  <div class="footer-brand">
+    <img src="${C.brand.logo}" alt="${C.brand.name}">
+    <p>Direction artistique & booking DJ pour les établissements parisiens depuis ${C.brand.since}.</p>
+    <div class="footer-socials">
+      <a href="${C.brand.socials.instagram}" target="_blank">${igIcon}</a>
+      <a href="${C.brand.socials.facebook}" target="_blank">${fbIcon}</a>
+      <a href="${C.brand.socials.soundcloud}" target="_blank">${scIcon}</a>
+    </div>
+  </div>
+  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="#djs">Nos DJs</a><a onclick="openContact()">Contact</a></div>
+  <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=>`<a onclick="openBrand('${k}')">${brandNames[k]}</a>`).join('')}</div>
+  <div class="footer-col"><h4>Contact</h4><a href="mailto:${C.brand.email}">${C.brand.email}</a><a>Paris, France</a><a style="margin-top:.8rem;color:rgba(255,255,255,.18);font-size:.72rem">Mentions légales</a></div>
+</footer>
+<div class="footer-bottom">© ${new Date().getFullYear()} ${C.brand.name} — Tous droits réservés</div>
+
+<!-- BRAND MODALS -->
+${brandKeys.map(k => {
+  const b = C.brands[k];
+  const photoKey = k === 'nomames' ? 'nomames_hero' : k+'_hero';
+  const grad = brandGradients[k].replace('165deg','135deg');
+  return `<div class="brand-modal" id="bm-${k}">
+    <div class="bm-back" onclick="closeBrand('${k}')">${backArrow} Retour</div>
+    <div class="brand-modal-inner">
+      <div class="bm-hero">
+        <div>
+          <div class="bm-tag">${b.tag}</div>
+          <h2>${b.title}</h2>
+          <p>${b.description}</p>
+          <p>${b.description2}</p>
+        </div>
+        <div class="bm-visual no-photo">
+          <div class="bm-gradient" style="background:${grad}"></div>
+          <img src="${C.photos[photoKey]}" alt="${brandNames[k]}" onerror="this.style.display='none'" style="position:relative;z-index:1">
+          <div class="bm-placeholder"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".5"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M22 15l-6-6L4 21"/></svg><span>Photo ${brandNames[k]}</span></div>
+        </div>
+      </div>
+      <div class="bm-features">${b.features.map(f => `<div class="bm-feature"><h4>${f.title}</h4><p>${f.desc}</p></div>`).join('')}</div>
+      <div class="bm-stats">${b.stats.map(s => `<div class="stat"><div class="bm-stat-num">${s.value}</div><div class="bm-stat-label">${s.label}</div></div>`).join('')}</div>
+      <div class="bm-cta"><h3>${b.cta.text}</h3><p>Contactez-nous pour en savoir plus.</p><button class="cta-btn" onclick="${b.cta.action==='contact' ? `closeBrand('${k}');setTimeout(openContact,400)` : `window.open('${b.cta.action}','_blank')`}">${b.cta.text} ${arrowBig}</button></div>
+    </div>
+  </div>`;
+}).join('')}
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="if(event.target===this)closeContact()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeContact()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div id="formContent">
+      <div class="section-tag"><span class="diamond"></span> Contact</div>
+      <h3>Parlons de votre projet</h3>
+      <form id="contactForm" onsubmit="return submitForm(event)">
+        <div class="form-grid"><div class="form-row"><label>Prénom</label><input name="prenom" required placeholder="Votre prénom"></div><div class="form-row"><label>Nom</label><input name="nom" required placeholder="Votre nom"></div></div>
+        <div class="form-grid"><div class="form-row"><label>Email</label><input name="email" type="email" required placeholder="votre@email.com"></div><div class="form-row"><label>Téléphone</label><input name="tel" type="tel" placeholder="+33 6 ..."></div></div>
+        <div class="form-row"><label>Type de projet</label><select name="type" required><option value="" disabled selected>Sélectionnez...</option><option>Booking DJ — Établissement</option><option>Booking DJ — Événement privé</option><option>Mariage</option><option>Formation DJ</option><option>Direction artistique</option><option>Autre</option></select></div>
+        <div class="form-row"><label>Votre message</label><textarea name="message" placeholder="Décrivez votre projet, la date souhaitée, le lieu..."></textarea></div>
+        <button type="submit" class="form-submit">Envoyer la demande</button>
+      </form>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" style="margin:0 auto 1rem;display:block"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+      <h4>Message envoyé</h4>
+      <p>Nous reviendrons vers vous sous 24h.</p>
+    </div>
+  </div>
+</div>`;
+
+  // Init reveal observer
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target) }}) }, { threshold: 0.1 });
+  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+}
+
+// ── Modal controllers ──
+function openBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.add('active');el.scrollTop=0;document.body.style.overflow='hidden';} }
+function closeBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.remove('active');document.body.style.overflow='';} }
+function openContact(){ document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden'; }
+function closeContact(){ document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow=''; }
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeContact(); document.querySelectorAll('.brand-modal.active').forEach(m=>m.classList.remove('active')); document.body.style.overflow=''; }});
+
+function submitForm(e) {
+  e.preventDefault();
+  // TODO: replace with Formspree, EmailJS or Supabase
+  // const data = new FormData(e.target);
+  // fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body:data });
+  document.getElementById('formContent').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+  setTimeout(closeContact, 2500);
+  setTimeout(() => { document.getElementById('formContent').style.display=''; document.getElementById('formSuccess').style.display='none'; document.getElementById('contactForm').reset(); }, 3000);
+  return false;
+}
+
+// Build on load
+buildSite();
+</script>
+</body>
+</html>
