@@ -79,7 +79,7 @@ const SITE_CONFIG = {
     },
     {
       name: "DJ Stevis",
-      photo: "assets/djs/Stevis.png",
+      photo: "assets/djs/stevis.png",
       style: "Open Format · Caribéen · Urban FR · Hip-Hop",
       venues: "Duplex, QG, Seguin Sound Club",
       instagram: "https://www.instagram.com/djstevis/",
