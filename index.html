@@ -97,27 +97,35 @@ html{scroll-behavior:smooth}body{background:var(--noir);color:var(--blanc);font-
 .theme-toggle{background:none;border:1px solid rgba(201,168,76,.2);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;margin-right:.5rem}
 .theme-toggle:hover{border-color:var(--or);background:rgba(201,168,76,.08)}
 .theme-toggle svg{width:16px;height:16px}
-[data-theme="light"] .nav-logo img{filter:brightness(.2)}
-[data-theme="light"] .footer-brand img{filter:brightness(.2)}
+[data-theme="light"] .nav-logo img{filter:none}
+[data-theme="light"] .footer-brand img{filter:none}
 [data-theme="light"] .hero::before{background:radial-gradient(ellipse at 50% 85%,rgba(201,168,76,.08) 0%,transparent 55%)}
 [data-theme="light"] .brand-card{border-color:rgba(0,0,0,.1)}
-[data-theme="light"] .brand-card .brand-bg{opacity:1}
-[data-theme="light"] .brand-card .brand-name,[data-theme="light"] .brand-card .brand-desc,[data-theme="light"] .brand-card .brand-label,[data-theme="light"] .brand-card .brand-link{color:#F5F0EB}
-[data-theme="light"] .brand-card .brand-desc{color:rgba(245,240,235,.7)}
+[data-theme="light"] .brand-card .brand-content{color:#F5F0EB !important}
+[data-theme="light"] .brand-card .brand-name{color:#F5F0EB !important}
+[data-theme="light"] .brand-card .brand-label{color:var(--or) !important}
+[data-theme="light"] .brand-card .brand-desc{color:rgba(245,240,235,.7) !important}
+[data-theme="light"] .brand-card .brand-link{color:var(--or) !important}
 [data-theme="light"] .brand-modal{background:#0A0A0A;color:#F5F0EB}
 [data-theme="light"] .brand-modal .bm-tag{color:var(--or)}
-[data-theme="light"] .brand-modal h2,[data-theme="light"] .brand-modal .brand-name{color:#F5F0EB}
-[data-theme="light"] .brand-modal p{color:#999}
+[data-theme="light"] .brand-modal h2{color:#F5F0EB !important}
+[data-theme="light"] .brand-modal h2 em{color:var(--or) !important}
+[data-theme="light"] .brand-modal p{color:#999 !important}
 [data-theme="light"] .brand-modal .bm-feature{border-color:rgba(255,255,255,.04)}
-[data-theme="light"] .brand-modal .bm-feature h4{color:#F5F0EB}
-[data-theme="light"] .brand-modal .bm-feature p{color:#999}
+[data-theme="light"] .brand-modal .bm-feature h4{color:#F5F0EB !important}
+[data-theme="light"] .brand-modal .bm-feature p{color:#999 !important}
 [data-theme="light"] .brand-modal .bm-stat-num{color:var(--or)}
 [data-theme="light"] .brand-modal .bm-stat-label{color:#999}
-[data-theme="light"] .brand-modal .bm-cta h3{color:#F5F0EB}
-[data-theme="light"] .brand-modal .bm-back{color:#999;background:rgba(0,0,0,.6);border-color:rgba(255,255,255,.15)}
+[data-theme="light"] .brand-modal .bm-cta h3{color:#F5F0EB !important}
+[data-theme="light"] .brand-modal .bm-cta p{color:#999 !important}
+[data-theme="light"] .brand-modal .bm-back{color:#F5F0EB;background:rgba(0,0,0,.7);border-color:rgba(255,255,255,.15)}
 [data-theme="light"] .brand-modal .bm-back:hover{color:var(--or);border-color:rgba(201,168,76,.3)}
-[data-theme="light"] .modal{background:var(--gris);border-color:rgba(201,168,76,.2)}
-[data-theme="light"] .modal h3,[data-theme="light"] .modal label{color:var(--blanc)}
+[data-theme="light"] .modal{background:#E8E3DD;border-color:rgba(201,168,76,.2)}
+[data-theme="light"] .modal h3{color:#1A1A1A}
+[data-theme="light"] .modal label{color:#666}
+[data-theme="light"] .form-row input,[data-theme="light"] .form-row select,[data-theme="light"] .form-row textarea{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.1);color:#1A1A1A}
+[data-theme="light"] .dj-card{border-color:rgba(0,0,0,.08)}
+[data-theme="light"] .dj-card:hover{border-color:rgba(201,168,76,.4)}
 [data-theme="light"] .form-row input,[data-theme="light"] .form-row select,[data-theme="light"] .form-row textarea{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.1);color:var(--blanc)}
 
 nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:var(--nav-bg);border-bottom:1px solid var(--border-accent);transition:background .4s}
