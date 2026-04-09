@@ -1,6 +1,12 @@
 {
   "rewrites": [
     { "source": "/app", "destination": "https://planniflow-4jrm.vercel.app/" },
-    { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" }
+    { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" },
+    { "source": "/_next/:path*", "destination": "https://planniflow-4jrm.vercel.app/_next/:path*" },
+    { "source": "/api/:path*", "destination": "https://planniflow-4jrm.vercel.app/api/:path*" },
+    { "source": "/sw.js", "destination": "https://planniflow-4jrm.vercel.app/sw.js" },
+    { "source": "/manifest.json", "destination": "https://planniflow-4jrm.vercel.app/manifest.json" },
+    { "source": "/icons/:path*", "destination": "https://planniflow-4jrm.vercel.app/icons/:path*" },
+    { "source": "/version.json", "destination": "https://planniflow-4jrm.vercel.app/version.json" }
   ]
 }
