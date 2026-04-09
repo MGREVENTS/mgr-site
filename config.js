@@ -170,7 +170,6 @@ const SITE_CONFIG = {
         { title: "Mon Sublime Mariage — dès 2 399€", desc: "L'excellence absolue : tout le Basic plus machine à fumée, bulles, 6 pars LED d'ambiance, fumée lourde, étincelles froides et sono extérieure sans fil." },
       ],
       stats: [
-        { value: "80+", label: "Mariages réalisés" },
         { value: "5★", label: "Note moyenne" },
         { value: "899€", label: "À partir de" },
         { value: "10h", label: "Prestation DJ" },
