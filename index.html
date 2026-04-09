@@ -282,14 +282,20 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display
 .form-success p{color:var(--gris-texte);font-size:.88rem;font-weight:300}
 
 /* Carousel */
-.bm-carousel{margin-bottom:4rem}
+.bm-carousel{margin-bottom:4rem;position:relative}
 .bm-carousel h3{font-family:var(--ff-display);font-size:1.3rem;margin-bottom:1.5rem;text-align:center}
-.carousel-track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:1rem;scrollbar-width:none}
+.carousel-wrap{position:relative}
+.carousel-track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:1rem;scrollbar-width:none;scroll-behavior:smooth}
 .carousel-track::-webkit-scrollbar{display:none}
 .carousel-item{flex:0 0 280px;aspect-ratio:4/3;border-radius:3px;overflow:hidden;scroll-snap-align:start;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.04);transition:border-color .3s}
 .carousel-item:hover{border-color:rgba(201,168,76,.3)}
 .carousel-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .carousel-item:hover img{transform:scale(1.05)}
+.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,168,76,.3);background:rgba(10,10,10,.7);backdrop-filter:blur(8px);color:var(--or);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:all .3s}
+.carousel-arrow:hover{background:var(--or);color:var(--noir);border-color:var(--or)}
+.carousel-arrow.left{left:-.5rem}
+.carousel-arrow.right{right:-.5rem}
+.carousel-arrow svg{width:16px;height:16px}
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;cursor:zoom-out}
 .lightbox.active{display:flex}
@@ -516,7 +522,7 @@ ${brandKeys.map(k => {
         </div>
       </div>
       ${k === 'wedding' ? `<div style="margin-bottom:4rem;border-radius:3px;overflow:hidden;aspect-ratio:16/9"><iframe src="https://www.youtube.com/embed/Iy-Wbd6jF5c?rel=0&modestbranding=1&color=white" title="MGR Wedding — Aftermovie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%"></iframe></div>` : ''}
-      ${b.gallery && b.gallery.length ? `<div class="bm-carousel"><h3>Galerie</h3><div class="carousel-track">${b.gallery.map(src => `<div class="carousel-item" onclick="openLightbox('${src}')"><img src="${src}" alt="Galerie ${brandNames[k]}" loading="lazy"></div>`).join('')}</div></div>` : ''}
+      ${b.gallery && b.gallery.length ? `<div class="bm-carousel"><h3>Galerie</h3><div class="carousel-wrap"><button class="carousel-arrow left" onclick="this.nextElementSibling.scrollBy({left:-300,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><div class="carousel-track">${b.gallery.map(src => `<div class="carousel-item" onclick="openLightbox('${src}')"><img src="${src}" alt="Galerie ${brandNames[k]}" loading="lazy"></div>`).join('')}</div><button class="carousel-arrow right" onclick="this.previousElementSibling.scrollBy({left:300,behavior:'smooth'})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button></div></div>` : ''}
       <div class="bm-features">${b.features.map(f => `<div class="bm-feature"><h4>${f.title}</h4><p>${f.desc}</p></div>`).join('')}</div>
       <div class="bm-stats">${b.stats.map(s => `<div class="stat"><div class="bm-stat-num">${s.value}</div><div class="bm-stat-label">${s.label}</div></div>`).join('')}</div>
       <div class="bm-cta"><h3>${b.cta.text}</h3><p>Contactez-nous pour en savoir plus.</p><button class="cta-btn" onclick="${b.cta.action==='contact' ? `closeBrand('${k}');setTimeout(openContact,400)` : `window.open('${b.cta.action}','_blank')`}">${b.cta.text} ${arrowBig}</button></div>
