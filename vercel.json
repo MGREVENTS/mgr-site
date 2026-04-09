@@ -7,6 +7,7 @@
     { "source": "/sw.js", "destination": "https://planniflow-4jrm.vercel.app/sw.js" },
     { "source": "/manifest.json", "destination": "https://planniflow-4jrm.vercel.app/manifest.json" },
     { "source": "/icons/:path*", "destination": "https://planniflow-4jrm.vercel.app/icons/:path*" },
-    { "source": "/version.json", "destination": "https://planniflow-4jrm.vercel.app/version.json" }
+    { "source": "/version.json", "destination": "https://planniflow-4jrm.vercel.app/version.json" },
+    { "source": "/logo-mgr.png", "destination": "https://planniflow-4jrm.vercel.app/logo-mgr.png" }
   ]
 }
