@@ -202,7 +202,8 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display
 .bm-visual{aspect-ratio:4/5;border-radius:3px;overflow:hidden;position:relative}
 .bm-visual img{width:100%;height:100%;object-fit:cover}
 .bm-visual .bm-gradient{position:absolute;inset:0}
-.bm-visual .bm-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;z-index:1}
+.bm-visual .bm-placeholder{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;z-index:1}
+.bm-visual.no-photo .bm-placeholder{display:flex}
 .bm-visual .bm-placeholder svg{opacity:.1}
 .bm-visual .bm-placeholder span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}
 .bm-features{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:5rem}
@@ -445,9 +446,9 @@ ${brandKeys.map(k => {
           <p>${b.description}</p>
           <p>${b.description2}</p>
         </div>
-        <div class="bm-visual no-photo">
+        <div class="bm-visual">
           <div class="bm-gradient" style="background:${grad}"></div>
-          <img src="${C.photos[photoKey]}" alt="${brandNames[k]}" onerror="this.style.display='none'" style="position:relative;z-index:1">
+          <img src="${C.photos[photoKey]}" alt="${brandNames[k]}" onerror="this.parentElement.classList.add('no-photo');this.style.display='none'" style="position:relative;z-index:1">
           <div class="bm-placeholder"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".5"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8" cy="8" r="2"/><path d="M22 15l-6-6L4 21"/></svg><span>Photo ${brandNames[k]}</span></div>
         </div>
       </div>
