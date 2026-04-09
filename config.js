@@ -135,7 +135,7 @@ const SITE_CONFIG = {
     about: "assets/photos/raphael-wedding.jpg",        // section "Qui sommes-nous"
     events_hero: "assets/photos/events-hero.jpg",     // modal MGR Events
     wedding_hero: "assets/photos/wedding-hero.jpg",   // modal MGR Wedding
-    nomames_hero: "assets/photos/nomames-hero.jpg",   // modal No Mames
+    nomames_hero: "assets/photos/nomames.jpg",          // modal No Mames
     school_hero: "assets/photos/school-hero.jpg",     // modal MGR School
   },
 
@@ -177,21 +177,21 @@ const SITE_CONFIG = {
       cta: { text: "Demander un devis", action: "contact" },
     },
     nomames: {
-      tag: "Événements · Soirées thématiques",
+      tag: "Événements · Soirées Latino",
       title: "La <em>fiesta</em> parisienne",
-      description: "No Mames est notre marque événementielle dédiée aux soirées latines, afro et urbaines. Nous produisons des événements dans les plus beaux lieux de la capitale.",
+      description: "No Mames est notre marque événementielle dédiée aux soirées latines. Nous produisons des événements dans les plus beaux lieux de la capitale.",
       description2: "Une communauté fidèle, une programmation pointue et une ambiance qui ne ressemble à rien d'autre.",
       features: [
-        { title: "Soirées signature", desc: "Reggaeton, afrobeats, baile funk, cumbia — des line-ups curatés pour une énergie maximale." },
-        { title: "Communauté", desc: "+5 000 followers engagés et une base fidèle qui attend chaque édition avec impatience." },
-        { title: "Lieux d'exception", desc: "Duplex, Quai de la Photo, rooftops privés — nous investissons les meilleurs spots de Paris." },
+        { title: "Soirées signature", desc: "Reggaeton, Dembow, Baile Funk, Salsa — des line-ups curatés pour une énergie maximale." },
+        { title: "Communauté", desc: "+500 followers engagés et une base fidèle qui attend chaque édition avec impatience." },
+        { title: "Lieu d'exception", desc: "Le Duplex, club mythique des Champs-Élysées — notre résidence exclusive pour des soirées inoubliables." },
       ],
       stats: [
         { value: "30+", label: "Événements / an" },
-        { value: "5K+", label: "Communauté" },
+        { value: "500+", label: "Communauté" },
         { value: "100%", label: "Sold out" },
       ],
-      cta: { text: "Suivre @nomames", action: "https://instagram.com/nomames.paris" },
+      cta: { text: "Suivre @nomames", action: "https://instagram.com/nomames_paris" },
     },
     school: {
       tag: "Formation · Cours de DJing",
