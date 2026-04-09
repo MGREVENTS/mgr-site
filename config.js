@@ -207,7 +207,7 @@ const SITE_CONFIG = {
         { value: "500+", label: "Communauté" },
         { value: "100%", label: "Sold out" },
       ],
-      cta: { text: "Suivre @nomames", action: "https://instagram.com/nomames_paris" },
+      cta: { text: "Suivre @nomames_paris", action: "https://instagram.com/nomames_paris" },
     },
     school: {
       tag: "Formation · Cours de DJing",
