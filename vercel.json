@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/app", "destination": "https://planniflow-4jrm.vercel.app/" },
+    { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" }
+  ]
+}
