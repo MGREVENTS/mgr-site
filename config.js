@@ -125,6 +125,14 @@ const SITE_CONFIG = {
       instagram: "https://www.instagram.com/djlixx.official/",
       soundcloud: "",
     },
+    {
+      name: "DJ Real",
+      photo: "assets/djs/real.png",
+      style: "Latino · Reggaeton",
+      venues: "Radio Latina, Duplex, No Mames",
+      instagram: "https://www.instagram.com/dj__real_/",
+      soundcloud: "",
+    },
   ],
 
   // ── PARTENAIRES ──
