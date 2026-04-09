@@ -117,6 +117,14 @@ const SITE_CONFIG = {
       instagram: "https://www.instagram.com/nyaina_vrn/",
       soundcloud: "",
     },
+    {
+      name: "DJ Lixx",
+      photo: "assets/djs/Lixx.png",
+      style: "Open Format · Afrobeat · Amapiano",
+      venues: "Seguin Sound Club, Fluctuart, Gastby",
+      instagram: "https://www.instagram.com/djlixx.official/",
+      soundcloud: "",
+    },
   ],
 
   // ── PARTENAIRES ──
