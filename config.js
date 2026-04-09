@@ -217,7 +217,11 @@ const SITE_CONFIG = {
         { value: "100%", label: "Sold out" },
       ],
       gallery: [
-        "assets/photos/nomames.jpg",
+        "assets/photos/nomames-1.webp",
+        "assets/photos/nomames-2.webp",
+        "assets/photos/nomames-3.webp",
+        "assets/photos/nomames-4.webp",
+        "assets/photos/nomames-5.webp",
       ],
       cta: { text: "Suivre @nomames_paris", action: "https://instagram.com/nomames_paris" },
     },
