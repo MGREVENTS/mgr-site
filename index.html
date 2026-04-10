@@ -565,13 +565,14 @@ ${brandKeys.map(k => {
 }
 
 // ── Modal controllers ──
-function openBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.add('active');el.scrollTop=0;document.body.style.overflow='hidden';} }
-function closeBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.remove('active');document.body.style.overflow='';} }
+function openBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.add('active');el.scrollTop=0;document.body.style.overflow='hidden';history.pushState({modal:'brand',id},'','#'+id);} }
+function closeBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.remove('active');document.body.style.overflow='';} if(location.hash)history.replaceState(null,'',location.pathname); }
 function openLightbox(src){ document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('active'); }
 function closeLightbox(){ document.getElementById('lightbox').classList.remove('active'); document.getElementById('lightboxImg').src=''; }
-function openContact(){ document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden'; }
-function closeContact(){ document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow=''; }
-document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeContact(); document.querySelectorAll('.brand-modal.active').forEach(m=>m.classList.remove('active')); document.body.style.overflow=''; }});
+function openContact(){ document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden'; history.pushState({modal:'contact'},'','#contact'); }
+function closeContact(){ document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow=''; if(location.hash)history.replaceState(null,'',location.pathname); }
+window.addEventListener('popstate', function(){ document.querySelectorAll('.brand-modal.active').forEach(m=>m.classList.remove('active')); document.getElementById('contactModal').classList.remove('active'); document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow=''; });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeContact(); closeLightbox(); document.querySelectorAll('.brand-modal.active').forEach(m=>m.classList.remove('active')); document.body.style.overflow=''; if(location.hash)history.replaceState(null,'',location.pathname); }});
 
 async function submitForm(e) {
   e.preventDefault();
