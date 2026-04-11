@@ -21,9 +21,9 @@ const SITE_CONFIG = {
 
   // ── HERO ──
   hero: {
-    tagline: "La différence se ressent. Elle ne se dit pas.",
+    tagline: "Booking DJ · Direction Artistique · Paris",
     title: "L'<em>exigence</em><br>au service de<br>vos événements",
-    subtitle: "Clubs, mariages, corporate — chaque détail musical est pensé pour que votre événement parle de lui-même.",
+    subtitle: "La différence se ressent, elle ne se dit pas. Clubs, mariages, corporate — chaque détail musical est pensé pour que votre événement parle de lui-même.",
   },
 
   // ── CHIFFRES CLÉS ──
