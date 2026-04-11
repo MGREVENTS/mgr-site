@@ -21,9 +21,9 @@ const SITE_CONFIG = {
 
   // ── HERO ──
   hero: {
-    tagline: "Direction Artistique · Booking · Événementiel",
-    title: "L'énergie<br>qui fait<br>la <em>différence</em>",
-    subtitle: "Programmation musicale sur mesure pour établissements, mariages et événements à Paris.",
+    tagline: "La différence se ressent. Elle ne se dit pas.",
+    title: "L'<em>exigence</em><br>au service de<br>vos événements",
+    subtitle: "Clubs, mariages, corporate — chaque détail musical est pensé pour que votre événement parle de lui-même.",
   },
 
   // ── CHIFFRES CLÉS ──
