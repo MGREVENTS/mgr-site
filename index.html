@@ -93,45 +93,7 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--noir:#0A0A0A;--blanc:#F5F0EB;--or:#C9A84C;--bordeaux:#6B0F1A;--gris:#1A1A1A;--gris2:#2A2A2A;--gris-texte:#999;--border-subtle:rgba(255,255,255,.05);--border-accent:rgba(201,168,76,.08);--nav-bg:rgba(10,10,10,.78);--overlay-bg:rgba(0,0,0,.7);--ff-display:'Playfair Display',Georgia,serif;--ff-body:'DM Sans',system-ui,sans-serif}
-[data-theme="light"]{--noir:#F5F0EB;--blanc:#1A1A1A;--gris:#E8E3DD;--gris2:#D5D0CA;--gris-texte:#666;--border-subtle:rgba(0,0,0,.08);--border-accent:rgba(201,168,76,.15);--nav-bg:rgba(245,240,235,.85);--overlay-bg:rgba(255,255,255,.8)}
-html{scroll-behavior:smooth}body{background:var(--noir);color:var(--blanc);font-family:var(--ff-body);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s}a{color:inherit;text-decoration:none}
-.theme-toggle{background:none;border:1px solid rgba(201,168,76,.2);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;margin-right:.5rem}
-.theme-toggle:hover{border-color:var(--or);background:rgba(201,168,76,.08)}
-.theme-toggle svg{width:16px;height:16px}
-[data-theme="light"] .nav-logo img{filter:none}
-[data-theme="light"] .footer-brand img{filter:none}
-[data-theme="light"] .hero::before{background:radial-gradient(ellipse at 50% 85%,rgba(201,168,76,.08) 0%,transparent 55%)}
-[data-theme="light"] .brand-card{border-color:rgba(0,0,0,.08);background:#fff}
-[data-theme="light"] .brand-card .brand-bg{background:linear-gradient(165deg,#F5F0EB 25%,#E8E3DD) !important}
-[data-theme="light"] .brand-card .brand-content{color:#1A1A1A !important}
-[data-theme="light"] .brand-card .brand-name{color:#1A1A1A !important}
-[data-theme="light"] .brand-card .brand-label{color:var(--or) !important}
-[data-theme="light"] .brand-card .brand-desc{color:#666 !important}
-[data-theme="light"] .brand-card .brand-link{color:var(--or) !important}
-[data-theme="light"] .brand-card:hover{border-color:rgba(201,168,76,.4)}
-[data-theme="light"] .brand-modal{background:#F5F0EB;color:#1A1A1A}
-[data-theme="light"] .brand-modal .bm-tag{color:var(--or)}
-[data-theme="light"] .brand-modal h2{color:#1A1A1A !important}
-[data-theme="light"] .brand-modal h2 em{color:var(--or) !important}
-[data-theme="light"] .brand-modal p{color:#666 !important}
-[data-theme="light"] .brand-modal .bm-feature{border-color:rgba(0,0,0,.08)}
-[data-theme="light"] .brand-modal .bm-feature h4{color:#1A1A1A !important}
-[data-theme="light"] .brand-modal .bm-feature p{color:#666 !important}
-[data-theme="light"] .brand-modal .bm-stat-num{color:var(--or)}
-[data-theme="light"] .brand-modal .bm-stat-label{color:#666}
-[data-theme="light"] .brand-modal .bm-stats{border-color:rgba(0,0,0,.08)}
-[data-theme="light"] .brand-modal .bm-cta h3{color:#1A1A1A !important}
-[data-theme="light"] .brand-modal .bm-cta p{color:#666 !important}
-[data-theme="light"] .brand-modal .bm-back{color:#666;background:rgba(245,240,235,.9);border-color:rgba(0,0,0,.1)}
-[data-theme="light"] .brand-modal .bm-back:hover{color:var(--or);border-color:rgba(201,168,76,.3)}
-[data-theme="light"] .brand-modal .bm-visual .bm-gradient{background:linear-gradient(135deg,#E8E3DD,#D5D0CA) !important}
-[data-theme="light"] .modal{background:#E8E3DD;border-color:rgba(201,168,76,.2)}
-[data-theme="light"] .modal h3{color:#1A1A1A}
-[data-theme="light"] .modal label{color:#666}
-[data-theme="light"] .form-row input,[data-theme="light"] .form-row select,[data-theme="light"] .form-row textarea{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.1);color:#1A1A1A}
-[data-theme="light"] .dj-card{border-color:rgba(0,0,0,.08)}
-[data-theme="light"] .dj-card:hover{border-color:rgba(201,168,76,.4)}
-[data-theme="light"] .form-row input,[data-theme="light"] .form-row select,[data-theme="light"] .form-row textarea{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.1);color:var(--blanc)}
+html{scroll-behavior:smooth}body{background:var(--noir);color:var(--blanc);font-family:var(--ff-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
 
 nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:var(--nav-bg);border-bottom:1px solid var(--border-accent);transition:background .4s}
 .nav-logo img{height:32px;width:auto;filter:brightness(1.1)}
@@ -324,7 +286,6 @@ footer{padding:5rem 3rem 2rem;border-top:1px solid rgba(255,255,255,.05);display
 @media(max-width:768px){
   nav{padding:.8rem 1rem;gap:.5rem}.nav-links{display:none}.hamburger{display:block}
   .nav-cta{font-size:.6rem;padding:.5rem 1rem;white-space:nowrap}
-  .theme-toggle{width:30px;height:30px;min-width:30px}
   .about{grid-template-columns:1fr;gap:2.5rem;padding:5rem 1.5rem}.about-visual{aspect-ratio:16/10}
   .brands{padding:5rem 1.5rem}.brands-grid{grid-template-columns:1fr;gap:1rem}.brand-card{aspect-ratio:5/4}
   .stats{gap:1.5rem;flex-wrap:wrap;padding:2.5rem 1rem}
@@ -427,7 +388,6 @@ function buildSite() {
     <a href="#djs">Nos DJs</a>
   </div>
   <div style="display:flex;align-items:center;gap:.5rem">
-    <button class="theme-toggle" aria-label="Changer de thème" onclick="toggleTheme()"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg></button>
     <button class="hamburger" aria-label="Menu de navigation" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     <button class="nav-cta" aria-label="Nous contacter" onclick="openContact()">Nous contacter</button>
   </div>
@@ -638,37 +598,8 @@ async function submitForm(e) {
   return false;
 }
 
-// Theme toggle
-const sunIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
-const moonIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>`;
-
-function getTheme() {
-  const saved = localStorage.getItem('mgr-theme');
-  if (saved) return saved;
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-}
-
-function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '');
-  const icon = document.getElementById('themeIcon');
-  if (icon) icon.outerHTML = theme === 'light' ? moonIcon.replace('<svg', '<svg id="themeIcon"') : sunIcon.replace('<svg', '<svg id="themeIcon"');
-}
-
-function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-  const next = current === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('mgr-theme', next);
-  applyTheme(next);
-}
-
-// Apply saved theme before build
-applyTheme(getTheme());
-
 // Build on load
 buildSite();
-
-// Re-apply icon after build (DOM rebuilt)
-applyTheme(getTheme());
 </script>
 </body>
 </html>
