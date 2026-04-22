@@ -9,7 +9,7 @@ Doc de travail pour toi. Pas une bible. Tu relis, tu coches, tu oublies le reste
 
 - **MGR Events** — l'agence qui place les bons DJ dans les bons lieux. Ton sérieux, ligne Porsche (comme le site). On vend de l'exigence.
 - **Ginger booking** — l'outil pour booker un DJ sans appeler 10 personnes. Ton pratique, direct, utile. On vend du temps gagné.
-- **MGR Prod** — le studio qui filme / photographie / monte les DJ. Ton plus "scène musicale", culturel. On vend une image d'artiste.
+- **MGR Prod** — la prod audiovisuelle de la maison : photos de soirée, aftermovies, reels DJ, shoots. Ton scène musicale, culturel. On vend une image — celle des soirées ET celle des DJ.
 
 Trois voix différentes, c'est voulu. Le même post ne peut pas marcher pour les 3.
 
@@ -40,10 +40,11 @@ Tu ne crées pas du contenu "pour Ginger" puis "pour Prod" séparément. Tu tour
 2. **Cas concret** — "Appel mardi, DJ confirmé mercredi". Mini-story.
 3. **FAQ** — carrousel simple : prix, dispos, remplacement, etc. Un truc par carrousel.
 
-### MGR Prod (3 types)
-1. **Reel DJ en set** — 15 sec, un drop, un plan foule, un plan mains. Signé "MGR Prod" discret en fin.
-2. **Teaser résidence** — 20 sec, lieu + date + DJ, monté propre.
-3. **Shoot / BTS** — photo studio ou backstage, une légende courte.
+### MGR Prod (4 types qui tournent)
+1. **Cliché soirée** — une photo forte d'une nuit récente (foule, lumière, ambiance). Pas forcément le DJ. Signée MGR Prod discret.
+2. **Aftermovie** — 30–60 sec, le best-of d'une soirée ou d'un événement. Musique propre, montage rythmé.
+3. **Reel DJ en set** — 15 sec, un drop, un plan foule, un plan mains.
+4. **Teaser / shoot** — teaser résidence (20 sec, lieu + date + DJ) ou photo studio / BTS avec une légende courte.
 
 ---
 
@@ -100,8 +101,9 @@ Sors:
 
 ### Prompt MGR Prod
 ```
-Brand: MGR Prod. Ton: scène DJ, culture musique, FR.
-Post: [DJ + lieu + style]
+Brand: MGR Prod. Ton: scène musicale, culture nuit, FR.
+Format: [cliché soirée / aftermovie / reel DJ / teaser]
+Post: [lieu + date OU DJ + style, 1 ligne]
 Sors:
 - caption 1 ligne
 - signature "shot by MGR Prod"
