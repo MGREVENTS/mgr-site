@@ -1,5 +1,62 @@
 # MGR Events — Site vitrine
 
+## Convention de prompts (deux projets, un seul repo de référence)
+
+Deux projets coexistent, et les demandes peuvent concerner l'un ou l'autre.
+Pour éviter les allers-retours entre conversations, les prompts utilisent
+toujours un préfixe explicite :
+
+| Préfixe | Projet ciblé | Repo / déploiement |
+|---|---|---|
+| **« change le site … »** | `mgr-site` (vitrine `mgrevents.fr`) | ce repo, déploiement Vercel via push `main` |
+| **« change sur planning … »** | `planniflow` (app interne, planning, CRM, booking, etc.) | repo séparé, déployé sur `planniflow-4jrm.vercel.app` |
+
+→ Si le prompt commence par **« change le site »**, toutes les modifs se font
+dans **ce repo** (`mgr-site`).
+→ Si le prompt commence par **« change sur planning »**, la cible est le
+projet **PlanniFlow** (autre repo). Depuis ce repo on ne peut rien y faire ;
+il faut basculer sur le repo planniflow.
+
+## Lien entre les deux projets — les proxies (`vercel.json`)
+
+`mgrevents.fr` proxifie un grand nombre de routes vers l'app PlanniFlow via
+les `rewrites` de `vercel.json`. Concrètement, l'utilisateur ne quitte jamais
+le domaine `mgrevents.fr`, mais les pages servies viennent de PlanniFlow.
+
+### Ce qui est proxifié aujourd'hui
+- **Entrée app** : `/app`, `/app/*` → racine PlanniFlow
+- **Pages métier** (planning, factu, RH, reporting…) :
+  `/planning`, `/mobile-planning`, `/login`, `/employees`, `/presences`,
+  `/postes`, `/facturation`, `/rapport`, `/rapport-dj`, `/notes`,
+  `/export`, `/chat`, `/chat-page`
+- **Espaces dédiés** (avec sous-routes `/:path*`) :
+  `/partner`, `/onboarding`, `/admin`, `/wedding`, `/crm`, `/marketing`,
+  `/nomames`, `/booking`
+- **Infra Next.js & PWA** (indispensables pour que l'app proxifiée tourne) :
+  `/_next/*`, `/api/*`, `/sw.js`, `/manifest.json`, `/icons/*`,
+  `/version.json`, `/logo-mgr.png`
+
+### Conséquences à garder en tête
+1. **Le formulaire de contact** (`POST /api/send-contact`) passe par la
+   rewrite `/api/*` → l'endpoint vit dans **PlanniFlow**. Si PlanniFlow tombe
+   ou si la route change côté planning, le formulaire casse silencieusement
+   (bouton « Erreur — Réessayer »).
+2. **Ajouter une route à PlanniFlow** qui doit être accessible depuis
+   `mgrevents.fr` = ajouter une rewrite dans `vercel.json` ici. Sans ça la
+   route renvoie 404 sur le domaine mgrevents.
+3. **Renommer/supprimer une route côté PlanniFlow** = penser à la nettoyer
+   ici aussi, sinon rewrite morte.
+4. **CSP** (`index.html`) autorise déjà `planniflow-4jrm.vercel.app` et
+   `spsnpknxqmogwymutvqu.supabase.co` dans `connect-src` — c'est ce qui
+   permet aux fetchs de l'app proxifiée de fonctionner.
+
+### Workflow type
+- « **change sur planning** ajoute une page `/devis` » → modif côté repo
+  PlanniFlow **+** ajouter `{ "source": "/devis", "destination":
+  "https://planniflow-4jrm.vercel.app/devis" }` dans `vercel.json` ici.
+- « **change le site** mets à jour la photo de Logan » → uniquement ce repo,
+  rien à toucher côté PlanniFlow.
+
 ## Architecture
 Site statique one-page (HTML/CSS/JS) hébergé sur Hostinger.
 - `index.html` — le site complet, lit tout depuis `config.js`
