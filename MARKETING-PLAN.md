@@ -23,8 +23,8 @@ Trois voix différentes, c'est voulu. Le même post ne peut pas marcher pour les
 | Ginger | Instagram | TikTok | 3/semaine |
 | MGR Prod | Instagram Reels | YouTube Shorts | 3/semaine |
 
-**Règle d'or** : 1 soirée tournée = 3 posts différents (1 par marque).
-Tu ne crées pas du contenu "pour Ginger" puis "pour Prod" séparément. Tu tournes **une fois**, tu découpes **trois fois**.
+**Règle d'or** : MGR Events et MGR Prod partagent les prises de vue de soirée. Ginger **jamais**.
+Une photo/vidéo de soirée peut sortir en post MGR Events **et** en post MGR Prod (même source, deux angles : "l'agence livre" vs "la prod filme"). Ginger est un outil, pas une marque éditoriale — son contenu est produit à part (démo app, cas concret, FAQ). Ne mets jamais un cliché de soirée MGR Prod sur le compte Ginger, et inversement.
 
 ---
 
@@ -50,6 +50,7 @@ Tu ne crées pas du contenu "pour Ginger" puis "pour Prod" séparément. Tu tour
 
 ## 4. Les règles à ne pas lâcher
 
+- **Events ↔ Prod : contenu partagé. Ginger : contenu séparé.** Les prises de vue de soirée vivent sur Events et Prod. Ginger ne récupère jamais ces visuels.
 - **80% preuve, 20% ambiance.** Pas l'inverse. Une marque de service qui poste que du "mood" sonne faux.
 - **Pas d'emojis en rafale.** Un max par post, souvent zéro (surtout MGR Events).
 - **Captions courtes.** 2 lignes suffisent 9 fois sur 10.
