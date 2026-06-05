@@ -11,6 +11,15 @@
       ]
     }
   ],
+  "redirects": [
+    { "source": "/dj-:slug(.*)", "destination": "/", "statusCode": 301 },
+    { "source": "/nos-dj-mgr-events", "destination": "/", "statusCode": 301 },
+    { "source": "/nos-dj-mgr-events/", "destination": "/", "statusCode": 301 },
+    { "source": "/formation-de-dj-mgr-school", "destination": "/", "statusCode": 301 },
+    { "source": "/formation-de-dj-mgr-school/", "destination": "/", "statusCode": 301 },
+    { "source": "/real", "destination": "/", "statusCode": 301 },
+    { "source": "/real/", "destination": "/", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/app", "destination": "https://planniflow-4jrm.vercel.app/" },
     { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" },
