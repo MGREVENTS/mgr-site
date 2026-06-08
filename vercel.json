@@ -58,6 +58,9 @@
     { "source": "/manifest.json", "destination": "https://planniflow-4jrm.vercel.app/manifest.json" },
     { "source": "/icons/:path*", "destination": "https://planniflow-4jrm.vercel.app/icons/:path*" },
     { "source": "/version.json", "destination": "https://planniflow-4jrm.vercel.app/version.json" },
-    { "source": "/logo-mgr.png", "destination": "https://planniflow-4jrm.vercel.app/logo-mgr.png" }
+    { "source": "/logo-mgr.png", "destination": "https://planniflow-4jrm.vercel.app/logo-mgr.png" },
+    { "source": "/recrutement", "destination": "https://planniflow-4jrm.vercel.app/recrutement" },
+    { "source": "/recrutement/:path*", "destination": "https://planniflow-4jrm.vercel.app/recrutement/:path*" },
+    { "source": "/api/recrutement/:path*", "destination": "https://planniflow-4jrm.vercel.app/api/recrutement/:path*" }
   ]
 }
