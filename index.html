@@ -326,8 +326,147 @@ footer{padding:5rem 3rem 2rem;border-top:1px solid rgba(255,255,255,.05);display
   footer{padding:2rem 1.5rem}
 }
 </style>
+<style>
+/* ════════ PREMIUM LAYER — motion · profondeur · glass (charte inchangée) ════════ */
+:root{
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-smooth:cubic-bezier(.16,1,.3,1);
+  --glass-bg:rgba(255,255,255,.025);
+  --glass-border:rgba(255,255,255,.08);
+  --shadow-soft:0 26px 70px -28px rgba(0,0,0,.75);
+  --shadow-glow:0 0 55px -10px rgba(201,168,76,.18);
+}
+::selection{background:rgba(201,168,76,.26);color:var(--blanc)}
+:focus-visible{outline:2px solid rgba(201,168,76,.55);outline-offset:3px}
+section[id]{scroll-margin-top:88px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#070707}
+::-webkit-scrollbar-thumb{background:#222;border-radius:10px;border:2px solid #070707}
+::-webkit-scrollbar-thumb:hover{background:#2f2a1b}
+
+/* ── FX cinématographiques globaux ── */
+.fx-vignette{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.75;
+  background:radial-gradient(125% 85% at 50% -10%,transparent 52%,rgba(0,0,0,.4) 100%),
+             radial-gradient(125% 95% at 50% 110%,transparent 55%,rgba(0,0,0,.5) 100%)}
+.fx-grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:2;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  animation:grainShift 5s steps(6) infinite}
+@keyframes grainShift{0%{transform:translate(0,0)}16%{transform:translate(-6%,-3%)}33%{transform:translate(5%,-7%)}50%{transform:translate(-4%,6%)}66%{transform:translate(7%,3%)}83%{transform:translate(-7%,-5%)}100%{transform:translate(0,0)}}
+.fx-veil{position:fixed;inset:0;pointer-events:none;z-index:9999;background:var(--noir);animation:veilOut 1s .1s var(--ease-smooth) forwards}
+@keyframes veilOut{0%{opacity:1}60%{opacity:.5}100%{opacity:0}}
+
+/* ── Navigation : sticky minimal + glass ── */
+nav{transition:padding .45s var(--ease-out),background .45s var(--ease-out),border-color .45s,backdrop-filter .45s}
+nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(26px) saturate(1.2);border-bottom-color:rgba(201,168,76,.14)}
+.nav-logo img{transition:filter .3s var(--ease-out),transform .3s var(--ease-out)}
+.nav-logo:hover img{filter:brightness(1.35);transform:translateY(-1px)}
+.nav-links a{transition:color .22s var(--ease-out)}
+.nav-cta{transition:background .25s var(--ease-out),color .25s var(--ease-out),box-shadow .35s var(--ease-out)}
+.nav-cta:hover{box-shadow:0 0 26px -8px rgba(201,168,76,.55)}
+
+/* ── Hero : entrée cinématographique + ambiance vivante ── */
+.hero{min-height:100svh}
+.hero::before{will-change:transform;animation:heroAmbient 24s ease-in-out infinite alternate}
+@keyframes heroAmbient{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.14) translate(-2.5%,-2%)}}
+.hero h1{animation:heroRise 1.25s .45s var(--ease-smooth) forwards;will-change:transform,opacity,filter}
+@keyframes heroRise{0%{opacity:0;transform:translateY(42px);filter:blur(14px);clip-path:inset(0 0 16% 0)}60%{filter:blur(2px)}100%{opacity:1;transform:translateY(0);filter:blur(0);clip-path:inset(0 0 0 0)}}
+.hero-sub{animation:fadeUp 1s .85s var(--ease-out) forwards}
+.hero .cta-btn{transition:transform .32s var(--ease-out),box-shadow .42s var(--ease-out),background .3s var(--ease-out)}
+.hero .cta-btn:hover{transform:translateY(-3px);box-shadow:0 20px 60px -14px rgba(201,168,76,.45)}
+
+/* ── Reveal : fade + slide + soft focus ── */
+[data-reveal]{transition:opacity 1s var(--ease-smooth),transform 1s var(--ease-smooth),filter 1s var(--ease-smooth);filter:blur(7px)}
+[data-reveal].visible{filter:blur(0)}
+
+/* ── Brand cards : glass · profondeur · zoom ── */
+.brand-card{box-shadow:var(--shadow-soft);transition:border-color .5s var(--ease-out),transform .55s var(--ease-out),box-shadow .55s var(--ease-out)}
+.brand-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-soft),var(--shadow-glow)}
+.brand-bg{transition:transform .95s var(--ease-out)}
+.brand-card:hover .brand-bg{transform:scale(1.08)}
+.brand-content{background:linear-gradient(to top,rgba(8,8,8,.78) 0%,rgba(8,8,8,.18) 42%,transparent 72%)}
+.brand-link{transition:gap .3s var(--ease-out),color .3s}
+
+/* ── DJ cards : info glass · zoom image ── */
+.dj-card{transition:border-color .4s var(--ease-out),transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
+.dj-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
+.dj-photo img{transition:transform .8s var(--ease-out)}
+.dj-card:hover .dj-photo img{transform:scale(1.07)}
+.dj-info{background:var(--glass-bg);backdrop-filter:blur(6px)}
+.dj-socials a{transition:border-color .3s var(--ease-out),background .3s var(--ease-out),transform .3s var(--ease-out)}
+.dj-socials a:hover{transform:translateY(-2px)}
+
+/* ── Stats ── */
+.stats{backdrop-filter:blur(4px)}
+.stat svg{transition:opacity .4s,transform .4s var(--ease-out)}
+.stat:hover svg{opacity:.7;transform:translateY(-2px)}
+
+/* ── Boutons : glow léger / blur depth ── */
+.djs-cta-btn{transition:background .25s var(--ease-out),border-color .25s,box-shadow .35s var(--ease-out),transform .25s var(--ease-out)}
+.djs-cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 28px -10px rgba(201,168,76,.4)}
+.cta-btn{transition:transform .32s var(--ease-out),box-shadow .42s var(--ease-out),background .3s}
+.cta-btn:hover{box-shadow:0 20px 60px -16px rgba(201,168,76,.42)}
+.form-submit{transition:background .25s var(--ease-out),box-shadow .35s var(--ease-out)}
+.form-submit:hover{box-shadow:0 0 28px -10px rgba(201,168,76,.45)}
+
+/* ── Features & carousel ── */
+.bm-feature{background:var(--glass-bg);backdrop-filter:blur(6px);transition:border-color .35s var(--ease-out),transform .35s var(--ease-out),box-shadow .35s var(--ease-out)}
+.bm-feature:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft)}
+.carousel-item{transition:border-color .35s var(--ease-out),transform .45s var(--ease-out),box-shadow .45s var(--ease-out)}
+.carousel-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft)}
+
+/* ── Modale marque : crossfade cinématographique ── */
+.brand-modal{transition:opacity .6s var(--ease-smooth)}
+.brand-modal-inner{transition:transform .75s var(--ease-smooth),opacity .75s var(--ease-smooth),filter .75s var(--ease-smooth);transform:translateY(26px) scale(.985);opacity:0;filter:blur(9px)}
+.brand-modal.active .brand-modal-inner{transform:none;opacity:1;filter:blur(0)}
+
+/* ════════ EVENTS — vinyle glossy en rotation ════════ */
+.vinyl-stage{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.vinyl{position:absolute;top:50%;right:-40%;width:138%;aspect-ratio:1/1;border-radius:50%;transform:translateY(-50%);
+  background:
+    repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.013) 0 1px,rgba(0,0,0,0) 1px 3.4px),
+    radial-gradient(circle at 38% 32%,rgba(255,255,255,.05),transparent 40%),
+    radial-gradient(circle at 50% 50%,#171717 0 11%,#080808 11.4% 100%);
+  box-shadow:inset 0 0 90px rgba(0,0,0,.85),inset 0 0 22px rgba(0,0,0,.95);
+  opacity:.55;animation:vinylSpin 26s linear infinite;will-change:transform}
+.vinyl::before{content:'';position:absolute;inset:0;border-radius:50%;mix-blend-mode:screen;
+  background:conic-gradient(from 0deg,transparent 0 16deg,rgba(201,168,76,.13) 30deg,transparent 62deg,transparent 165deg,rgba(107,15,26,.18) 198deg,transparent 242deg,transparent 318deg,rgba(245,240,235,.06) 338deg,transparent 360deg);
+  animation:vinylSpin 19s linear infinite reverse}
+.vinyl::after{content:'';position:absolute;left:50%;top:50%;width:25%;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,#7c1421 0 42%,#3a0a12 43% 60%,#0a0a0a 61% 66%,transparent 67%);
+  box-shadow:0 0 0 1px rgba(201,168,76,.22),inset 0 0 14px rgba(0,0,0,.7)}
+@keyframes vinylSpin{from{transform:translateY(-50%) rotate(0)}to{transform:translateY(-50%) rotate(360deg)}}
+.vinyl-stage.paused .vinyl,.vinyl-stage.paused .vinyl::before{animation-play-state:paused}
+.bm-hero{position:relative}
+.bm-hero>div:not(.vinyl-stage){position:relative;z-index:1}
+.vinyl-stage--modal{z-index:0}
+.vinyl-stage--modal .vinyl{right:auto;left:50%;top:44%;width:78%;max-width:620px;opacity:.3;transform:translate(-50%,-50%);animation:vinylSpinC 32s linear infinite}
+@keyframes vinylSpinC{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* ── Mobile : animations simplifiées mais conservées ── */
+@media(max-width:768px){
+  nav.scrolled{padding:.55rem 1rem}
+  .nav-links{display:flex!important;flex-direction:column;align-items:flex-start;position:absolute;top:100%;left:0;right:0;gap:1.3rem;padding:1.5rem 1.4rem 1.9rem;background:rgba(8,8,8,.97);backdrop-filter:blur(26px);border-bottom:1px solid var(--glass-border);transform:translateY(-14px);opacity:0;pointer-events:none;transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
+  nav.menu-open .nav-links{transform:translateY(0);opacity:1;pointer-events:all}
+  .fx-grain{opacity:.04}
+  [data-reveal]{filter:none}
+  .hero::before{animation-duration:32s}
+  .vinyl{opacity:.42}
+}
+
+/* ── Respect de prefers-reduced-motion ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1!important;transform:none!important;filter:none!important}
+  .fx-grain,.fx-veil{display:none!important}
+  .vinyl,.vinyl::before{animation:none!important}
+  .hero h1,.hero-sub,.hero-tag,.hero .cta-btn{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important}
+}
+</style>
 </head>
 <body>
+<div class="fx-vignette" aria-hidden="true"></div>
+<div class="fx-grain" aria-hidden="true"></div>
+<div class="fx-veil" aria-hidden="true"></div>
 
 <!-- Skeleton — filled by JS from config.js -->
 <div id="app"></div>
@@ -388,7 +527,7 @@ function buildSite() {
     <a href="#djs">Nos DJs</a>
   </div>
   <div style="display:flex;align-items:center;gap:.5rem">
-    <button class="hamburger" aria-label="Menu de navigation" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button class="hamburger" aria-label="Menu de navigation" aria-expanded="false" onclick="toggleMenu(this)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     <button class="nav-cta" aria-label="Nous contacter" onclick="openContact()">Nous contacter</button>
   </div>
 </nav>
@@ -428,7 +567,7 @@ function buildSite() {
     <h2 class="section-title">Trois univers,<br>une même exigence.</h2>
   </div>
   <div class="brands-grid">
-    ${brandKeys.map((k,i) => `<div class="brand-card" data-reveal style="transition-delay:${i*.1}s" onclick="openBrand('${k}')"><div class="brand-bg" style="background:${brandGradients[k]}"></div><div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div></div>`).join('')}
+    ${brandKeys.map((k,i) => `<div class="brand-card" data-reveal style="transition-delay:${i*.1}s" onclick="openBrand('${k}')"><div class="brand-bg" style="background:${brandGradients[k]}"></div>${k==='events'?'<div class="vinyl-stage" data-vinyl><div class="vinyl"></div></div>':''}<div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div></div>`).join('')}
   </div>
 </section>
 
@@ -497,7 +636,7 @@ ${brandKeys.map(k => {
   return `<div class="brand-modal" id="bm-${k}">
     <div class="bm-back" onclick="closeBrand('${k}')">${backArrow} Retour</div>
     <div class="brand-modal-inner">
-      <div class="bm-hero">
+      <div class="bm-hero">${k==='events'?'<div class="vinyl-stage vinyl-stage--modal" data-vinyl><div class="vinyl"></div></div>':''}
         <div>
           <div class="bm-tag">${b.tag}</div>
           <h2>${b.title}</h2>
@@ -601,6 +740,85 @@ async function submitForm(e) {
 // Build on load
 buildSite();
 if(location.hash==='#contact') openContact();
+</script>
+<script>
+/* ════════ PREMIUM ENHANCEMENTS — scroll · parallax · micro-interactions ════════ */
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nav = document.querySelector('nav');
+
+  // Mobile menu (glass slide)
+  window.toggleMenu = function(btn){
+    if(!nav) return;
+    const open = nav.classList.toggle('menu-open');
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => nav && nav.classList.remove('menu-open')));
+  addEventListener('resize', () => { if(innerWidth > 768 && nav) nav.classList.remove('menu-open'); }, {passive:true});
+
+  // Sticky nav state
+  function navState(){ if(nav) nav.classList.toggle('scrolled', scrollY > 40); }
+
+  // Light parallax (about visual)
+  const pxEls = [...document.querySelectorAll('.about-visual')]
+    .map(el => ({ el, img: el.querySelector('img') }))
+    .filter(p => p.img);
+  function parallax(){
+    if(reduce || innerWidth <= 768) return;
+    const vh = innerHeight;
+    for(const p of pxEls){
+      const r = p.el.getBoundingClientRect();
+      if(r.bottom < -60 || r.top > vh + 60) continue;
+      const off = (r.top + r.height/2) - vh/2;
+      const max = r.height * 0.09;
+      let ty = -off * 0.09;
+      if(ty > max) ty = max; else if(ty < -max) ty = -max;
+      p.img.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0) scale(1.2)';
+    }
+  }
+
+  // rAF-throttled scroll loop
+  let ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { navState(); parallax(); ticking = false; });
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll, {passive:true});
+  navState(); parallax();
+
+  // Count-up stats
+  function countUp(el){
+    const m = el.textContent.trim().match(/^(\d[\d\s]*)(.*)$/);
+    if(!m) return;
+    const target = parseInt(m[1].replace(/\s/g,''), 10);
+    const suffix = m[2] || '';
+    if(isNaN(target)) return;
+    if(reduce){ el.textContent = target + suffix; return; }
+    const dur = 1500, t0 = performance.now();
+    (function tick(now){
+      const p = Math.min((now - t0) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  if('IntersectionObserver' in window){
+    const statObs = new IntersectionObserver(es => {
+      es.forEach(e => { if(e.isIntersecting){ e.target.querySelectorAll('.stat-num').forEach(countUp); statObs.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    const statsEl = document.querySelector('.stats');
+    if(statsEl) statObs.observe(statsEl);
+
+    // Pause vinyl when offscreen (perf)
+    const vinylObs = new IntersectionObserver(es => {
+      es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting));
+    }, { threshold: 0 });
+    document.querySelectorAll('[data-vinyl]').forEach(el => vinylObs.observe(el));
+  }
+})();
 </script>
 </body>
 </html>
