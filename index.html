@@ -441,6 +441,11 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
 .vinyl-stage--modal{z-index:0}
 .vinyl-stage--modal .vinyl{right:auto;left:50%;top:44%;width:78%;max-width:620px;opacity:.3;transform:translate(-50%,-50%);animation:vinylSpinC 32s linear infinite}
 @keyframes vinylSpinC{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+/* vinyle en fond du hero principal */
+.vinyl-stage--hero{z-index:0}
+.vinyl-stage--hero .vinyl{right:-28%;left:auto;top:50%;width:min(96vh,880px);opacity:.32;filter:blur(.6px);animation-duration:34s}
+.hero-tag{position:relative;z-index:2}
+.hero-scroll{z-index:2}
 
 /* ── Mobile : animations simplifiées mais conservées ── */
 @media(max-width:768px){
@@ -451,6 +456,7 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
   [data-reveal]{filter:none}
   .hero::before{animation-duration:32s}
   .vinyl{opacity:.42}
+  .vinyl-stage--hero .vinyl{opacity:.2;right:-46%;width:min(62vh,360px)}
 }
 
 /* ── Respect de prefers-reduced-motion ── */
@@ -534,6 +540,7 @@ function buildSite() {
 
 <!-- HERO -->
 <section class="hero">
+  <div class="vinyl-stage vinyl-stage--hero" data-vinyl><div class="vinyl"></div></div>
   <div class="hero-tag"><span class="diamond"></span> ${C.hero.tagline} <span class="diamond"></span></div>
   <h1>${C.hero.title}</h1>
   <p class="hero-sub">${C.hero.subtitle}</p>
