@@ -373,6 +373,14 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
 .hero-sub{animation:fadeUp 1s .85s var(--ease-out) forwards}
 .hero .cta-btn{transition:transform .32s var(--ease-out),box-shadow .42s var(--ease-out),background .3s var(--ease-out)}
 .hero .cta-btn:hover{transform:translateY(-3px);box-shadow:0 20px 60px -14px rgba(201,168,76,.45)}
+/* Titre hero : reveal mot par mot + shimmer or sur l'italique */
+.hero h1.split{animation:none!important;opacity:1!important;filter:none!important;clip-path:none!important}
+.hero h1 .hw{display:inline-block}
+.hero h1 .hw-i{display:inline-block;opacity:0;transform:translateY(.45em);transition:opacity .9s var(--ease-out),transform 1s var(--ease-smooth);will-change:transform,opacity}
+.hero h1.in .hw-i{opacity:1;transform:none}
+.hero h1 em.hw-i{background:linear-gradient(100deg,var(--or) 0%,var(--or) 38%,#f4e2a6 49%,#fff6da 50%,#f4e2a6 51%,var(--or) 62%,var(--or) 100%);background-size:230% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero h1.in em.hw-i{animation:goldShimmer 6.5s 1.6s linear infinite}
+@keyframes goldShimmer{0%{background-position:125% 0}100%{background-position:-125% 0}}
 
 /* ── Reveal : fade + slide + soft focus ── */
 [data-reveal]{transition:opacity 1s var(--ease-smooth),transform 1s var(--ease-smooth),filter 1s var(--ease-smooth);filter:blur(7px)}
@@ -466,6 +474,7 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
   .fx-grain,.fx-veil{display:none!important}
   .vinyl,.vinyl::before{animation:none!important}
   .hero h1,.hero-sub,.hero-tag,.hero .cta-btn{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important}
+  .hero h1 .hw-i{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -753,6 +762,41 @@ if(location.hash==='#contact') openContact();
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const nav = document.querySelector('nav');
+
+  // Hero title — reveal mot par mot + shimmer or
+  (function splitHero(){
+    const h1 = document.querySelector('.hero h1');
+    if(!h1 || reduce || h1.classList.contains('split')) return;
+    const orig = h1.innerHTML;
+    try{
+      let idx = 0;
+      const frag = document.createDocumentFragment();
+      const delay = () => ((0.06 + idx++ * 0.07).toFixed(2)) + 's';
+      h1.childNodes.forEach(node => {
+        if(node.nodeType === 3){
+          node.textContent.split(/(\s+)/).forEach(part => {
+            if(part === '') return;
+            if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(part)); return; }
+            const w = document.createElement('span'); w.className = 'hw';
+            const i = document.createElement('span'); i.className = 'hw-i';
+            i.textContent = part; i.style.transitionDelay = delay();
+            w.appendChild(i); frag.appendChild(w);
+          });
+        } else if(node.nodeName === 'BR'){
+          frag.appendChild(document.createElement('br'));
+        } else if(node.nodeName === 'EM'){
+          const w = document.createElement('span'); w.className = 'hw';
+          const em = document.createElement('em'); em.className = 'hw-i';
+          em.textContent = node.textContent; em.style.transitionDelay = delay();
+          w.appendChild(em); frag.appendChild(w);
+        } else {
+          frag.appendChild(node.cloneNode(true));
+        }
+      });
+      h1.innerHTML = ''; h1.appendChild(frag); h1.classList.add('split');
+      requestAnimationFrame(() => requestAnimationFrame(() => h1.classList.add('in')));
+    }catch(e){ h1.innerHTML = orig; }
+  })();
 
   // Mobile menu (glass slide)
   window.toggleMenu = function(btn){
