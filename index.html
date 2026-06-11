@@ -399,7 +399,7 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
 .dj-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
 .dj-photo img{transition:transform .8s var(--ease-out)}
 .dj-card:hover .dj-photo img{transform:scale(1.07)}
-.dj-info{background:var(--glass-bg);backdrop-filter:blur(6px)}
+.dj-info{background:var(--glass-bg)}
 .dj-socials a{transition:border-color .3s var(--ease-out),background .3s var(--ease-out),transform .3s var(--ease-out)}
 .dj-socials a:hover{transform:translateY(-2px)}
 
@@ -475,6 +475,25 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
   .vinyl,.vinyl::before{animation:none!important}
   .hero h1,.hero-sub,.hero-tag,.hero .cta-btn{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important}
   .hero h1 .hw-i{opacity:1!important;transform:none!important}
+}
+
+/* ── A11y & finitions (audit) ── */
+/* Sortir les modales fermées de l'ordre de tabulation / arbre d'accessibilité */
+.modal-overlay{visibility:hidden;transition:opacity .4s var(--ease-out),visibility 0s .4s}
+.modal-overlay.active{visibility:visible;transition:opacity .4s var(--ease-out),visibility 0s}
+.brand-modal{visibility:hidden;transition:opacity .6s var(--ease-smooth),visibility 0s .6s}
+.brand-modal.active{visibility:visible;transition:opacity .6s var(--ease-smooth),visibility 0s}
+.bm-back{font-family:inherit;font-size:.7rem}
+.brand-card[role=button]{cursor:pointer}
+.footer-col a[role=button]{cursor:pointer}
+/* Lisibilité logos partenaires */
+.trust-logo{opacity:.4}.trust-logo:hover{opacity:.72}
+@media(max-width:768px){
+  /* Menu mobile fermé : non focusable */
+  .nav-links{visibility:hidden;transition:opacity .35s var(--ease-out),transform .35s var(--ease-out),visibility 0s .35s}
+  nav.menu-open .nav-links{visibility:visible;transition:opacity .35s var(--ease-out),transform .35s var(--ease-out),visibility 0s}
+  /* Cibles tactiles réseaux DJ */
+  .dj-socials a{width:34px;height:34px}.dj-socials a svg{width:13px;height:13px}
 }
 </style>
 </head>
@@ -583,7 +602,7 @@ function buildSite() {
     <h2 class="section-title">Trois univers,<br>une même exigence.</h2>
   </div>
   <div class="brands-grid">
-    ${brandKeys.map((k,i) => `<div class="brand-card" data-reveal style="transition-delay:${i*.1}s" onclick="openBrand('${k}')"><div class="brand-bg" style="background:${brandGradients[k]}"></div>${k==='events'?'<div class="vinyl-stage" data-vinyl><div class="vinyl"></div></div>':''}<div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div></div>`).join('')}
+    ${brandKeys.map((k,i) => `<div class="brand-card" data-reveal role="button" tabindex="0" aria-label="Découvrir ${brandNames[k]}" style="transition-delay:${i*.1}s" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}"><div class="brand-bg" style="background:${brandGradients[k]}"></div>${k==='events'?'<div class="vinyl-stage" data-vinyl><div class="vinyl"></div></div>':''}<div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div></div>`).join('')}
   </div>
 </section>
 
@@ -638,8 +657,8 @@ function buildSite() {
       <a href="${C.brand.socials.soundcloud}" target="_blank">${scIcon}</a>
     </div>
   </div>
-  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="#djs">Nos DJs</a><a onclick="openContact()">Contact</a></div>
-  <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=>`<a onclick="openBrand('${k}')">${brandNames[k]}</a>`).join('')}</div>
+  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="#djs">Nos DJs</a><a role="button" tabindex="0" onclick="openContact()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openContact()}">Contact</a></div>
+  <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=>`<a role="button" tabindex="0" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}">${brandNames[k]}</a>`).join('')}</div>
   <div class="footer-col"><h4>Contact</h4><a href="mailto:${C.brand.email}">${C.brand.email}</a><a>Paris, France</a><a href="/mentions.html" style="margin-top:.8rem;color:rgba(255,255,255,.18);font-size:.72rem">Mentions légales</a></div>
 </footer>
 <div class="footer-bottom">© ${new Date().getFullYear()} ${C.brand.name} — Tous droits réservés</div>
@@ -649,8 +668,8 @@ ${brandKeys.map(k => {
   const b = C.brands[k];
   const photoKey = k === 'nomames' ? 'nomames_hero' : k+'_hero';
   const grad = brandGradients[k].replace('165deg','135deg');
-  return `<div class="brand-modal" id="bm-${k}">
-    <div class="bm-back" onclick="closeBrand('${k}')">${backArrow} Retour</div>
+  return `<div class="brand-modal" id="bm-${k}" role="dialog" aria-modal="true" aria-label="${brandNames[k]}">
+    <button class="bm-back" onclick="closeBrand('${k}')" aria-label="Retour">${backArrow} Retour</button>
     <div class="brand-modal-inner">
       <div class="bm-hero">${k==='events'?'<div class="vinyl-stage vinyl-stage--modal" data-vinyl><div class="vinyl"></div></div>':''}
         <div>
@@ -703,20 +722,39 @@ ${brandKeys.map(k => {
   </div>
 </div>`;
 
-  // Init reveal observer
-  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target) }}) }, { threshold: 0.1 });
-  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+  // Init reveal observer (fallback : tout révéler si pas d'IntersectionObserver)
+  if('IntersectionObserver' in window){
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target) }}) }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('visible'));
+  }
 }
 
-// ── Modal controllers ──
-function openBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.add('active');el.scrollTop=0;document.body.style.overflow='hidden';history.pushState({modal:'brand',id},'','#'+id);} }
-function closeBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.remove('active');document.body.style.overflow='';} if(location.hash)history.replaceState(null,'',location.pathname); }
-function openLightbox(src){ document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('active'); }
-function closeLightbox(){ document.getElementById('lightbox').classList.remove('active'); document.getElementById('lightboxImg').src=''; }
-function openContact(){ document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden'; history.pushState({modal:'contact'},'','#contact'); }
-function closeContact(){ document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow=''; if(location.hash)history.replaceState(null,'',location.pathname); }
+// ── Modal controllers (avec gestion du focus) ──
+let lastFocused=null;
+function focusIn(sel){ const el=document.querySelector(sel); if(el) setTimeout(()=>{try{el.focus();}catch(e){}}, 60); }
+function restoreFocus(){ if(lastFocused&&lastFocused.focus){ try{lastFocused.focus();}catch(e){} } lastFocused=null; }
+function openBrand(id){ const el=document.getElementById('bm-'+id); if(el){lastFocused=document.activeElement;el.classList.add('active');el.scrollTop=0;document.body.style.overflow='hidden';focusIn('#bm-'+id+' .bm-back');history.pushState({modal:'brand',id},'','#'+id);} }
+function closeBrand(id){ const el=document.getElementById('bm-'+id); if(el){el.classList.remove('active');document.body.style.overflow='';} if(location.hash)history.replaceState(null,'',location.pathname); restoreFocus(); }
+function openLightbox(src){ lastFocused=document.activeElement; document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('active'); focusIn('.lightbox-close'); }
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('active'); document.getElementById('lightboxImg').src=''; restoreFocus(); }
+function openContact(){ lastFocused=document.activeElement; document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden'; focusIn('#contactModal .modal-close'); history.pushState({modal:'contact'},'','#contact'); }
+function closeContact(){ document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow=''; if(location.hash)history.replaceState(null,'',location.pathname); restoreFocus(); }
 window.addEventListener('popstate', function(){ document.querySelectorAll('.brand-modal.active').forEach(m=>m.classList.remove('active')); document.getElementById('contactModal').classList.remove('active'); document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow=''; });
 document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeContact(); closeLightbox(); document.querySelectorAll('.brand-modal.active').forEach(m=>m.classList.remove('active')); document.body.style.overflow=''; if(location.hash)history.replaceState(null,'',location.pathname); }});
+// Focus trap dans la modale ouverte
+document.addEventListener('keydown', e => {
+  if(e.key!=='Tab') return;
+  const modal = document.querySelector('.modal-overlay.active, .brand-modal.active');
+  if(!modal) return;
+  const nodes = [...modal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')]
+    .filter(el => el.offsetWidth>0 || el.offsetHeight>0 || el===document.activeElement);
+  if(!nodes.length) return;
+  const first=nodes[0], last=nodes[nodes.length-1];
+  if(e.shiftKey){ if(document.activeElement===first || !modal.contains(document.activeElement)){ e.preventDefault(); last.focus(); } }
+  else { if(document.activeElement===last || !modal.contains(document.activeElement)){ e.preventDefault(); first.focus(); } }
+});
 
 async function submitForm(e) {
   e.preventDefault();
