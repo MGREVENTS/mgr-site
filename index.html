@@ -558,7 +558,9 @@ function buildSite() {
   <div class="nav-links">
     <a href="#about">À propos</a>
     <a href="#brands">Nos univers</a>
+    <a href="/mariage">Mariage</a>
     <a href="#djs">Nos DJs</a>
+    <a href="/blog">Journal</a>
   </div>
   <div style="display:flex;align-items:center;gap:.5rem">
     <button class="hamburger" aria-label="Menu de navigation" aria-expanded="false" onclick="toggleMenu(this)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
@@ -602,7 +604,12 @@ function buildSite() {
     <h2 class="section-title">Trois univers,<br>une même exigence.</h2>
   </div>
   <div class="brands-grid">
-    ${brandKeys.map((k,i) => `<div class="brand-card" data-reveal role="button" tabindex="0" aria-label="Découvrir ${brandNames[k]}" style="transition-delay:${i*.1}s" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}"><div class="brand-bg" style="background:${brandGradients[k]}"></div>${k==='events'?'<div class="vinyl-stage" data-vinyl><div class="vinyl"></div></div>':''}<div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div></div>`).join('')}
+    ${brandKeys.map((k,i) => {
+      const inner = `<div class="brand-bg" style="background:${brandGradients[k]}"></div>${k==='events'?'<div class="vinyl-stage" data-vinyl><div class="vinyl"></div></div>':''}<div class="brand-content"><div class="brand-icon">${brandIcons[k]}</div><div class="brand-label">${brandLabels[k]}</div><div class="brand-name">${brandNames[k]}</div><div class="brand-desc">${brandDescs[k]}</div><div class="brand-link">Découvrir ${arrow}</div></div>`;
+      return k==='wedding'
+        ? `<a class="brand-card" data-reveal href="/mariage" aria-label="Découvrir ${brandNames[k]}" style="transition-delay:${i*.1}s;display:block">${inner}</a>`
+        : `<div class="brand-card" data-reveal role="button" tabindex="0" aria-label="Découvrir ${brandNames[k]}" style="transition-delay:${i*.1}s" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}">${inner}</div>`;
+    }).join('')}
   </div>
 </section>
 
@@ -657,14 +664,14 @@ function buildSite() {
       <a href="${C.brand.socials.soundcloud}" target="_blank">${scIcon}</a>
     </div>
   </div>
-  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="#djs">Nos DJs</a><a role="button" tabindex="0" onclick="openContact()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openContact()}">Contact</a></div>
-  <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=>`<a role="button" tabindex="0" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}">${brandNames[k]}</a>`).join('')}</div>
+  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="#djs">Nos DJs</a><a href="/blog">Journal</a><a role="button" tabindex="0" onclick="openContact()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openContact()}">Contact</a></div>
+  <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=> k==='wedding' ? `<a href="/mariage">${brandNames[k]}</a>` : `<a role="button" tabindex="0" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}">${brandNames[k]}</a>`).join('')}</div>
   <div class="footer-col"><h4>Contact</h4><a href="mailto:${C.brand.email}">${C.brand.email}</a><a>Paris, France</a><a href="/mentions.html" style="margin-top:.8rem;color:rgba(255,255,255,.18);font-size:.72rem">Mentions légales</a></div>
 </footer>
 <div class="footer-bottom">© ${new Date().getFullYear()} ${C.brand.name} — Tous droits réservés</div>
 
 <!-- BRAND MODALS -->
-${brandKeys.map(k => {
+${brandKeys.filter(k=>k!=='wedding').map(k => {
   const b = C.brands[k];
   const photoKey = k === 'nomames' ? 'nomames_hero' : k+'_hero';
   const grad = brandGradients[k].replace('165deg','135deg');
