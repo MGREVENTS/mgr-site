@@ -422,6 +422,27 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 }else{document.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('in'));}
 
+// Carrousel témoignages : défilement automatique (pause au survol / toucher)
+(function autoplayAvis(){
+  const t=document.getElementById('ttrack');
+  if(!t || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const wrap=t.closest('.tcarousel')||t;
+  let paused=false, resume;
+  const hold=()=>{paused=true;clearTimeout(resume);};
+  const release=()=>{clearTimeout(resume);resume=setTimeout(()=>paused=false,3000);};
+  wrap.addEventListener('mouseenter',()=>paused=true);
+  wrap.addEventListener('mouseleave',()=>paused=false);
+  wrap.addEventListener('touchstart',hold,{passive:true});
+  wrap.addEventListener('touchend',release,{passive:true});
+  setInterval(()=>{
+    if(paused || document.hidden) return;
+    const card=t.querySelector('.tcard');
+    const step=card?card.getBoundingClientRect().width:380;
+    if(t.scrollLeft + t.clientWidth >= t.scrollWidth - 8) t.scrollTo({left:0,behavior:'smooth'});
+    else t.scrollBy({left:step,behavior:'smooth'});
+  },4500);
+})();
+
 // Devis form
 async function submitDevis(e){
   e.preventDefault();
