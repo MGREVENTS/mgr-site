@@ -259,9 +259,7 @@ const SITE_CONFIG = {
     },
     reassurance: [
       { value: "5★",   label: "Note moyenne" },
-      { value: "200+", label: "Mariages animés" },
       { value: "10h",  label: "De prestation" },
-      { value: "2h",   label: "Remplacement garanti" },
     ],
     // « Le fil de votre journée » — scrollytelling chronologique
     chaptersTitle: "Le fil de votre journée",
