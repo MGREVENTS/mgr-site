@@ -37,6 +37,22 @@ nav.scrolled{padding:.65rem 3rem;background:rgba(8,8,8,.92)}
 .nav-links{display:flex;gap:2rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 .nav-links a{color:var(--gris-texte);transition:color .25s}.nav-links a:hover{color:var(--blanc)}
 .nav-cta{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.4rem;border:1px solid var(--or);color:var(--or);font-weight:500;transition:all .25s}.nav-cta:hover{background:var(--or);color:var(--noir)}
+.nav-item{position:relative;display:inline-flex;align-items:center}
+.nav-parent{display:inline-flex;align-items:center;gap:.45rem}
+.nav-parent .caret{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);opacity:.6;margin-top:-3px;transition:transform .25s var(--ease-out)}
+.nav-item:hover .nav-parent .caret,.nav-item:focus-within .nav-parent .caret{transform:rotate(45deg) translate(1px,1px);opacity:1}
+.nav-item::before{content:'';position:absolute;top:100%;left:-12px;right:-12px;height:16px;display:none}
+.nav-item:hover::before{display:block}
+.nav-sub{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);min-width:200px;background:rgba(10,10,10,.97);backdrop-filter:blur(22px);border:1px solid var(--glass-border);border-radius:8px;padding:.5rem;display:flex;flex-direction:column;gap:.1rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s var(--ease-out),transform .25s var(--ease-out);box-shadow:0 24px 60px -24px rgba(0,0,0,.85);z-index:101}
+.nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(6px)}
+.nav-sub a{padding:.6rem .9rem;border-radius:5px;font-size:.7rem;letter-spacing:.12em;color:var(--gris-texte);white-space:nowrap;transition:background .2s,color .2s}
+.nav-sub a:hover{background:rgba(201,168,76,.1);color:var(--blanc)}
+@media(max-width:900px){
+  .nav-item{width:100%;flex-direction:column;align-items:flex-start}
+  .nav-parent .caret{display:none}
+  .nav-item::before{display:none!important}
+  .nav-sub{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;background:none;border:none;box-shadow:none;backdrop-filter:none;padding:.3rem 0 .2rem .9rem;margin-top:.5rem;border-left:1px solid var(--glass-border);min-width:0;border-radius:0}
+}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:.5rem}.burger svg{width:24px;height:24px}
 .head{padding:9rem 3rem 3rem;text-align:center;max-width:760px;margin:0 auto}
 .head h1{font-family:var(--ff-display);font-weight:400;font-size:clamp(2.6rem,6vw,4.6rem);margin:1rem 0}
@@ -76,7 +92,7 @@ const cover=(src,label)=>`<img src="${src}" alt="${label}" loading="lazy" onerro
 document.getElementById('app').innerHTML=`
 <nav id="nav">
   <a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a>
-  <div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="/#djs">Nos DJs</a></div>
+  <div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><div class="nav-item"><a href="/mariage" class="nav-parent">Mariage <i class="caret"></i></a><div class="nav-sub"><a href="/mariage">La prestation</a><a href="/blog">Le Journal</a></div></div><a href="/#djs">Nos DJs</a></div>
   <div style="display:flex;align-items:center;gap:.5rem">
     <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu(this)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     <a href="/#contact" class="nav-cta">Nous contacter</a>

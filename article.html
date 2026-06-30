@@ -26,6 +26,16 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display
 .nav-logo img{height:30px;filter:brightness(1.1)}
 .nav-links{display:flex;gap:2rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 .nav-links a{color:var(--gris-texte);transition:color .25s}.nav-links a:hover{color:var(--blanc)}
+.nav-item{position:relative;display:inline-flex;align-items:center}
+.nav-parent{display:inline-flex;align-items:center;gap:.45rem}
+.nav-parent .caret{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);opacity:.6;margin-top:-3px;transition:transform .25s var(--ease-out)}
+.nav-item:hover .nav-parent .caret{transform:rotate(45deg) translate(1px,1px);opacity:1}
+.nav-item::before{content:'';position:absolute;top:100%;left:-12px;right:-12px;height:16px;display:none}
+.nav-item:hover::before{display:block}
+.nav-sub{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);min-width:200px;background:rgba(10,10,10,.97);backdrop-filter:blur(22px);border:1px solid var(--glass-border);border-radius:8px;padding:.5rem;display:flex;flex-direction:column;gap:.1rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s var(--ease-out),transform .25s var(--ease-out);box-shadow:0 24px 60px -24px rgba(0,0,0,.85);z-index:101}
+.nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(6px)}
+.nav-sub a{padding:.6rem .9rem;border-radius:5px;font-size:.7rem;letter-spacing:.12em;color:var(--gris-texte);white-space:nowrap;transition:background .2s,color .2s}
+.nav-sub a:hover{background:rgba(201,168,76,.1);color:var(--blanc)}
 @media(max-width:760px){.nav-links{display:none}}
 .article{max-width:760px;margin:0 auto;padding:8rem 1.5rem 4rem}
 .back{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris-texte);transition:color .25s}.back:hover{color:var(--or)}
@@ -66,7 +76,7 @@ const a=BL.articles.find(x=>x.slug===slug);
 const fmt=d=>{try{return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}catch(e){return d;}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/blog">Journal</a><a href="/#djs">Nos DJs</a></div></nav>`;}
+function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><div class="nav-item"><a href="/mariage" class="nav-parent">Mariage <i class="caret"></i></a><div class="nav-sub"><a href="/mariage">La prestation</a><a href="/blog">Le Journal</a></div></div><a href="/#djs">Nos DJs</a></div></nav>`;}
 function footHTML(){return `<footer><div class="fnav"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/blog">Journal</a><a href="/mentions.html">Mentions légales</a></div><div class="fbottom">© ${new Date().getFullYear()} ${B.name}</div></footer>`;}
 
 if(!a){
