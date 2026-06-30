@@ -76,8 +76,8 @@ const a=BL.articles.find(x=>x.slug===slug);
 const fmt=d=>{try{return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}catch(e){return d;}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><div class="nav-item"><a href="/mariage" class="nav-parent">Mariage <i class="caret"></i></a><div class="nav-sub"><a href="/mariage">La prestation</a><a href="/blog">Le Journal</a></div></div><a href="/#djs">Nos DJs</a></div></nav>`;}
-function footHTML(){return `<footer><div class="fnav"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/blog">Journal</a><a href="/mentions.html">Mentions légales</a></div><div class="fbottom">© ${new Date().getFullYear()} ${B.name}</div></footer>`;}
+function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="/#djs">Nos DJs</a></div></nav>`;}
+function footHTML(){return `<footer><div class="fnav"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/mentions.html">Mentions légales</a></div><div class="fbottom">© ${new Date().getFullYear()} ${B.name}</div></footer>`;}
 
 if(!a){
   document.title='Article introuvable — '+B.name;

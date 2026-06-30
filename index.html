@@ -576,10 +576,7 @@ function buildSite() {
   <div class="nav-links">
     <a href="#about">À propos</a>
     <a href="#brands">Nos univers</a>
-    <div class="nav-item">
-      <a href="/mariage" class="nav-parent">Mariage <i class="caret"></i></a>
-      <div class="nav-sub"><a href="/mariage">La prestation</a><a href="/blog">Le Journal</a></div>
-    </div>
+    <a href="/mariage">Mariage</a>
     <a href="#djs">Nos DJs</a>
   </div>
   <div style="display:flex;align-items:center;gap:.5rem">
@@ -684,7 +681,7 @@ function buildSite() {
       <a href="${C.brand.socials.soundcloud}" target="_blank">${scIcon}</a>
     </div>
   </div>
-  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="#djs">Nos DJs</a><a href="/blog">Journal</a><a role="button" tabindex="0" onclick="openContact()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openContact()}">Contact</a></div>
+  <div class="footer-col"><h4>Navigation</h4><a href="#about">À propos</a><a href="#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="#djs">Nos DJs</a><a role="button" tabindex="0" onclick="openContact()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openContact()}">Contact</a></div>
   <div class="footer-col"><h4>Marques</h4>${brandKeys.map(k=> k==='wedding' ? `<a href="/mariage">${brandNames[k]}</a>` : `<a role="button" tabindex="0" onclick="openBrand('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openBrand('${k}')}">${brandNames[k]}</a>`).join('')}</div>
   <div class="footer-col"><h4>Contact</h4><a href="mailto:${C.brand.email}">${C.brand.email}</a><a>Paris, France</a><a href="/mentions.html" style="margin-top:.8rem;color:rgba(255,255,255,.18);font-size:.72rem">Mentions légales</a></div>
 </footer>
