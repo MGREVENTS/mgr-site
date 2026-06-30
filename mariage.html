@@ -162,14 +162,25 @@ nav.scrolled{padding:.65rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur
 .formule li::before{content:'';position:absolute;left:0;top:.95rem;width:6px;height:6px;background:var(--or);transform:rotate(45deg)}
 .formule .btn{justify-content:center}
 
-/* TESTIMONIALS */
-.tnote{text-align:center;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6f6a62;margin-top:-2.6rem;margin-bottom:2.6rem}
-.tgrid{column-count:2;column-gap:1.5rem;max-width:900px;margin:0 auto}
-.tcard{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 1.5rem;border:1px solid var(--glass-border);border-radius:6px;padding:2rem;background:var(--glass-bg)}
-.tstars{color:var(--or);letter-spacing:.2em;margin-bottom:1rem}
-.tquote{font-family:var(--ff-display);font-style:italic;font-size:1.1rem;line-height:1.5;margin-bottom:1.2rem}
-.tname{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--or)}
-.tevent{font-size:.72rem;color:var(--gris-texte);margin-top:.2rem}
+/* TESTIMONIALS — carrousel éditorial */
+.t-rating{margin-top:1.1rem;color:var(--or);letter-spacing:.22em;font-size:.95rem}
+.t-rating strong{font-family:var(--ff-display);margin:0 .2rem}
+.t-rating span{color:var(--gris-texte);letter-spacing:.12em;font-size:.78rem;text-transform:uppercase}
+.tcarousel{position:relative;max-width:1180px;margin:0 auto}
+.ttrack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ttrack::-webkit-scrollbar{display:none}
+.tcard{flex:0 0 360px;scroll-snap-align:start;display:flex;flex-direction:column;padding:2.6rem 2.2rem;position:relative;border-left:1px solid var(--glass-border)}
+.tcard:first-child{border-left:none}
+.tmark{font-family:var(--ff-display);font-size:3.4rem;line-height:.6;color:var(--or);opacity:.22;height:1.6rem}
+.tstars{color:var(--or);letter-spacing:.28em;font-size:.85rem;margin:1.1rem 0 1rem}
+.tquote{font-family:var(--ff-display);font-style:italic;font-size:1.05rem;line-height:1.55;color:#e7e0d6;margin-bottom:1.6rem}
+.tfoot{margin-top:auto}
+.tname{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or)}
+.tevent{font-size:.72rem;color:var(--gris-texte);margin-top:.25rem}
+.tarrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,168,76,.3);background:rgba(10,10,10,.72);backdrop-filter:blur(8px);color:var(--or);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;font-size:1.5rem;line-height:1;transition:all .25s var(--ease-out)}
+.tarrow:hover{background:var(--or);color:var(--noir);border-color:var(--or)}
+.tarrow.left{left:-14px}.tarrow.right{right:-14px}
+@media(max-width:900px){.tcard{flex-basis:82vw;max-width:340px}.tarrow{display:none}}
 
 /* AFTERMOVIE */
 .video-facade{position:relative;max-width:980px;margin:0 auto;aspect-ratio:16/9;border-radius:6px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow-soft)}
@@ -240,7 +251,6 @@ footer .fnav a{transition:color .25s}footer .fnav a:hover{color:var(--or)}
   .chapter:nth-child(even) .ch-media{order:0}
   .ch-media{aspect-ratio:16/11}
   .formules{grid-template-columns:1fr;max-width:460px}
-  .tgrid{column-count:1}
   .devis-grid{grid-template-columns:1fr;gap:2.5rem}
   .reassure{gap:2rem;padding:2rem 1.4rem}
   .sec{padding:4.5rem 0}
@@ -331,10 +341,16 @@ document.getElementById('app').innerHTML = `
   </div>
 </div></section>
 
-<section class="sec" style="background:rgba(255,255,255,.012);border-top:1px solid var(--glass-border)"><div class="wrap">
-  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Témoignages</span><h2>${W.testimonialsTitle}</h2></div>
-  <div class="tgrid">
-    ${W.testimonials.map(t=>`<div class="tcard" data-reveal><div class="tstars" aria-label="${t.rating} sur 5">${stars(t.rating)}</div><p class="tquote">« ${t.quote} »</p><div class="tname">${t.name}</div><div class="tevent">${t.event}</div></div>`).join('')}
+<section class="sec" id="avis" style="background:rgba(255,255,255,.012);border-top:1px solid var(--glass-border)"><div class="wrap">
+  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Témoignages</span><h2>${W.testimonialsTitle}</h2>
+    <div class="t-rating">★★★★★ <strong>5,0</strong> <span>/ 5 · ${W.testimonials.length} avis clients</span></div>
+  </div>
+  <div class="tcarousel" data-reveal>
+    <button class="tarrow left" aria-label="Avis précédents" onclick="scrollT(-1)">‹</button>
+    <div class="ttrack" id="ttrack">
+      ${W.testimonials.map(t=>`<article class="tcard"><div class="tmark" aria-hidden="true">“</div><div class="tstars" aria-label="${t.rating} sur 5">${stars(t.rating)}</div><p class="tquote">${t.quote}</p><div class="tfoot"><div class="tname">${t.name}</div><div class="tevent">${t.event}</div></div></article>`).join('')}
+    </div>
+    <button class="tarrow right" aria-label="Avis suivants" onclick="scrollT(1)">›</button>
   </div>
 </div></section>
 
@@ -392,6 +408,7 @@ function toggleMenu(btn){const n=document.getElementById('nav');const o=n.classL
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
 function openLb(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open');}
 function closeLb(){document.getElementById('lb').classList.remove('open');document.getElementById('lbImg').src='';}
+function scrollT(dir){const t=document.getElementById('ttrack');if(t)t.scrollBy({left:dir*380,behavior:'smooth'});}
 function playVideo(){const f=document.getElementById('vidFacade');f.onclick=null;f.innerHTML='<iframe src="https://www.youtube.com/embed/'+W.hero.videoId+'?autoplay=1&rel=0&modestbranding=1" title="MGR Wedding — Aftermovie" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
 
