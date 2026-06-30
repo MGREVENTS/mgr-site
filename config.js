@@ -267,8 +267,8 @@ const SITE_CONFIG = {
     chaptersTitle: "Le fil de votre journée",
     chapters: [
       { eyebrow: "01 · Cérémonie",     title: "L'instant suspendu",        text: "Entrée, sortie, moments forts : une sonorisation discrète et des choix musicaux justes pour sublimer l'émotion sans jamais la couvrir.", photo: "assets/photos/wedding/ceremonie.webp" },
-      { eyebrow: "02 · Vin d'honneur", title: "La parenthèse",             text: "Une ambiance lounge et chaleureuse pendant que vos invités se retrouvent. Le ton est donné, tout en douceur.", photo: "assets/photos/wedding/cocktail.webp" },
-      { eyebrow: "03 · Dîner",         title: "Les émotions à table",      text: "Playlist feutrée, gestion des discours et des animations, montée progressive de l'énergie vers la piste.", photo: "assets/photos/raphael-wedding.jpg" },
+      { eyebrow: "02 · Vin d'honneur", title: "La parenthèse",             text: "Une ambiance lounge et chaleureuse pendant que vos invités se retrouvent. Le ton est donné, tout en douceur.", photo: "assets/photos/wedding/vin-honneur.webp" },
+      { eyebrow: "03 · Dîner",         title: "Les émotions à table",      text: "Playlist feutrée, gestion des discours et des animations, montée progressive de l'énergie vers la piste.", photo: "assets/photos/wedding/diner.webp" },
       { eyebrow: "04 · Première danse",title: "Votre moment",              text: "Votre chanson, votre mise en lumière. On répète, on cale l'instant à la seconde près.", photo: "assets/photos/wedding/premiere-danse.webp" },
       { eyebrow: "05 · Soirée",        title: "Jusqu'au bout de la nuit",  text: "Open format, lecture du dancefloor en temps réel, lumières et effets : une piste qui ne désemplit pas.", photo: "assets/photos/wedding/soiree.webp" },
     ],
