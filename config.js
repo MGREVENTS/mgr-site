@@ -26,6 +26,9 @@ const SITE_CONFIG = {
     subtitle: "La différence se ressent, elle ne se dit pas. Clubs, mariages, corporate — chaque détail musical est pensé pour que votre événement parle de lui-même.",
   },
 
+  // ── BANDEAU DÉFILANT (ticker éditorial, page d'accueil) ──
+  ticker: ["Paris", "Booking DJ", "Direction artistique", "Clubs & résidences", "Mariages", "Corporate", "No Mames", "MGR School"],
+
   // ── CHIFFRES CLÉS ──
   stats: [
     { value: "120+", label: "Bookings / mois", icon: "calendar" },
@@ -261,6 +264,7 @@ const SITE_CONFIG = {
       { value: "5★",   label: "Note moyenne" },
       { value: "10h",  label: "De prestation" },
     ],
+    ticker: ["Cérémonie", "Vin d'honneur", "Dîner", "Première danse", "Dancefloor", "Paris & Île-de-France"],
     // « Le fil de votre journée » — scrollytelling chronologique
     chaptersTitle: "Le fil de votre journée",
     chapters: [

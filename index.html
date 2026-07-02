@@ -514,11 +514,111 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
   .dj-socials a{width:34px;height:34px}.dj-socials a svg{width:13px;height:13px}
 }
 </style>
+<style>
+/* ════════ ENTERTAINMENT LAYER — « le son devient lumière » ════════ */
+
+/* — Lisibilité & contraste (audit) — */
+:root{--gris-texte:#B3ACA1}
+.hero-sub{color:#D6CFC3;font-size:1.1rem}
+.hero h1{font-size:clamp(3.1rem,8.6vw,8.1rem);letter-spacing:-.015em}
+.section-title{font-size:clamp(2.1rem,4.4vw,3.5rem)}
+.about p{font-size:.99rem;line-height:1.9}
+.brand-desc{font-size:.87rem}
+.bm-hero p{font-size:.99rem}
+.bm-feature p{font-size:.89rem;line-height:1.75}
+.dj-venues{font-size:.79rem}
+.footer-brand p,.footer-col a{font-size:.86rem}
+.stat-label{color:#ACA497}
+.trust-logo{font-size:.63rem}
+
+/* — Barre de progression (énergie du scroll) — */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;z-index:500;pointer-events:none;background:linear-gradient(90deg,var(--bordeaux),var(--or) 60%,#EAD48C);box-shadow:0 0 14px rgba(201,168,76,.45)}
+
+/* — Spotlight : la lumière suit le curseur (desktop) — */
+.fx-spot{position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:3;mix-blend-mode:screen;opacity:0;transition:opacity .8s var(--ease-out);will-change:transform;background:radial-gradient(circle,rgba(201,168,76,.085) 0%,rgba(201,168,76,.028) 45%,transparent 70%)}
+body.spot-on .fx-spot{opacity:1}
+@media(pointer:coarse),(max-width:768px){.fx-spot{display:none}}
+
+/* — Signal ON AIR (nav) — */
+.onair{display:inline-flex;align-items:flex-end;gap:2.5px;margin-left:1.05rem;height:13px;position:relative;top:-1px}
+.onair i{width:3px;height:100%;background:var(--or);transform-origin:bottom;animation:eqPulse .85s ease-in-out infinite alternate;box-shadow:0 0 6px rgba(201,168,76,.5)}
+.onair i:nth-child(2){animation-delay:-.45s}.onair i:nth-child(3){animation-delay:-.7s}
+.onair b{font-weight:500;font-size:.52rem;letter-spacing:.28em;color:var(--or);text-transform:uppercase;margin-left:.55rem;opacity:.85;align-self:center;white-space:nowrap}
+@media(max-width:768px){.onair{display:none}}
+
+/* — Waveform vivant (equalizer) — */
+@keyframes eqPulse{from{transform:scaleY(.14)}to{transform:scaleY(var(--h,.9))}}
+.eq-wave{display:flex;align-items:flex-end;gap:3px;height:58px;width:min(620px,78vw);margin-top:3rem;position:relative;z-index:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.eq-wave i{flex:1 1 0;border-radius:1px;background:linear-gradient(to top,rgba(201,168,76,.12),var(--or) 82%,#EAD48C);transform-origin:bottom;transform:scaleY(var(--h,.4));animation:eqPulse var(--t,1.1s) var(--d,0s) ease-in-out infinite alternate;box-shadow:0 0 10px rgba(201,168,76,.18)}
+@media(max-width:768px){.eq-wave{height:44px;width:86vw;margin-top:2.4rem}}
+
+/* — Faisceaux lumineux du hero — */
+.hero-beams{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.9;filter:blur(4px);transform-origin:50% -10%;animation:beamSway 16s ease-in-out infinite alternate;
+  background:conic-gradient(from 212deg at 8% -6%,transparent 0 9deg,rgba(201,168,76,.055) 13deg,transparent 23deg),
+             conic-gradient(from 148deg at 92% -6%,transparent 0 9deg,rgba(107,15,26,.17) 14deg,transparent 26deg),
+             radial-gradient(50% 34% at 50% 108%,rgba(107,15,26,.26),transparent 70%)}
+@keyframes beamSway{from{transform:rotate(-1.4deg)}to{transform:rotate(1.6deg)}}
+.vinyl-stage--hero .vinyl{opacity:.22}
+
+/* — Ticker éditorial (affiche de soirée) — */
+.ticker{position:relative;overflow:hidden;padding:1.5rem 0;border-top:1px solid var(--border-accent);border-bottom:1px solid var(--border-accent);background:rgba(255,255,255,.008)}
+.ticker-track{display:flex;width:max-content;will-change:transform;animation:tickerX 38s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker .th{display:flex;align-items:center;gap:3rem;padding-right:3rem}
+.ticker .tw{font-family:var(--ff-display);font-style:italic;font-size:clamp(1.8rem,4vw,3.3rem);line-height:1.2;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(245,240,235,.34)}
+.ticker .tw-fill{color:var(--or);-webkit-text-stroke:0}
+.ticker .td{width:9px;height:9px;background:var(--or);transform:rotate(45deg);flex:0 0 auto;opacity:.85}
+.ticker--rev .ticker-track{animation-direction:reverse}
+.ticker--soft .tw{-webkit-text-stroke-color:rgba(201,168,76,.3)}
+.ticker--soft .tw-fill{color:var(--blanc);opacity:.85;-webkit-text-stroke:0}
+@keyframes tickerX{to{transform:translateX(-50%)}}
+@media(max-width:768px){.ticker{padding:1.1rem 0}.ticker .th{gap:1.8rem;padding-right:1.8rem}.ticker .tw{font-size:1.65rem}.ticker .td{width:6px;height:6px}}
+
+/* — Numéros de section éditoriaux (au trait) — */
+.about,.brands,.djs{position:relative}
+.sec-index{position:absolute;top:2rem;font-family:var(--ff-display);font-style:italic;font-size:clamp(6.5rem,15vw,12rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(201,168,76,.13);pointer-events:none;user-select:none}
+.sec-index--l{left:3rem}.sec-index--r{right:3rem}
+@media(max-width:768px){.sec-index{font-size:4.8rem;top:1.2rem}.sec-index--l{left:1.2rem}.sec-index--r{right:1.2rem}}
+
+/* — Photos duotone or/bordeaux → couleur au survol — */
+.dj-photo img{filter:grayscale(.88) contrast(1.06) brightness(.95);transition:transform .8s var(--ease-out),filter .6s var(--ease-out)}
+.dj-photo::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(160deg,rgba(201,168,76,.28),rgba(107,15,26,.38) 85%);mix-blend-mode:color;transition:opacity .55s var(--ease-out)}
+.dj-card:hover .dj-photo img{filter:grayscale(0) contrast(1) brightness(1)}
+.dj-card:hover .dj-photo::before{opacity:0}
+.about-visual img{filter:grayscale(.35) contrast(1.04);transition:filter .6s var(--ease-out)}
+.about-visual::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(150deg,rgba(201,168,76,.16),rgba(107,15,26,.28));mix-blend-mode:color;transition:opacity .6s}
+.about-visual:hover img{filter:none}.about-visual:hover::after{opacity:0}
+
+/* — Mini equalizer sur les cartes DJ — */
+.dj-photo{position:relative}
+.dj-eq{position:absolute;left:.85rem;bottom:.85rem;z-index:2;display:flex;align-items:flex-end;gap:3px;height:15px;opacity:0;transform:translateY(4px);transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
+.dj-eq i{width:3px;height:100%;background:var(--or);transform-origin:bottom;transform:scaleY(.3);animation:eqPulse .75s ease-in-out infinite alternate;animation-play-state:paused;box-shadow:0 0 6px rgba(201,168,76,.6)}
+.dj-eq i:nth-child(2){animation-delay:-.5s}.dj-eq i:nth-child(3){animation-delay:-.2s}.dj-eq i:nth-child(4){animation-delay:-.65s}.dj-eq i:nth-child(5){animation-delay:-.35s}
+.dj-card:hover .dj-eq{opacity:1;transform:none}
+.dj-card:hover .dj-eq i{animation-play-state:running}
+
+/* — CTA : mot géant au trait + reflet sur bouton — */
+.cta-section{overflow:hidden}
+.cta-backword{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font-family:var(--ff-display);font-style:italic;white-space:nowrap;font-size:clamp(4.5rem,16vw,13rem);color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.1);pointer-events:none;user-select:none;z-index:0}
+.cta-btn{position:relative;overflow:hidden}
+.cta-btn::before{content:'';position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-22deg);transition:left .55s var(--ease-out);pointer-events:none}
+.cta-btn:hover::before{left:125%}
+
+/* — Reduced motion : couche décorative neutralisée — */
+@media(prefers-reduced-motion:reduce){
+  .fx-spot,.scroll-progress{display:none!important}
+  .eq-wave i,.onair i,.dj-eq i,.ticker-track,.hero-beams{animation:none!important}
+  .dj-photo img,.about-visual img{filter:none!important}
+  .dj-photo::before,.about-visual::after{opacity:0!important}
+}
+</style>
 </head>
 <body>
 <div class="fx-vignette" aria-hidden="true"></div>
 <div class="fx-grain" aria-hidden="true"></div>
 <div class="fx-veil" aria-hidden="true"></div>
+<div class="fx-spot" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <!-- Skeleton — filled by JS from config.js -->
 <div id="app"></div>
@@ -568,11 +668,14 @@ function photoOrPlaceholder(src, label) {
 
 function buildSite() {
   const brandKeys = ['events','wedding','nomames'];
+  const TK = (C.ticker && C.ticker.length) ? C.ticker : ['Paris','Booking DJ','Direction artistique','Clubs & résidences','Mariages','Corporate'];
+  const tHalf = TK.map((w,i)=>`<span class="tw ${i%2?'tw-fill':''}">${w}</span><i class="td"></i>`).join('');
+  const tickerHTML = cls => `<div class="ticker ${cls}" aria-hidden="true"><div class="ticker-track"><div class="th">${tHalf}</div><div class="th">${tHalf}</div></div></div>`;
   
   document.getElementById('app').innerHTML = `
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo"><img src="${C.brand.logo}" alt="${C.brand.name}"></a>
+  <div style="display:flex;align-items:center"><a href="#" class="nav-logo"><img src="${C.brand.logo}" alt="${C.brand.name}"></a><span class="onair" aria-hidden="true"><i></i><i></i><i></i><b>On air</b></span></div>
   <div class="nav-links">
     <a href="#about">À propos</a>
     <a href="#brands">Nos univers</a>
@@ -588,10 +691,12 @@ function buildSite() {
 <!-- HERO -->
 <section class="hero">
   <div class="vinyl-stage vinyl-stage--hero" data-vinyl><div class="vinyl"></div></div>
+  <div class="hero-beams" aria-hidden="true"></div>
   <div class="hero-tag"><span class="diamond"></span> ${C.hero.tagline} <span class="diamond"></span></div>
   <h1>${C.hero.title}</h1>
   <p class="hero-sub">${C.hero.subtitle}</p>
   <button class="cta-btn" style="opacity:0;animation:fadeUp .8s .9s forwards;position:relative;z-index:1;margin-top:2rem" onclick="openContact()">Nous contacter ${arrowBig}</button>
+  <div class="eq-wave" data-eq="46" aria-hidden="true" style="opacity:0;animation:fadeUp .9s 1.05s forwards"></div>
   <div class="hero-scroll"><span>Scroll</span><div class="line"></div></div>
 </section>
 
@@ -600,8 +705,11 @@ function buildSite() {
   ${C.stats.map(s => `<div class="stat">${statIcons[s.icon]||''}<div class="stat-num">${s.value}</div><div class="stat-label">${s.label}</div></div>`).join('')}
 </div>
 
+${tickerHTML('')}
+
 <!-- ABOUT -->
 <section class="about" id="about">
+  <span class="sec-index sec-index--l" aria-hidden="true">01</span>
   <div data-reveal>
     <div class="section-tag"><span class="diamond"></span> Qui sommes-nous</div>
     <h2 class="section-title">Une équipe passionnée<br>au service de vos nuits.</h2>
@@ -616,6 +724,7 @@ function buildSite() {
 
 <!-- BRANDS -->
 <section class="brands" id="brands">
+  <span class="sec-index sec-index--r" aria-hidden="true">02</span>
   <div class="brands-header" data-reveal>
     <div class="section-tag"><span class="diamond"></span> Nos univers</div>
     <h2 class="section-title">Trois univers,<br>une même exigence.</h2>
@@ -632,6 +741,7 @@ function buildSite() {
 
 <!-- DJS -->
 <section class="djs" id="djs">
+  <span class="sec-index sec-index--l" aria-hidden="true">03</span>
   <div class="djs-header" data-reveal>
     <div class="section-tag"><span class="diamond"></span> Le roster</div>
     <h2 class="section-title">Nos DJs</h2>
@@ -642,6 +752,7 @@ function buildSite() {
       <div class="dj-photo">
         <img src="${dj.photo}" alt="${dj.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="dj-placeholder" style="display:none"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F5F0EB" stroke-width=".5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg></div>
+        <div class="dj-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       </div>
       <div class="dj-info">
         <div class="dj-name">${dj.name}</div>
@@ -663,8 +774,11 @@ function buildSite() {
   <div class="trust-logos">${C.partners.map(p => `<div class="trust-logo">${p}</div>`).join('')}</div>
 </section>
 
+${tickerHTML('ticker--rev ticker--soft')}
+
 <!-- CTA -->
 <section class="cta-section" data-reveal>
+  <span class="cta-backword" aria-hidden="true">La Nuit ♦ Paris</span>
   <h2 class="section-title">Un projet ?<br>Parlons-en.</h2>
   <p>Booking DJ, direction artistique ou événement privé — on s'occupe de tout.</p>
   <button class="cta-btn" onclick="openContact()">Contactez-nous ${arrowBig}</button>
@@ -930,6 +1044,53 @@ if(location.hash==='#contact') openContact();
       es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting));
     }, { threshold: 0 });
     document.querySelectorAll('[data-vinyl]').forEach(el => vinylObs.observe(el));
+  }
+})();
+</script>
+<script>
+/* ════════ ENTERTAINMENT LAYER — waveform vivant · spotlight · progression ════════ */
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Waveform : barres générées avec hauteur/tempo aléatoires (orgue de lumière)
+  document.querySelectorAll('[data-eq]').forEach(w => {
+    const n = parseInt(w.dataset.eq, 10) || 44;
+    let html = '';
+    for(let i = 0; i < n; i++){
+      html += '<i style="--h:' + (0.22 + Math.random()*0.78).toFixed(2)
+            + ';--t:' + (0.7 + Math.random()*0.9).toFixed(2) + 's'
+            + ';--d:-' + (Math.random()*1.6).toFixed(2) + 's"></i>';
+    }
+    w.innerHTML = html;
+  });
+
+  // Progression de scroll
+  const prog = document.querySelector('.scroll-progress');
+  let tick = false;
+  function upd(){
+    try{
+      const de = document.documentElement;
+      if(prog && de){ const max = de.scrollHeight - innerHeight; prog.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%'; }
+    }catch(e){}
+    tick = false;
+  }
+  addEventListener('scroll', () => { if(!tick){ tick = true; requestAnimationFrame(upd); } }, {passive:true});
+  upd();
+
+  // Spotlight : halo doré qui suit le curseur (pointeur précis uniquement)
+  const spot = document.querySelector('.fx-spot');
+  if(spot && !reduce && matchMedia('(pointer:fine)').matches){
+    let x = innerWidth/2, y = innerHeight/3, tx = x, ty = y, raf = null, on = false;
+    function loop(){
+      x += (tx - x) * .09; y += (ty - y) * .09;
+      spot.style.transform = 'translate(' + (x - 260).toFixed(1) + 'px,' + (y - 260).toFixed(1) + 'px)';
+      if(Math.abs(tx - x) > .5 || Math.abs(ty - y) > .5){ raf = requestAnimationFrame(loop); } else { raf = null; }
+    }
+    addEventListener('mousemove', e => {
+      tx = e.clientX; ty = e.clientY;
+      if(!on){ on = true; document.body.classList.add('spot-on'); }
+      if(!raf) raf = requestAnimationFrame(loop);
+    }, {passive:true});
   }
 })();
 </script>
