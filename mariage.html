@@ -365,6 +365,30 @@ body{background:#050505}
   .bg-scene .streak{display:none!important}
 }
 </style>
+<style>
+/* ════════ SCROLL CINÉMATIQUE (référence Ferrari) — animations liées au défilement ════════ */
+/* Stabilité mobile : aucun débordement horizontal possible */
+html,body{overflow-x:clip}
+
+/* Sortie de hero en parallaxe */
+.hero-inner{opacity:calc(1 - min(var(--hx,0),1)*.95);translate:0 calc(var(--hx,0)*-44px)}
+.hero-bg img{translate:0 calc(var(--hx,0)*54px)}
+.hero-scroll{opacity:calc(1 - var(--hx,0)*2.2)}
+
+/* Révélation des médias au scroll (scrub) : dézoom + ouverture du cadre */
+.ch-media{clip-path:inset(calc((1 - var(--p,1))*10%) round 4px)}
+.ch-media img{scale:calc(1.12 - var(--p,1)*.12)}
+.video-facade{clip-path:inset(calc((1 - var(--p,1))*8%) round 6px)}
+.sec-index{translate:0 calc((1 - var(--p,1))*56px);opacity:calc(.25 + var(--p,1)*.75)}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-inner{opacity:1;translate:none}
+  .hero-bg img{translate:none}
+  .ch-media,.video-facade{clip-path:none}
+  .ch-media img{scale:none}
+  .sec-index{translate:none;opacity:1}
+}
+</style>
 </head>
 <body>
 <div class="bg-scene" aria-hidden="true"><i class="blob blob--or"></i><i class="blob blob--bdx"></i><i class="blob blob--cop"></i><i class="blob blob--mag"></i><i class="streak streak--1"></i><i class="streak streak--2"></i></div>
@@ -418,11 +442,11 @@ document.getElementById('app').innerHTML = `
 
 ${tickerHTML}
 
-<section class="sec" id="journee"><span class="sec-index sec-index--r" aria-hidden="true">01</span><div class="wrap">
+<section class="sec" id="journee"><span class="sec-index sec-index--r" aria-hidden="true" data-scrub>01</span><div class="wrap">
   <div class="sec-head" data-reveal><span class="eyebrow"><span class="diamond"></span> Votre journée</span><h2>${W.chaptersTitle}</h2></div>
   <div class="chapters">
     ${W.chapters.map(c=>`<div class="chapter" data-reveal>
-      <div class="ch-media">${ph(c.photo,c.title)}</div>
+      <div class="ch-media" data-scrub>${ph(c.photo,c.title)}</div>
       <div class="ch-text"><span class="eyebrow">${c.eyebrow}</span><h3>${c.title}</h3><p>${c.text}</p></div>
     </div>`).join('')}
   </div>
@@ -434,7 +458,7 @@ ${tickerHTML}
   </div>
 </section>
 
-<section class="sec" id="formules"><span class="sec-index sec-index--l" aria-hidden="true">02</span><div class="wrap">
+<section class="sec" id="formules"><span class="sec-index sec-index--l" aria-hidden="true" data-scrub>02</span><div class="wrap">
   <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Prestations</span><h2>${W.formulesTitle}</h2><p>${W.formulesIntro}</p></div>
   <div class="formules">
     ${W.formules.map(f=>`<div class="formule ${f.highlight?'hl':''}" data-reveal>
@@ -446,15 +470,15 @@ ${tickerHTML}
   </div>
 </div></section>
 
-<section class="sec" id="aftermovie"><span class="sec-index sec-index--r" aria-hidden="true">03</span><div class="wrap">
+<section class="sec" id="aftermovie"><span class="sec-index sec-index--r" aria-hidden="true" data-scrub>03</span><div class="wrap">
   <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> En images</span><h2>L'aftermovie</h2><p>Quelques minutes pour ressentir l'ambiance d'une soirée signée MGR Wedding.</p></div>
-  <div class="video-facade" data-reveal id="vidFacade" onclick="playVideo()">
+  <div class="video-facade" data-reveal data-scrub id="vidFacade" onclick="playVideo()">
     ${ph(W.hero.poster,'Aftermovie')}
     <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
   </div>
 </div></section>
 
-<section class="sec" id="avis" style="background:rgba(255,255,255,.012);border-top:1px solid var(--glass-border)"><span class="sec-index sec-index--l" aria-hidden="true">04</span><div class="wrap">
+<section class="sec" id="avis" style="background:rgba(255,255,255,.012);border-top:1px solid var(--glass-border)"><span class="sec-index sec-index--l" aria-hidden="true" data-scrub>04</span><div class="wrap">
   <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Témoignages</span><h2>${W.testimonialsTitle}</h2>
     <div class="t-rating">★★★★★ <strong>5,0</strong> <span>/ 5 · ${W.testimonials.length} avis clients</span></div>
   </div>
@@ -554,15 +578,27 @@ async function submitDevis(e){
     w.innerHTML = html;
   });
   const prog = document.querySelector('.scroll-progress');
+  const heroEl = document.querySelector('.hero');
+  const scrubs = Array.from(document.querySelectorAll('[data-scrub]'));
   let tick = false;
   function upd(){
     try{
       const de = document.documentElement;
       if(prog && de){ const max = de.scrollHeight - innerHeight; prog.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%'; }
+      if(!reduce){
+        const vh = Math.max(innerHeight, 1);
+        if(heroEl) heroEl.style.setProperty('--hx', Math.min(scrollY / vh, 1).toFixed(3));
+        for(const el of scrubs){
+          const r = el.getBoundingClientRect();
+          const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * .72)));
+          el.style.setProperty('--p', p.toFixed(3));
+        }
+      }
     }catch(e){}
     tick = false;
   }
   addEventListener('scroll', () => { if(!tick){ tick = true; requestAnimationFrame(upd); } }, {passive:true});
+  addEventListener('resize', () => { if(!tick){ tick = true; requestAnimationFrame(upd); } }, {passive:true});
   upd();
   const spot = document.querySelector('.fx-spot');
   if(spot && !reduce && matchMedia('(pointer:fine)').matches){
