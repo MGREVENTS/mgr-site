@@ -582,6 +582,13 @@ body.spot-on .fx-spot{opacity:1}
 
 /* — Photos : couleurs originales conservées (duotone retiré) — */
 
+/* — Cartes DJ : hauteur uniforme, réseaux calés en bas — */
+.djs-grid{grid-auto-rows:1fr}
+.dj-card{display:flex;flex-direction:column;height:100%}
+.dj-photo{flex:0 0 auto}
+.dj-info{display:flex;flex-direction:column;flex:1}
+.dj-socials{margin-top:auto;padding-top:.7rem}
+
 /* — Mini equalizer sur les cartes DJ — */
 .dj-photo{position:relative}
 .dj-eq{position:absolute;left:.85rem;bottom:.85rem;z-index:2;display:flex;align-items:flex-end;gap:3px;height:15px;opacity:0;transform:translateY(4px);transition:opacity .35s var(--ease-out),transform .35s var(--ease-out)}
