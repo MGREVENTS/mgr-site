@@ -612,8 +612,53 @@ body.spot-on .fx-spot{opacity:1}
   .dj-photo::before,.about-visual::after{opacity:0!important}
 }
 </style>
+<style>
+/* ════════ SCÈNE VIVANTE — dégradés animés (Apple × Porsche × Pioneer DJ) ════════ */
+body{background:#050505}
+.bg-scene{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#0B0A0C 0%,#050505 58%)}
+.bg-scene i{display:block}
+.bg-scene .blob{position:absolute;border-radius:50%;filter:blur(90px);mix-blend-mode:screen;will-change:transform}
+.blob--or{width:58vmax;height:58vmax;top:-20vmax;left:-14vmax;opacity:.5;background:radial-gradient(circle at 36% 36%,rgba(201,168,76,.34),rgba(201,168,76,.05) 52%,transparent 70%);animation:blobA 36s ease-in-out infinite alternate}
+.blob--bdx{width:66vmax;height:66vmax;bottom:-26vmax;right:-18vmax;opacity:.6;background:radial-gradient(circle at 62% 58%,rgba(107,15,26,.55),rgba(107,15,26,.1) 52%,transparent 72%);animation:blobB 44s ease-in-out infinite alternate}
+.blob--cop{width:46vmax;height:46vmax;top:26%;right:-16vmax;opacity:.4;background:radial-gradient(circle,rgba(199,108,43,.26),transparent 64%);animation:blobC 31s ease-in-out infinite alternate}
+.blob--mag{width:40vmax;height:40vmax;bottom:6%;left:-12vmax;opacity:.38;background:radial-gradient(circle,rgba(146,22,58,.3),transparent 64%);animation:blobD 39s ease-in-out infinite alternate}
+@keyframes blobA{to{transform:translate(10vmax,8vmax) scale(1.22) rotate(14deg)}}
+@keyframes blobB{to{transform:translate(-9vmax,-10vmax) scale(1.16) rotate(-10deg)}}
+@keyframes blobC{to{transform:translate(-8vmax,10vmax) scale(1.28)}}
+@keyframes blobD{to{transform:translate(9vmax,-7vmax) scale(1.2)}}
+/* Traînées lumineuses (light trails Porsche) */
+.bg-scene .streak{position:absolute;left:-35%;width:170%;height:2px;filter:blur(1.5px);opacity:0;background:linear-gradient(90deg,transparent,rgba(234,212,140,.55) 45%,rgba(234,212,140,.15) 55%,transparent);will-change:transform,opacity}
+.streak--1{--sa:-13deg;top:22%;animation:streakPass 13s 2s ease-in-out infinite}
+.streak--2{--sa:11deg;top:64%;height:1px;animation:streakPass 17s 8.5s ease-in-out infinite}
+@keyframes streakPass{0%,78%{opacity:0;transform:translateX(-10%) rotate(var(--sa,-13deg))}86%{opacity:.65}94%,100%{opacity:0;transform:translateX(12%) rotate(var(--sa,-13deg))}}
+
+/* — Titres à reflet métallique (Apple) — */
+.section-title{background:linear-gradient(112deg,#F5F0EB 32%,#CFC4B0 46%,#FBEECB 51%,#F5F0EB 64%);background-size:230% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sheenPan 10s ease-in-out infinite}
+.bm-hero h2{background:linear-gradient(112deg,#F5F0EB 32%,#CFC4B0 46%,#FBEECB 51%,#F5F0EB 64%);background-size:230% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sheenPan 10s ease-in-out infinite}
+.bm-hero h2 em{-webkit-text-fill-color:var(--or)}
+@keyframes sheenPan{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+/* — Lueurs néon (Pioneer) — */
+.vinyl{box-shadow:inset 0 0 90px rgba(0,0,0,.85),inset 0 0 22px rgba(0,0,0,.95),0 0 70px -16px rgba(201,168,76,.3),0 0 140px -40px rgba(107,15,26,.55);border:1px solid rgba(201,168,76,.12)}
+.brand-card:hover{box-shadow:var(--shadow-soft),var(--shadow-glow),inset 0 0 0 1px rgba(201,168,76,.22)}
+.dj-card:hover{box-shadow:var(--shadow-soft),0 0 26px -8px rgba(201,168,76,.35)}
+.cta-section::before{animation:ctaBreath 8s ease-in-out infinite}
+@keyframes ctaBreath{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+
+@media(max-width:768px){
+  .bg-scene .blob{filter:blur(60px)}
+  .blob--cop,.blob--mag,.bg-scene .streak{display:none}
+  .blob--or{opacity:.4}.blob--bdx{opacity:.5}
+  .section-title,.bm-hero h2{animation:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .bg-scene .blob,.bg-scene .streak,.section-title,.bm-hero h2,.cta-section::before{animation:none!important}
+  .bg-scene .streak{display:none!important}
+}
+</style>
 </head>
 <body>
+<div class="bg-scene" aria-hidden="true"><i class="blob blob--or"></i><i class="blob blob--bdx"></i><i class="blob blob--cop"></i><i class="blob blob--mag"></i><i class="streak streak--1"></i><i class="streak streak--2"></i></div>
 <div class="fx-vignette" aria-hidden="true"></div>
 <div class="fx-grain" aria-hidden="true"></div>
 <div class="fx-veil" aria-hidden="true"></div>
