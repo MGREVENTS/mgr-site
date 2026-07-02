@@ -251,8 +251,7 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display
 .carousel-track::-webkit-scrollbar{display:none}
 .carousel-item{flex:0 0 280px;aspect-ratio:4/3;border-radius:3px;overflow:hidden;scroll-snap-align:start;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.04);transition:border-color .3s}
 .carousel-item:hover{border-color:rgba(201,168,76,.3)}
-.carousel-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.carousel-item:hover img{transform:scale(1.05)}
+.carousel-item img{width:100%;height:100%;object-fit:cover}
 .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,168,76,.3);background:rgba(10,10,10,.7);backdrop-filter:blur(8px);color:var(--or);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;transition:all .3s}
 .carousel-arrow:hover{background:var(--or);color:var(--noir);border-color:var(--or)}
 .carousel-arrow.left{left:-.5rem}
@@ -416,7 +415,6 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
 .dj-card{transition:border-color .4s var(--ease-out),transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
 .dj-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-soft)}
 .dj-photo img{transition:transform .8s var(--ease-out)}
-.dj-card:hover .dj-photo img{transform:scale(1.07)}
 .dj-info{background:var(--glass-bg)}
 .dj-socials a{transition:border-color .3s var(--ease-out),background .3s var(--ease-out),transform .3s var(--ease-out)}
 .dj-socials a:hover{transform:translateY(-2px)}
@@ -627,14 +625,12 @@ html,body{overflow-x:clip}
 
 /* Révélation des médias au scroll (scrub) : dézoom + ouverture du cadre */
 .about-visual{clip-path:inset(calc((1 - var(--p,1))*9%) round 2px)}
-.dj-photo img{scale:calc(1.1 - var(--p,1)*.1)}
 .sec-index{translate:0 calc((1 - var(--p,1))*56px);opacity:calc(.25 + var(--p,1)*.75)}
 
 @media(prefers-reduced-motion:reduce){
   .hero{opacity:1}
   .hero h1,.hero-sub,.hero-tag,.hero .cta-btn,.hero .eq-wave,.vinyl-stage--hero,.sec-index{translate:none;opacity:1}
   .about-visual{clip-path:none}
-  .dj-photo img{scale:none}
 }
 </style>
 <style>
@@ -1057,10 +1053,8 @@ if(location.hash==='#contact') openContact();
   // Sticky nav state
   function navState(){ if(nav) nav.classList.toggle('scrolled', scrollY > 40); }
 
-  // Light parallax (about visual)
-  const pxEls = [...document.querySelectorAll('.about-visual')]
-    .map(el => ({ el, img: el.querySelector('img') }))
-    .filter(p => p.img);
+  // Parallax photo désactivé (zoom retiré à la demande — photos à taille fixe)
+  const pxEls = [];
   function parallax(){
     if(reduce || innerWidth <= 768) return;
     const vh = innerHeight;
