@@ -759,7 +759,7 @@ const crowdSVG = '<svg viewBox="0 0 420 190" fill="none">'
  + '<g class="fig" style="--t:1.05s;--d:-.35s" transform="translate(398,0) scale(.9)"><circle cx="0" cy="92" r="11" stroke="none"/><path d="M0 104v40M0 144l-11 40M0 144l10 40M-2 112l-18-16M3 110l6-32" fill="none"/><path d="M8 70l10-4M16 62l-2 12" stroke-width="6" fill="none"/></g>'
  + '</g></svg>';
 const brandDeco = {
-  events: '<div class="vinyl-stage" data-vinyl><div class="vinyl"></div></div>',
+  events: '<div class="vinyl-stage" data-vinyl><div class="vinyl"><img class="vinyl-logo" src="' + C.brand.logo + '" alt="" loading="lazy"></div></div>',
   wedding: '<div class="deco-stage deco-bouquet" aria-hidden="true">' + bouquetSVG + '</div>',
   nomames: '<div class="deco-stage deco-crowd" aria-hidden="true">' + crowdSVG + '</div>',
 };
@@ -918,7 +918,7 @@ ${brandKeys.filter(k=>k!=='wedding').map(k => {
   return `<div class="brand-modal" id="bm-${k}" role="dialog" aria-modal="true" aria-label="${brandNames[k]}">
     <button class="bm-back" onclick="closeBrand('${k}')" aria-label="Retour">${backArrow} Retour</button>
     <div class="brand-modal-inner">
-      <div class="bm-hero">${k==='events'?'<div class="vinyl-stage vinyl-stage--modal" data-vinyl><div class="vinyl"></div></div>':''}
+      <div class="bm-hero">${k==='events'?`<div class="vinyl-stage vinyl-stage--modal" data-vinyl><div class="vinyl"><img class="vinyl-logo" src="${C.brand.logo}" alt="" loading="lazy"></div></div>`:''}
         <div>
           <div class="bm-tag">${b.tag}</div>
           <h2>${b.title}</h2>
