@@ -481,7 +481,7 @@ nav.scrolled{padding:.7rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur(
   [data-reveal]{filter:none}
   .hero::before{animation-duration:32s}
   .vinyl{opacity:.42}
-  .vinyl-stage--hero .vinyl{opacity:.2;right:-46%;width:min(62vh,360px)}
+  .vinyl-stage--hero .vinyl{opacity:.32;right:-46%;width:min(62vh,360px)}
 }
 
 /* ── Respect de prefers-reduced-motion ── */
@@ -557,7 +557,9 @@ body.spot-on .fx-spot{opacity:1}
              conic-gradient(from 148deg at 92% -6%,transparent 0 9deg,rgba(107,15,26,.17) 14deg,transparent 26deg),
              radial-gradient(50% 34% at 50% 108%,rgba(107,15,26,.26),transparent 70%)}
 @keyframes beamSway{from{transform:rotate(-1.4deg)}to{transform:rotate(1.6deg)}}
-.vinyl-stage--hero .vinyl{opacity:.22}
+.vinyl-stage--hero .vinyl{opacity:.5;filter:blur(0)}
+/* Logo waveform imprimé sur le macaron central — tourne avec le disque */
+.vinyl-logo{position:absolute;left:50%;top:50%;width:15%;height:auto;transform:translate(-50%,-50%);z-index:2;opacity:.95;filter:brightness(1.2) drop-shadow(0 1px 8px rgba(0,0,0,.65))}
 
 /* — Ticker éditorial (affiche de soirée) — */
 .ticker{position:relative;overflow:hidden;padding:1.5rem 0;border-top:1px solid var(--border-accent);border-bottom:1px solid var(--border-accent);background:rgba(255,255,255,.008)}
@@ -797,7 +799,7 @@ function buildSite() {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="vinyl-stage vinyl-stage--hero" data-vinyl><div class="vinyl"></div></div>
+  <div class="vinyl-stage vinyl-stage--hero" data-vinyl><div class="vinyl"><img class="vinyl-logo" src="${C.brand.logo}" alt="" loading="lazy"></div></div>
   <div class="hero-beams" aria-hidden="true"></div>
   <div class="hero-tag"><span class="diamond"></span> ${C.hero.tagline} <span class="diamond"></span></div>
   <h1>${C.hero.title}</h1>
