@@ -25,6 +25,7 @@
     { "source": "/blog", "destination": "/blog.html" },
     { "source": "/blog/:slug", "destination": "/article.html" },
     { "source": "/salon-du-mariage", "destination": "/salon-du-mariage/index.html" },
+    { "source": "/ginger-booking", "destination": "/ginger-booking/index.html" },
     { "source": "/app", "destination": "https://planniflow-4jrm.vercel.app/" },
     { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" },
     { "source": "/planning", "destination": "https://planniflow-4jrm.vercel.app/planning" },
