@@ -162,13 +162,6 @@ nav.scrolled{padding:.65rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur
 .formule li::before{content:'';position:absolute;left:0;top:.95rem;width:6px;height:6px;background:var(--or);transform:rotate(45deg)}
 .formule .btn{justify-content:center}
 
-/* SUR-MESURE (remplace les formules) */
-.suremesure{max-width:660px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6rem}
-.suremesure .eyebrow{justify-content:center}
-.suremesure h2{font-size:clamp(2.4rem,5.5vw,4.2rem)}
-.suremesure p{color:var(--gris-texte);font-weight:300;font-size:1.06rem;line-height:1.95;max-width:520px}
-.suremesure .btn{margin-top:1rem}
-
 /* TESTIMONIALS — carrousel éditorial */
 .t-rating{margin-top:1.1rem;color:var(--or);letter-spacing:.22em;font-size:.95rem}
 .t-rating strong{font-family:var(--ff-display);margin:0 .2rem}
@@ -288,7 +281,7 @@ document.getElementById('app').innerHTML = `
   </div>
   <div style="display:flex;align-items:center;gap:.5rem">
     <button class="burger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu(this)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-    <a href="#devis" class="nav-cta">Nous écrire</a>
+    <a href="#devis" class="nav-cta">Demander un devis</a>
   </div>
 </nav>
 
@@ -299,12 +292,16 @@ document.getElementById('app').innerHTML = `
     <h1>${W.hero.title}</h1>
     <p class="hero-sub">${W.hero.subtitle}</p>
     <div class="hero-actions">
-      <a href="#devis" class="btn btn-gold">Nous écrire</a>
-      <a href="#aftermovie" class="btn btn-ghost">L'aftermovie</a>
+      <a href="#devis" class="btn btn-gold">Demander un devis</a>
+      <a href="#aftermovie" class="btn btn-ghost">▶ Voir l'aftermovie</a>
     </div>
   </div>
   <div class="hero-scroll" aria-hidden="true"></div>
 </header>
+
+<div class="reassure" data-reveal>
+  ${W.reassurance.map(r=>`<div class="r"><div class="rv">${r.value}</div><div class="rl">${r.label}</div></div>`).join('')}
+</div>
 
 <section class="sec" id="journee"><div class="wrap">
   <div class="sec-head" data-reveal><span class="eyebrow"><span class="diamond"></span> Votre journée</span><h2>${W.chaptersTitle}</h2></div>
@@ -322,17 +319,20 @@ document.getElementById('app').innerHTML = `
   </div>
 </section>
 
-<section class="sec" id="sur-mesure"><div class="wrap">
-  <div class="suremesure" data-reveal>
-    <span class="eyebrow"><span class="diamond"></span> ${W.surMesure.eyebrow}</span>
-    <h2>${W.surMesure.title}</h2>
-    <p>${W.surMesure.body}</p>
-    <a href="#devis" class="btn btn-gold">${W.surMesure.cta}</a>
+<section class="sec" id="formules"><div class="wrap">
+  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Prestations</span><h2>${W.formulesTitle}</h2><p>${W.formulesIntro}</p></div>
+  <div class="formules">
+    ${W.formules.map(f=>`<div class="formule ${f.highlight?'hl':''}" data-reveal>
+      ${f.highlight?'<span class="badge">Le plus choisi</span>':''}
+      <h3>${f.name}</h3><div class="price">${f.price}</div><div class="fdesc">${f.desc}</div>
+      <ul>${f.features.map(x=>`<li>${x}</li>`).join('')}</ul>
+      <a href="#devis" class="btn btn-gold">Demander un devis</a>
+    </div>`).join('')}
   </div>
 </div></section>
 
 <section class="sec" id="aftermovie"><div class="wrap">
-  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> En mouvement</span><h2>L'aftermovie</h2><p>Trois minutes. Le reste ne se filme pas.</p></div>
+  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> En images</span><h2>L'aftermovie</h2><p>Quelques minutes pour ressentir l'ambiance d'une soirée signée MGR Wedding.</p></div>
   <div class="video-facade" data-reveal id="vidFacade" onclick="playVideo()">
     ${ph(W.hero.poster,'Aftermovie')}
     <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
@@ -340,10 +340,12 @@ document.getElementById('app').innerHTML = `
 </div></section>
 
 <section class="sec" id="avis" style="background:rgba(255,255,255,.012);border-top:1px solid var(--glass-border)"><div class="wrap">
-  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Témoignages</span><h2>${W.testimonialsTitle}</h2></div>
+  <div class="sec-head" data-reveal><span class="eyebrow" style="justify-content:center"><span class="diamond"></span> Témoignages</span><h2>${W.testimonialsTitle}</h2>
+    <div class="t-rating">★★★★★ <strong>5,0</strong> <span>/ 5 · ${W.testimonials.length} avis clients</span></div>
+  </div>
   <div class="tcarousel" data-reveal>
     <div class="ttrack">
-      ${[].concat(W.testimonials, W.testimonials).map((t,i)=>`<article class="tcard"${i>=W.testimonials.length?' aria-hidden="true"':''}><div class="tmark" aria-hidden="true">“</div><p class="tquote">${t.quote}</p><div class="tfoot"><div class="tname">${t.name}</div><div class="tevent">${t.event}</div></div></article>`).join('')}
+      ${[].concat(W.testimonials, W.testimonials).map((t,i)=>`<article class="tcard"${i>=W.testimonials.length?' aria-hidden="true"':''}><div class="tmark" aria-hidden="true">“</div><div class="tstars" aria-label="${t.rating} sur 5">${stars(t.rating)}</div><p class="tquote">${t.quote}</p><div class="tfoot"><div class="tname">${t.name}</div><div class="tevent">${t.event}</div></div></article>`).join('')}
     </div>
   </div>
 </div></section>
@@ -353,8 +355,9 @@ document.getElementById('app').innerHTML = `
   <div class="devis-grid">
     <div data-reveal>
       <span class="eyebrow"><span class="diamond"></span> Parlons-en</span>
-      <h2>Écrivez-nous</h2>
-      <p class="lead">Votre date, votre lieu, et ce que vous imaginez déjà. Nous vous répondons nous-mêmes — jamais un formulaire de plus.</p>
+      <h2>Demandez votre devis</h2>
+      <p class="lead">Dites-nous tout sur votre mariage : nous revenons vers vous sous 24h avec une proposition sur mesure.</p>
+      <ul class="pts"><li>Réponse sous 24h</li><li>Devis personnalisé & sans engagement</li></ul>
     </div>
     <div data-reveal>
       <form id="devisForm" onsubmit="return submitDevis(event)">
@@ -363,9 +366,9 @@ document.getElementById('app').innerHTML = `
         <div class="grid2"><div class="row"><label>Email</label><input type="email" name="email" required placeholder="votre@email.com"></div><div class="row"><label>Téléphone</label><input type="tel" name="tel" placeholder="+33 6 ..."></div></div>
         <div class="grid2"><div class="row"><label>Date du mariage</label><input type="date" name="date_event"></div><div class="row"><label>Lieu / ville</label><input name="lieu" placeholder="Paris, salle..."></div></div>
         <div class="row"><label>Votre message</label><textarea name="message" placeholder="Nombre d'invités, ambiance souhaitée, formule envisagée..."></textarea></div>
-        <button type="submit" class="btn btn-gold">Envoyer</button>
+        <button type="submit" class="btn btn-gold">Envoyer ma demande</button>
       </form>
-      <div class="form-ok" id="devisOk"><h3>Reçu.</h3><p style="color:var(--gris-texte);font-weight:300">Nous vous écrivons très vite — de vive voix, autant que possible.</p></div>
+      <div class="form-ok" id="devisOk"><h3>Demande envoyée ✓</h3><p style="color:var(--gris-texte);font-weight:300">Merci ! Nous revenons vers vous sous 24h.</p></div>
     </div>
   </div>
 </div></section>
@@ -383,7 +386,8 @@ document.getElementById('app').innerHTML = `
   inject({"@context":"https://schema.org","@type":"Service","serviceType":"DJ de mariage","name":"MGR Wedding — DJ de mariage",
     "provider":{"@type":"LocalBusiness","name":"MGR Events Paris","url":"https://www.mgrevents.fr"},
     "areaServed":{"@type":"City","name":"Paris"},"url":"https://www.mgrevents.fr/mariage",
-    "description":"Prestation DJ de mariage sur mesure à Paris et en Île-de-France : son, lumières, effets et photobooth.",
+    "description":"Prestation DJ de mariage clé en main à Paris et en Île-de-France : son, lumières, effets et photobooth.",
+    "offers":W.formules.map(f=>({"@type":"Offer","name":f.name,"priceCurrency":"EUR","price":num(f.price),"url":"https://www.mgrevents.fr/mariage"})),
     "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":String(W.testimonials.length),"bestRating":"5"},
     "review":W.testimonials.map(t=>({"@type":"Review","author":{"@type":"Person","name":t.name},"reviewRating":{"@type":"Rating","ratingValue":String(t.rating),"bestRating":"5"},"reviewBody":t.quote}))});
 })();
