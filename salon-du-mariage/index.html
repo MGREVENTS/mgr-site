@@ -527,11 +527,40 @@ $("send").onclick=async ()=>{
 };
 $("ok-close").onclick=()=>$("overlay").classList.remove("show");
 
+/* ---------- CATALOGUE TARIFAIRE — temps réel depuis PlanniFlow ---------- */
+/* La page s'affiche immédiatement avec les tarifs embarqués (zéro attente
+   réseau, indispensable sur le stand), puis se réaligne sur le catalogue
+   PlanniFlow dès qu'il répond. Si la source est injoignable, on garde
+   simplement les tarifs embarqués : le visiteur ne voit jamais d'erreur. */
+async function syncCatalogue(){
+  try{
+    const r = await fetch("/api/catalogue-mariage",{cache:"no-store"});
+    if(!r.ok) return;
+    const cat = await r.json();
+    let maj = false;
+    (cat.formules||[]).forEach(cf=>{
+      const f = FORMULES.find(x=>x.id===cf.id); if(!f) return;
+      if(Number.isFinite(cf.prix)){ f.prix=cf.prix; maj=true; }
+      if(Number.isFinite(cf.remise)){ f.remise=cf.remise; maj=true; }
+      if(cf.nom) f.nom=cf.nom;
+      if(cf.desc) f.tag=cf.desc;
+    });
+    (cat.options||[]).forEach(co=>{
+      const o = OPT_BY_ID[co.id]; if(!o) return;
+      if(Number.isFinite(co.prix)){ o.pr=co.prix; maj=true; }
+      if(co.nom) o.nm=co.nom;
+      if(co.desc) o.ds=co.desc;
+    });
+    if(maj) renderAll();
+  }catch(e){}
+}
+
 /* ---------- PERSISTANCE choix (confort salon) ---------- */
 async function save(){ try{ await window.storage.set("mgr_config",JSON.stringify({fIndex,selected:[...selected]})); }catch(e){} }
 async function boot(){
   try{ const r=await window.storage.get("mgr_config"); if(r&&r.value){ const s=JSON.parse(r.value); fIndex=s.fIndex||0; selected=new Set(s.selected||[]); } }catch(e){}
   renderAll();
+  syncCatalogue();
 }
 boot();
 </script>
