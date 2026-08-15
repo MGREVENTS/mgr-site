@@ -1,0 +1,4 @@
+# Contenus conserves dans git mais NON deployes.
+# archive/ : ancienne page statique du Salon du Mariage,
+# remplacee par la version PlanniFlow servie via proxy sur /salon-du-mariage.
+archive/
