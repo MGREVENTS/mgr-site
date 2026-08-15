@@ -26,6 +26,8 @@
     { "source": "/blog", "destination": "/blog.html" },
     { "source": "/blog/:slug", "destination": "/article.html" },
 
+    { "source": "/salon-du-mariage", "destination": "https://planniflow-4jrm.vercel.app/salon-du-mariage?par=6&stand=1" },
+
     { "source": "/app", "destination": "https://planniflow-4jrm.vercel.app/" },
     { "source": "/app/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" },
 
