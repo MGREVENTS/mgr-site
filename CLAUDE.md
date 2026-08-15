@@ -23,39 +23,62 @@ il faut basculer sur le repo planniflow.
 les `rewrites` de `vercel.json`. Concrètement, l'utilisateur ne quitte jamais
 le domaine `mgrevents.fr`, mais les pages servies viennent de PlanniFlow.
 
-### Ce qui est proxifié aujourd'hui
-- **Entrée app** : `/app`, `/app/*` → racine PlanniFlow
-- **Pages métier** (planning, factu, RH, reporting…) :
-  `/planning`, `/mobile-planning`, `/login`, `/employees`, `/presences`,
-  `/postes`, `/facturation`, `/rapport`, `/rapport-dj`, `/notes`,
-  `/export`, `/chat`, `/chat-page`
-- **Espaces dédiés** (avec sous-routes `/:path*`) :
-  `/partner`, `/onboarding`, `/admin`, `/wedding`, `/crm`, `/marketing`,
-  `/nomames`, `/booking`
-- **Infra Next.js & PWA** (indispensables pour que l'app proxifiée tourne) :
-  `/_next/*`, `/api/*`, `/sw.js`, `/manifest.json`, `/icons/*`,
-  `/version.json`, `/logo-mgr.png`
+### Ce qui est proxifié aujourd'hui : **tout, par défaut**
+
+Depuis le passage au *catch-all*, `vercel.json` ne liste plus les routes une
+par une. La dernière rewrite envoie **toute URL non gérée par le site
+statique** vers PlanniFlow :
+
+```json
+{ "source": "/:path*", "destination": "https://planniflow-4jrm.vercel.app/:path*" }
+```
+
+→ **Une nouvelle page PlanniFlow est immédiatement accessible sur
+`mgrevents.fr`, sans rien ajouter ici.**
+
+### Ordre de résolution Vercel (à connaître avant de modifier `vercel.json`)
+
+1. **`redirects`** — les 301 historiques (`/real`, `/dj-*`…)
+2. **Fichiers statiques et fonctions `api/`** — `index.html`, `mariage.html`,
+   `blog.html`, `article.html`, `mentions.html`, `assets/*`, `robots.txt`,
+   `sitemap.xml`, `/api/lead`, `/api/catalogue-mariage`.
+   Ils sont servis **ici**, donc aucune rewrite ne peut les intercepter.
+3. **`rewrites`**, dans l'ordre — la première qui correspond gagne :
+   - `/mariage`, `/blog`, `/blog/:slug` → pages statiques du site
+   - `/app`, `/app/*` → PlanniFlow **en retirant le préfixe** `/app`
+     (seules règles qui transforment le chemin : à conserver)
+   - `/:path*` → **catch-all PlanniFlow**
+
+### Ce qui appartient au site vs à l'app
+
+| URL | Servie par |
+|---|---|
+| `/`, `/mariage`, `/blog`, `/blog/:slug`, `/mentions.html` | site statique (ce repo) |
+| `/api/lead`, `/api/catalogue-mariage` | fonctions serverless de **ce** repo |
+| `/salon-du-mariage` | **PlanniFlow** (l'ancienne page statique est dans `archive/`, non déployée — voir `.vercelignore`) |
+| tout le reste | **PlanniFlow** |
 
 ### Conséquences à garder en tête
-1. **Le formulaire de contact** (`POST /api/send-contact`) passe par la
-   rewrite `/api/*` → l'endpoint vit dans **PlanniFlow**. Si PlanniFlow tombe
-   ou si la route change côté planning, le formulaire casse silencieusement
-   (bouton « Erreur — Réessayer »).
-2. **Ajouter une route à PlanniFlow** qui doit être accessible depuis
-   `mgrevents.fr` = ajouter une rewrite dans `vercel.json` ici. Sans ça la
-   route renvoie 404 sur le domaine mgrevents.
-3. **Renommer/supprimer une route côté PlanniFlow** = penser à la nettoyer
-   ici aussi, sinon rewrite morte.
-4. **CSP** (`index.html`) autorise déjà `planniflow-4jrm.vercel.app` et
-   `spsnpknxqmogwymutvqu.supabase.co` dans `connect-src` — c'est ce qui
-   permet aux fetchs de l'app proxifiée de fonctionner.
+
+1. **Une URL inexistante affiche le 404 de PlanniFlow**, plus celui du site.
+   C'est le prix du catch-all.
+2. **Pour rendre une URL au site statique** : ajouter le fichier
+   correspondant (le filesystem passe avant les rewrites), ou une rewrite
+   placée **avant** le catch-all.
+3. **Collision de noms `/api/`** : si PlanniFlow crée une route nommée
+   `lead` ou `catalogue-mariage`, elle sera masquée par la fonction locale.
+4. **Le formulaire de contact** (`POST /api/send-contact`) part vers
+   PlanniFlow. Si la route change côté planning, le formulaire casse
+   silencieusement (bouton « Erreur — Réessayer »).
+5. **CSP** (`index.html`) autorise déjà `planniflow-4jrm.vercel.app` et
+   `spsnpknxqmogwymutvqu.supabase.co` dans `connect-src`.
+6. **`vercel.json` n'accepte pas de clé de commentaire** (`"//"`) : Vercel
+   valide le schéma et fait échouer le build. La doc vit ici.
 
 ### Workflow type
 - « **change sur planning** ajoute une page `/devis` » → modif côté repo
-  PlanniFlow **+** ajouter `{ "source": "/devis", "destination":
-  "https://planniflow-4jrm.vercel.app/devis" }` dans `vercel.json` ici.
-- « **change le site** mets à jour la photo de Logan » → uniquement ce repo,
-  rien à toucher côté PlanniFlow.
+  PlanniFlow **uniquement**. Le catch-all s'en charge, rien à faire ici.
+- « **change le site** mets à jour la photo de Logan » → uniquement ce repo.
 
 ## Architecture
 Site statique one-page (HTML/CSS/JS) hébergé sur Hostinger.
