@@ -79,6 +79,9 @@ statique** vers PlanniFlow :
    (`Disallow: /` + `Allow:` explicites) : rien n'est indexable par défaut.
    → **Une nouvelle page publique doit être ajoutée à `robots.txt` ET à
    `sitemap.xml`**, sinon elle ne sera jamais indexée.
+   → `/recrutement*` (pages PlanniFlow) est **volontairement** hors index :
+   accès par lien direct partagé, pas par Google. Ce n'est pas un oubli, ne
+   pas l'ajouter à la liste blanche sans demande explicite.
 
 ### Accès à l'app depuis le site
 
