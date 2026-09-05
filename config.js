@@ -191,11 +191,11 @@ const SITE_CONFIG = {
       tag: "Mariages · Prestation DJ clé en main",
       title: "L'<em>émotion</em> en musique",
       description: "MGR Wedding sublime chaque instant de votre journée avec une prestation DJ sur mesure. Du premier slow à la dernière danse, nous orchestrons une bande-son à la hauteur de votre amour.",
-      description2: "5 formules exclusives de 999€ à 3 799€ — son, lumières, effets pyrotechniques et photobooth. Chaque détail est pensé pour créer l'inoubliable.",
+      description2: "5 formules exclusives de 999€ à 3 999€ — son, lumières, effets pyrotechniques et photobooth. Chaque détail est pensé pour créer l'inoubliable.",
       features: [
         { title: "Economic Wedding — dès 999€", desc: "Votre DJ avec stand, platines et 2 micros HF pour 8h de prestation. L'essentiel pour une soirée réussie." },
         { title: "Basic Wedding — dès 1 899€", desc: "Prestation clé en main 10h : DJ, régie complète, enceintes jusqu'à 200 personnes, lumières haut de gamme, lyres, vidéoprojecteur et écran." },
-        { title: "Mon Sublime Mariage — dès 3 799€", desc: "L'excellence absolue : tout le Basic Wedding plus machine à fumée, bulles, 6 pars LED d'ambiance, fumée lourde, étincelles froides et sono extérieure sans fil." },
+        { title: "Mon Sublime Mariage — dès 3 999€", desc: "L'excellence absolue : tout le Basic Wedding plus machine à fumée, bulles, 6 pars LED d'ambiance, fumée lourde, étincelles froides et sono extérieure sans fil." },
       ],
       stats: [
         { value: "5★", label: "Note moyenne" },
@@ -287,7 +287,7 @@ const SITE_CONFIG = {
     formules: [
       { name: "Economic Wedding", price: "dès 999€",   desc: "L'essentiel pour une soirée réussie.", features: ["DJ avec stand & platines","2 micros HF","8h de prestation"] },
       { name: "Basic Wedding", price: "dès 1 899€", desc: "Prestation clé en main, 10h.",         features: ["Régie complète","Enceintes jusqu'à 200 pers.","Lumières haut de gamme, lyres","Vidéoprojecteur & écran"], highlight: true },
-      { name: "Mon Sublime Mariage", price: "dès 3 799€", desc: "L'excellence absolue.",      features: ["Tout le Basic Wedding, et plus","Machine à fumée & bulles","6 pars LED · fumée lourde","Étincelles froides","Sono extérieure sans fil"] },
+      { name: "Mon Sublime Mariage", price: "dès 3 999€", desc: "L'excellence absolue.",      features: ["Tout le Basic Wedding, et plus","Machine à fumée & bulles","6 pars LED · fumée lourde","Étincelles froides","Sono extérieure sans fil"] },
     ],
     testimonialsTitle: "Ils nous ont fait confiance",
     testimonials: [
