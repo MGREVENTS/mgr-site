@@ -74,6 +74,36 @@ statique** vers PlanniFlow :
    `spsnpknxqmogwymutvqu.supabase.co` dans `connect-src`.
 6. **`vercel.json` n'accepte pas de clé de commentaire** (`"//"`) : Vercel
    valide le schéma et fait échouer le build. La doc vit ici.
+7. **Indexation** : le catch-all rend toute l'app explorable sous
+   `mgrevents.fr`. `robots.txt` fonctionne donc en **liste blanche**
+   (`Disallow: /` + `Allow:` explicites) : rien n'est indexable par défaut.
+   → **Une nouvelle page publique doit être ajoutée à `robots.txt` ET à
+   `sitemap.xml`**, sinon elle ne sera jamais indexée.
+   → `/recrutement*` (pages PlanniFlow) est **volontairement** hors index :
+   accès par lien direct partagé, pas par Google. Ce n'est pas un oubli, ne
+   pas l'ajouter à la liste blanche sans demande explicite.
+
+### Accès à l'app depuis le site
+
+`/app` est une **porte discrète** : aucun lien n'y mène depuis le site (ni
+menu, ni pied de page, ni sitemap), et `robots.txt` la bloque. Ne pas ajouter
+de lien « Espace client » sans demande explicite.
+
+Elle n'est pas pour autant nécessaire : depuis le catch-all, toutes les routes
+de l'app sont directement accessibles (`/login`, `/mobile-planning`…). `/app`
+ne sert plus qu'à donner une URL à la **racine** de l'app, `/` étant occupé par
+la vitrine — et le préfixe disparaît dès la première navigation, puisque la
+règle le retire.
+
+### Hôte canonique : `www`
+
+`<link rel="canonical">`, `og:url`, le JSON-LD et `sitemap.xml` pointent tous
+sur `https://www.mgrevents.fr`. Toute redirection doit donc aller **apex →
+`www`**, jamais l'inverse.
+
+Les deux hôtes sont attachés au projet Vercel. Un cookie de session posé sur
+l'un n'est pas envoyé à l'autre : traverser les deux pendant une connexion
+provoque des déconnexions apparemment aléatoires.
 
 ### Workflow type
 - « **change sur planning** ajoute une page `/devis` » → modif côté repo

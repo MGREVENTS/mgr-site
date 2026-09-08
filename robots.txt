@@ -1,4 +1,23 @@
-User-agent: *
-Allow: /
-Sitemap: https://www.mgrevents.fr/sitemap.xml
+# Le site expose une surface publique fixe et connue. Tout le reste du domaine
+# est proxifie vers l'app interne PlanniFlow (catch-all, cf. CLAUDE.md) :
+# /app, /login, /mobile-planning... n'ont rien a faire dans un index.
+#
+# D'ou une liste blanche plutot qu'une liste noire : on n'explore rien par
+# defaut, on ouvre page par page. Une nouvelle page de l'app reste donc hors
+# index sans intervention -- l'inverse du catch-all, qui la publie sans
+# intervention.
+#
+# /!\ Toute nouvelle page PUBLIQUE doit etre ajoutee ici ET dans sitemap.xml.
 
+User-agent: *
+Allow: /$
+Allow: /mariage
+Allow: /blog
+Allow: /mentions.html
+Allow: /salon-du-mariage
+Allow: /assets/
+Allow: /sitemap.xml
+Allow: /robots.txt
+Disallow: /
+
+Sitemap: https://www.mgrevents.fr/sitemap.xml
