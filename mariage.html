@@ -206,15 +206,13 @@ nav.scrolled{padding:.65rem 3rem;background:rgba(8,8,8,.92);backdrop-filter:blur
 .devis-grid .pts{list-style:none}
 .devis-grid .pts li{padding:.4rem 0 .4rem 1.6rem;position:relative;color:#cfc7bd;font-weight:300;font-size:.92rem}
 .devis-grid .pts li::before{content:'✓';position:absolute;left:0;color:var(--or)}
-form .row{margin-bottom:1rem}
-form .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-form label{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris-texte);margin-bottom:.45rem;font-weight:500}
-form input,form select,form textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:.8rem 1rem;color:var(--blanc);font-family:var(--ff-body);font-size:.9rem;font-weight:300;transition:border-color .25s;outline:none}
-form input:focus,form select:focus,form textarea:focus{border-color:var(--or)}
-form textarea{resize:vertical;min-height:110px}
-form .btn{width:100%;justify-content:center;margin-top:.4rem}
-.form-ok{display:none;text-align:center;padding:2rem;border:1px solid rgba(201,168,76,.2);border-radius:6px}
-.form-ok h3{color:var(--or);margin-bottom:.5rem}
+.devis-cta{border:1px solid var(--glass-border);border-radius:18px;padding:2.4rem 2rem;background:rgba(255,255,255,.02);text-align:center}
+.devis-cta h3{font-size:1.35rem;margin-bottom:.9rem}
+.devis-cta p{color:var(--gris-texte);font-weight:300;line-height:1.8;font-size:.94rem;margin-bottom:1.8rem}
+.devis-cta .btn{width:100%;justify-content:center}
+.devis-cta-note{display:block;margin-top:1rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-texte);opacity:.75}
+/* Les styles de formulaire ont suivi le formulaire : cette page n'en porte
+   plus aucun, la saisie se fait sur /devis-mariage. */
 
 /* FOOTER */
 footer{padding:4.5rem 3rem 2rem;border-top:1px solid var(--glass-border);text-align:center}
@@ -250,7 +248,6 @@ footer .fnav a{transition:color .25s}footer .fnav a:hover{color:var(--or)}
   .devis-grid{grid-template-columns:1fr;gap:2.5rem}
   .reassure{gap:2rem;padding:2rem 1.4rem}
   .sec{padding:4.5rem 0}
-  form .grid2{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
@@ -494,16 +491,18 @@ ${tickerHTML}
       <p class="lead">Dites-nous tout sur votre mariage : nous revenons vers vous sous 24h avec une proposition sur mesure.</p>
       <ul class="pts"><li>Réponse sous 24h</li><li>Devis personnalisé & sans engagement</li></ul>
     </div>
+    <!-- Le formulaire vivait ici. Il partait bien vers PlanniFlow, mais il
+         empilait la date et le lieu dans une ligne de texte : la demande se
+         lisait à l'œil et ne se triait pas. /devis-mariage pose les mêmes
+         questions dans des champs séparés, et en ajoute (horaires, cérémonie,
+         vin d'honneur) — la demande arrive prête à être chiffrée. -->
     <div data-reveal>
-      <form id="devisForm" onsubmit="return submitDevis(event)">
-        <input type="hidden" name="type" value="Mariage">
-        <div class="grid2"><div class="row"><label>Prénom</label><input name="prenom" required placeholder="Votre prénom"></div><div class="row"><label>Nom</label><input name="nom" required placeholder="Votre nom"></div></div>
-        <div class="grid2"><div class="row"><label>Email</label><input type="email" name="email" required placeholder="votre@email.com"></div><div class="row"><label>Téléphone</label><input type="tel" name="tel" placeholder="+33 6 ..."></div></div>
-        <div class="grid2"><div class="row"><label>Date du mariage</label><input type="date" name="date_event"></div><div class="row"><label>Lieu / ville</label><input name="lieu" placeholder="Paris, salle..."></div></div>
-        <div class="row"><label>Votre message</label><textarea name="message" placeholder="Nombre d'invités, ambiance souhaitée, formule envisagée..."></textarea></div>
-        <button type="submit" class="btn btn-gold">Envoyer ma demande</button>
-      </form>
-      <div class="form-ok" id="devisOk"><h3>Demande envoyée ✓</h3><p style="color:var(--gris-texte);font-weight:300">Merci ! Nous revenons vers vous sous 24h.</p></div>
+      <div class="devis-cta">
+        <h3>Le formulaire complet</h3>
+        <p>Date, lieu, horaires, déroulé de la journée : quelques questions de plus, et votre devis arrive juste — sans allers-retours pour préciser.</p>
+        <a href="/devis-mariage" class="btn btn-gold">Demander mon devis</a>
+        <span class="devis-cta-note">2 minutes · sans engagement</span>
+      </div>
     </div>
   </div>
 </div></section>
@@ -545,20 +544,10 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 }else{document.querySelectorAll('[data-reveal]').forEach(el=>el.classList.add('in'));}
 
-// Devis form
-async function submitDevis(e){
-  e.preventDefault();
-  const form=e.target, btn=form.querySelector('button');
-  btn.textContent='Envoi en cours...';btn.disabled=true;
-  const body={prenom:form.prenom.value,nom:form.nom.value,email:form.email.value,tel:form.tel.value,type:form.type.value,
-    message:`[MARIAGE] Date: ${form.date_event.value||'-'} | Lieu: ${form.lieu.value||'-'}\n${form.message.value}`};
-  try{
-    const res=await fetch('/api/send-contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-    if(!res.ok) throw new Error('err');
-    form.style.display='none';document.getElementById('devisOk').style.display='block';
-  }catch(err){btn.textContent='Erreur — réessayer';btn.disabled=false;console.error(err);}
-  return false;
-}
+// La demande de devis part désormais vers /devis-mariage (PlanniFlow), qui
+// pose les mêmes questions dans des champs séparés. `submitDevis` envoyait la
+// date et le lieu dans une ligne de texte : plus de formulaire ici, plus de
+// fonction.
 
 /* ── Entertainment layer : waveform vivant · spotlight · progression ── */
 (function(){
