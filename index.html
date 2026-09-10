@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://spsnpknxqmogwymutvqu.supabase.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.fr https://googleads.g.doubleclick.net https://td.doubleclick.net; frame-src 'self' https://www.youtube.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="MGR Events Paris — Direction artistique et booking DJ pour établissements, événements et mariages à Paris. Des DJs résidents au Duplex, Fluctuart, Seguin Sound Club.">
+<meta name="description" content="MGR Events Paris — Direction artistique et booking DJ pour établissements, événements et mariages à Paris. Des DJs résidents au Duplex, à Fluctuart et au Gatsby.">
 <meta name="keywords" content="DJ Paris, booking DJ, direction artistique, programmation musicale, MGR Events, DJ mariage Paris, soirée latino Paris, No Mames, DJ club Paris, événementiel Paris">
 <meta name="author" content="MGR Events Paris">
 <meta name="robots" content="index, follow">
@@ -545,7 +545,10 @@ footer nav a:hover{color:var(--texte)}
   function ouvrirFiche(i) {
     const d = djs[i]; if (!d) return; djOuvert = d;
     $('#ficheImg').src = d.photo; $('#ficheImg').alt = 'Portrait de ' + d.name;
-    $('#ficheNom').textContent = d.name; $('#ficheStyle').textContent = d.style; $('#ficheLieux').textContent = d.venues;
+    $('#ficheNom').textContent = d.name; $('#ficheStyle').textContent = d.style;
+    // Un DJ sans lieu renseigné n'affiche pas une ligne « Lieux » vide.
+    $('#ficheLieux').textContent = d.venues || '';
+    $('#ficheLieux').hidden = $('#ficheLieux').previousElementSibling.hidden = !d.venues;
     const insta = $('#ficheInsta'); insta.href = d.instagram || '#'; insta.hidden = !d.instagram;
     fiche.showModal();
   }
