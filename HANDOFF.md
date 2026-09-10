@@ -55,7 +55,7 @@ const brandKeys = ['events','wedding','nomames'];
 120+ bookings/mois, 25 DJs résidents, 15 établissements, 8 ans d'expérience.
 
 ### Partenaires
-Duplex Paris, Seguin Sound Club, Fluctuart, Quai de la Photo, Gastby.
+Duplex Paris, Fluctuart, Quai de la Photo, Gatsby.
 
 ### Galeries
 - Events : 7 photos (gatsby1/2, fluctuart, duplex-1→4).
