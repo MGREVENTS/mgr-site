@@ -21,10 +21,66 @@ const SITE_CONFIG = {
 
   // ── HERO ──
   hero: {
-    tagline: "Booking DJ · Direction Artistique · Paris",
-    title: "L'<em>exigence</em><br>au service de<br>vos événements",
-    subtitle: "La différence se ressent, elle ne se dit pas. Clubs, mariages, corporate — chaque détail musical est pensé pour que votre événement parle de lui-même.",
+    tagline: "Direction artistique & booking DJ · Paris",
+    title: "L'exigence au service<br>de <em>vos événements.</em>",
+    subtitle: "Des DJs pour vos établissements, vos soirées et votre mariage. Une équipe pour vous accompagner.",
+    // Les trois photos sous le titre, avec leur légende — un lieu, une
+    // soirée, jamais un slogan.
+    photos: [
+      { src: "assets/photos/fluctuart.webp", legende: "Fluctuart · Paris" },
+      { src: "assets/photos/duplex-2.webp",  legende: "Duplex · Paris" },
+      { src: "assets/photos/nomames-bichotas-1.webp", legende: "No Mames" },
+    ],
   },
+
+  // ── LES TROIS PARCOURS (section Savoir-faire) ──
+  // Un onglet par type de client. `cta.type` est la valeur envoyée au
+  // formulaire ; `cta.href` envoie ailleurs (le devis mariage a sa page).
+  parcours: [
+    {
+      id: "etablissements",
+      label: "Établissements",
+      title: "Clubs & établissements",
+      photo: "assets/photos/duplex-1.webp",
+      text: "Une programmation musicale qui tient compte de votre lieu, de votre public et du rythme de vos soirées.",
+      points: ["Direction artistique et sélection des DJs", "Programmation régulière", "Suivi des artistes et des prestations"],
+      cta: { label: "Parlons de votre établissement", type: "Booking DJ — Établissement" },
+    },
+    {
+      id: "evenements",
+      label: "Événements",
+      title: "Soirées & événements",
+      photo: "assets/photos/nomames-sinlimites-1.webp",
+      text: "Un DJ et une équipe pour une soirée privée, un événement d'entreprise ou une production comme No Mames, nos soirées latino au Duplex.",
+      points: ["Un DJ choisi pour le public et le lieu", "Son et lumière si le lieu n'en a pas", "Coordination avec vous le jour J"],
+      cta: { label: "Organiser votre événement", type: "Booking DJ — Événement privé" },
+    },
+    {
+      id: "mariages",
+      label: "Mariages",
+      title: "Mariages",
+      photo: "assets/photos/wedding/premiere-danse.webp",
+      text: "Du premier slow à la dernière danse, une prestation DJ clé en main : son, lumières, effets. Un devis écrit, chiffré sur votre soirée.",
+      points: ["Cérémonie, cocktail, dîner, soirée", "Réponse sous 24 h, sans engagement", "Un seul interlocuteur"],
+      cta: { label: "Demander un devis mariage", href: "/devis-mariage" },
+      lien: { label: "Découvrir MGR Wedding", href: "/mariage" },
+    },
+  ],
+
+  // ── RÉALISATIONS (grandes photos, légendes concrètes) ──
+  // `format` : "large" prend deux colonnes sur une grille de trois. L'ordre
+  // compte : une grande + une petite, trois petites, une grande + une petite
+  // — sept photos, trois rangées pleines, aucun trou. Les légendes nomment
+  // le lieu et la soirée — pas de chiffre, pas de superlatif.
+  realisations: [
+    { photo: "assets/photos/duplex-3.webp",            lieu: "Duplex · Paris",           legende: "Résidence DJ, Champs-Élysées", format: "large" },
+    { photo: "assets/photos/gatsby1.webp",             lieu: "Gatsby · Paris",           legende: "Soirée en résidence" },
+    { photo: "assets/photos/nomames-bichotas-2.webp",  lieu: "No Mames — Bichotas",      legende: "Soirée latino au Duplex" },
+    { photo: "assets/photos/wedding/soiree.webp",      lieu: "MGR Wedding",              legende: "Ouverture de bal" },
+    { photo: "assets/photos/duplex-4.webp",            lieu: "Duplex · Paris",           legende: "Soirée en résidence" },
+    { photo: "assets/photos/nomames-sinlimites-2.webp",lieu: "No Mames — Sin Límites",   legende: "Soirée latino au Duplex", format: "large" },
+    { photo: "assets/photos/fluctuart.webp",           lieu: "Fluctuart · Paris",        legende: "Set en résidence sur la Seine" },
+  ],
 
   // ── BANDEAU DÉFILANT (ticker éditorial, page d'accueil) ──
   ticker: ["Paris", "Booking DJ", "Direction artistique", "Clubs & résidences", "Mariages", "Corporate", "No Mames", "MGR School"],
@@ -92,7 +148,7 @@ const SITE_CONFIG = {
       name: "DJ Benka",
       photo: "assets/djs/Benka.webp",
       style: "Open Format · Caribéen",
-      venues: "Duplex, Seguin Sound Club, Gastby",
+      venues: "Duplex, Seguin Sound Club, Gatsby",
       instagram: "https://www.instagram.com/djbenkaofficiel/",
       soundcloud: "",
     },
@@ -100,7 +156,7 @@ const SITE_CONFIG = {
       name: "DJ Lixx",
       photo: "assets/djs/Lixx.webp",
       style: "Open Format · Afrobeat · Amapiano",
-      venues: "Seguin Sound Club, Fluctuart, Gastby",
+      venues: "Seguin Sound Club, Fluctuart, Gatsby",
       instagram: "https://www.instagram.com/djlixx.official/",
       soundcloud: "",
     },
@@ -116,7 +172,7 @@ const SITE_CONFIG = {
       name: "DJ Opal",
       photo: "assets/djs/opal.webp",
       style: "Open Format · Bass House",
-      venues: "Fluctuart, Gastby",
+      venues: "Fluctuart, Gatsby",
       instagram: "https://www.instagram.com/opal_sound/",
       soundcloud: "",
     },
@@ -145,7 +201,7 @@ const SITE_CONFIG = {
     "Seguin Sound Club",
     "Fluctuart",
     "Quai de la Photo",
-    "Gastby",
+    "Gatsby",
   ],
 
   // ── PHOTOS DES SECTIONS ──
