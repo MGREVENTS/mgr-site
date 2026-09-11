@@ -60,7 +60,7 @@ Duplex Paris, Fluctuart, Quai de la Photo, Gatsby.
 ### Galeries
 - Events : 7 photos (gatsby1/2, fluctuart, duplex-1→4).
 - No Mames : 5 photos (bichotas ×3, sinlimites ×2).
-- Wedding : pas de galerie — à la place, un embed YouTube (aftermovie `Iy-Wbd6jF5c`).
+- Wedding : pas de galerie — à la place, un embed YouTube (aftermovie `uJQA-2tTGTw`).
 
 ## 5. Formulaire de contact
 

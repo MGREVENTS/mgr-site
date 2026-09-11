@@ -319,7 +319,7 @@ const SITE_CONFIG = {
         { src: "assets/photos/wedding/premiere-danse.webp", legende: "L’ouverture de bal" },
         { src: "assets/photos/wedding/soiree.webp",         legende: "La soirée" },
       ],
-      videoId: "Iy-Wbd6jF5c",
+      videoId: "uJQA-2tTGTw",
       poster: "assets/photos/wedding.jpg",
     },
 
@@ -368,7 +368,10 @@ const SITE_CONFIG = {
     // partie DJ dans wedding » (11 septembre 2026), puis « remplace la
     // photo de jem » : le portrait chemise blanche, sourire, remplace celui
     // au casque.
+    // Raphaël, le fondateur, n'a pas de fiche à l'accueil : son entrée est
+    // complète ici (« c'est moi Raphaël », 11 septembre 2026).
     djs: [
+      { name: "Raphaël",    photo: "assets/djs/wedding/raphael.webp", role: "Fondateur de MGR Events · DJ", instagram: "https://instagram.com/mgr.events" },
       { name: "DJ Jem",     photo: "assets/djs/wedding/jem.webp" },
       { name: "DJ Ny Aina", photo: "assets/djs/wedding/nyaina.webp" },
       { name: "DJ Deloums", photo: "assets/djs/wedding/deloums.webp" },

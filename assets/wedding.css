@@ -100,6 +100,8 @@ footer{border-top-color:var(--bord)}
 /* Trois portraits : une seule rangée plutôt qu'un orphelin sous les deux
    autres. Sur téléphone, trois colonnes seraient trop étroites : on garde deux. */
 @media(min-width:601px){.djs-wedding .grille-djs:has(> :nth-child(3):last-child){grid-template-columns:repeat(3,1fr)}}
+/* Quatre portraits : une rangée sur ordinateur, deux par deux en dessous. */
+@media(min-width:900px){.djs-wedding .grille-djs:has(> :nth-child(4):last-child){grid-template-columns:repeat(4,1fr)}}
 .djs-wedding .grille-djs[hidden]{display:none}
 .djs-wedding ol{list-style:none;counter-reset:etape;display:grid;gap:1rem;margin-top:1.4rem}
 .djs-wedding ol li{counter-increment:etape;padding-left:2.4rem;position:relative;color:var(--texte-2)}
