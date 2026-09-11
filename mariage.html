@@ -161,7 +161,12 @@
             <li><b>La préparation</b>Le déroulé, les temps forts, l’ouverture de bal — calés ensemble avant le jour J.</li>
           </ol>
         </div>
-        <div class="grille-djs" id="grilleDjs"></div>
+        <div class="portraits">
+          <!-- La photo de groupe d'abord, les portraits en dessous. Remplie
+               depuis weddingPage.equipe ; sans elle, la figure reste cachée. -->
+          <figure class="equipe" id="equipeDjs" hidden><img id="equipeImg" src="" alt="" loading="lazy"></figure>
+          <div class="grille-djs" id="grilleDjs"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -342,8 +347,12 @@
   }).filter(Boolean);
   // Sans sélection, la section garde son texte et se passe de portraits :
   // une grille vide à côté d'un paragraphe ressemblerait à un oubli.
-  document.querySelector('.djs-wedding').classList.toggle('sans-portraits', djs.length === 0);
+  document.querySelector('.djs-wedding').classList.toggle('sans-portraits', djs.length === 0 && !W.equipe);
   $('#grilleDjs').hidden = djs.length === 0;
+  if (W.equipe && W.equipe.photo) {
+    $('#equipeImg').src = W.equipe.photo; $('#equipeImg').alt = W.equipe.alt || 'Nos DJs';
+    $('#equipeDjs').hidden = false;
+  }
   $('#grilleDjs').innerHTML = djs.map((d, i) =>
     `<button type="button" class="dj" data-i="${i}" aria-haspopup="dialog">
       <span class="photo"><img src="${esc(d.photo)}" alt="Portrait de ${esc(d.name)}" loading="lazy"></span>
