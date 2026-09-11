@@ -374,7 +374,7 @@ const SITE_CONFIG = {
     // `role` s'affiche sous le nom et en tête de la fiche ; `demande: false`
     // retire « Demander ce DJ » de la fiche (« pour moi on peut retirer la
     // réservation DJ — Jem responsable mariage », 11 septembre 2026).
-      { name: "Raphaël",    photo: "assets/djs/wedding/raphael.webp", role: "Fondateur de MGR Events", instagram: "https://instagram.com/mgr.events", demande: false },
+      { name: "Raphaël",    photo: "assets/djs/wedding/raphael.webp", role: "Fondateur de MGR Events", demande: false },
       { name: "DJ Jem",     photo: "assets/djs/wedding/jem.webp", role: "Responsable mariage" },
       { name: "DJ Ny Aina", photo: "assets/djs/wedding/nyaina.webp" },
       { name: "DJ Deloums", photo: "assets/djs/wedding/deloums.webp" },
