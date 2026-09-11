@@ -228,7 +228,7 @@
     <button class="fermer" type="button" id="ficheFermer" aria-label="Fermer la fiche">×</button>
     <figure class="photo"><img id="ficheImg" src="" alt=""></figure>
     <div class="fiche-texte">
-      <p class="eyebrow">Fiche DJ</p>
+      <p class="eyebrow" id="ficheRole">Fiche DJ</p>
       <h3 id="ficheNom"></h3>
       <!-- Pas de style musical ici : pour un mariage, le DJ s'adapte au
            couple, pas l'inverse. LA DEMANDE : « on retire les styles
@@ -340,10 +340,12 @@
   // ── E. Nos DJs : la sélection Wedding, fiche au clic ──────────────────
   // La sélection Wedding : un nom (fiche telle quelle) ou { name, photo }
   // pour remplacer le portrait de club par le portrait en tenue.
+  // Une entrée sans fiche à l'accueil (Raphaël, le fondateur) passe telle
+  // quelle si elle apporte au moins sa photo.
   const djs = (W.djs || []).map(s => {
     const sel = typeof s === 'string' ? { name: s } : s;
     const base = (C.djs || []).find(d => d.name === sel.name);
-    return base ? { ...base, ...sel } : null;
+    return base ? { ...base, ...sel } : (sel.photo ? sel : null);
   }).filter(Boolean);
   // Sans sélection, la section garde son texte et se passe de portraits :
   // une grille vide à côté d'un paragraphe ressemblerait à un oubli.
@@ -361,7 +363,7 @@
   function ouvrirFiche(i) {
     const d = djs[i]; if (!d) return;
     $('#ficheImg').src = d.photo; $('#ficheImg').alt = 'Portrait de ' + d.name;
-    $('#ficheNom').textContent = d.name;
+    $('#ficheNom').textContent = d.name; $('#ficheRole').textContent = d.role || 'Fiche DJ';
     $('#ficheLieux').textContent = d.venues || '';
     $('#ficheLieux').hidden = $('#ficheLieux').previousElementSibling.hidden = !d.venues;
     const insta = $('#ficheInsta'); insta.href = d.instagram || '#'; insta.hidden = !d.instagram;
