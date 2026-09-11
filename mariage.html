@@ -33,8 +33,8 @@
 <link rel="stylesheet" href="assets/wedding.css">
 
 <!-- JSON-LD statique : fil d'Ariane et film. Le Service et ses offres sont
-     injectés une fois le catalogue lu — les prix affichés et les prix
-     structurés viennent alors de la même source, au même instant. -->
+     injectés une fois le catalogue lu — les mêmes noms que ceux affichés,
+     sans montant : cette page ne montre aucun prix. -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
   {"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.mgrevents.fr/"},
@@ -132,7 +132,6 @@
           <p class="eyebrow">Nos formules</p>
           <h2 id="titre-formules">Une base claire, ajustée à votre mariage.</h2>
         </div>
-        <p>Les prix s’entendent TTC. Le détail complet et le simulateur d’options sont dans <a class="btn-ligne" href="/offres-mariage">le catalogue</a>.</p>
       </div>
       <div class="formules" id="grilleFormules" aria-live="polite"></div>
       <div class="etat" id="etatFormules" hidden>
@@ -293,20 +292,17 @@
   });
 
   // ── D. Formules : le catalogue public, et rien d'autre ────────────────
-  // La même route que /offres-mariage et /devis-mariage. Aucun prix de
-  // secours dans cette page : si le catalogue ne répond pas, on le dit et on
-  // propose le devis — un ancien tarif réaffiché en silence serait un faux.
-  const euros = (n) => Number.isFinite(+n) ? new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(+n) : '';
+  // La même route que /offres-mariage et /devis-mariage. AUCUN PRIX ICI :
+  // la route les sert, cette page ne les lit pas — nom, description, durée,
+  // contenu. Le tarif se découvre dans le catalogue, ou dans le devis.
+  // Si le catalogue ne répond pas, on le dit et on propose le devis.
   function afficherEtat(texte) { $('#grilleFormules').innerHTML = ''; $('#etatTexte').textContent = texte; $('#etatFormules').hidden = false; }
   function rendreFormules(offres) {
     $('#etatFormules').hidden = true;
     $('#grilleFormules').innerHTML = offres.map(o => {
-      const plein = o.prix_plein_ttc && o.prix_plein_ttc > o.prix_ttc ? `<s>${euros(o.prix_plein_ttc)}</s>` : '';
       return `<article class="formule ${o.mise_en_avant ? 'mise-en-avant' : ''}" aria-labelledby="f-${esc(o.id)}">
         <div class="formule-tete"><h3 id="f-${esc(o.id)}">${esc(o.nom)}</h3>${o.badge ? `<span class="badge">${esc(o.badge)}</span>` : ''}</div>
         ${o.description ? `<p class="desc">${esc(o.description)}</p>` : ''}
-        <p class="prix">${plein}${euros(o.prix_ttc)}<small>TTC</small></p>
-        ${o.remise_libelle && plein ? `<p class="remise">${esc(o.remise_libelle)}</p>` : ''}
         ${o.duree_heures ? `<p class="duree">${esc(o.duree_heures)} h de prestation${o.frais_deplacement_inclus ? ' · déplacement inclus' : ''}</p>` : ''}
         ${Array.isArray(o.contenu) && o.contenu.length ? `<details><summary>Ce qui est inclus</summary><ul>${o.contenu.map(l => `<li>${esc(l)}</li>`).join('')}</ul></details>` : ''}
         <div class="formule-actions">
@@ -314,14 +310,14 @@
           <a class="btn-ligne" href="/offres-mariage">Découvrir cette formule →</a>
         </div></article>`;
     }).join('');
-    // Les mêmes offres, structurées pour les moteurs — jamais d'autres prix
-    // que ceux affichés à l'instant.
+    // Les mêmes offres, structurées pour les moteurs — les noms affichés,
+    // sans montant : la page n'en montre aucun.
     const s = document.createElement('script'); s.type = 'application/ld+json';
     s.textContent = JSON.stringify({
       '@context': 'https://schema.org', '@type': 'Service', 'serviceType': 'DJ de mariage', 'name': 'MGR Wedding — DJ de mariage',
       'provider': { '@type': 'LocalBusiness', 'name': 'MGR Events Paris', 'url': 'https://www.mgrevents.fr' },
       'areaServed': ['Paris', 'Île-de-France'], 'url': 'https://www.mgrevents.fr/mariage',
-      'offers': offres.map(o => ({ '@type': 'Offer', 'name': o.nom, 'priceCurrency': 'EUR', 'price': o.prix_ttc, 'url': 'https://www.mgrevents.fr/offres-mariage' })),
+      'offers': offres.map(o => ({ '@type': 'Offer', 'name': o.nom, 'url': 'https://www.mgrevents.fr/offres-mariage' })),
       'review': (W.testimonials || []).map(t => ({ '@type': 'Review', 'author': { '@type': 'Person', 'name': t.name }, 'reviewBody': t.quote })),
     });
     document.head.appendChild(s);
@@ -329,7 +325,7 @@
   fetch('/api/wedding/catalogue-public', { headers: { Accept: 'application/json' } })
     .then(r => (r.ok ? r.json() : Promise.reject(new Error('catalogue'))))
     .then(d => {
-      const offres = (d.offres || []).filter(o => o && o.nom && Number.isFinite(+o.prix_ttc));
+      const offres = (d.offres || []).filter(o => o && o.nom);
       if (!offres.length) return afficherEtat('Nos formules arrivent — parlez-nous de votre projet, nous vous répondons avec une proposition.');
       rendreFormules(offres);
     })
