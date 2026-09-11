@@ -361,8 +361,10 @@ const SITE_CONFIG = {
     ],
 
     // Les DJs présentés aux couples : une sélection, par leur nom dans `djs`.
-    // À confirmer avec Raphaël — la liste n'est pas le roster entier.
-    djs: ["DJ Jem"],
+    // Vide pour l'instant — d'autres photos arrivent. La section garde le
+    // déroulé de la préparation et se passe de portraits tant que la liste
+    // est vide.
+    djs: [],
 
     testimonials: [
       { quote: "Un énorme merci à notre DJ qui a été juste incroyable du début à la fin ! 🎉 Grâce à lui, l'ambiance était au rendez-vous toute la soirée. Il a su s'adapter à tous les goûts et faire danser toutes les générations. Super sympa, professionnel et à l'écoute. On le recommande à 1000 %, les yeux fermés. Merci encore pour tous ces magnifiques souvenirs.", name: "Anna O.", event: "Mariage" },

@@ -337,6 +337,10 @@
 
   // ── E. Nos DJs : la sélection Wedding, fiche au clic ──────────────────
   const djs = (C.djs || []).filter(d => (W.djs || []).includes(d.name));
+  // Sans sélection, la section garde son texte et se passe de portraits :
+  // une grille vide à côté d'un paragraphe ressemblerait à un oubli.
+  document.querySelector('.djs-wedding').classList.toggle('sans-portraits', djs.length === 0);
+  $('#grilleDjs').hidden = djs.length === 0;
   $('#grilleDjs').innerHTML = djs.map((d, i) =>
     `<button type="button" class="dj" data-i="${i}" aria-haspopup="dialog">
       <span class="photo"><img src="${esc(d.photo)}" alt="Portrait de ${esc(d.name)}" loading="lazy"></span>
