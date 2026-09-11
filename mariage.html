@@ -236,7 +236,7 @@
       <dl class="fiche-ligne">
         <dt>Lieux</dt><dd id="ficheLieux"></dd>
       </dl>
-      <p class="form-note">Une préférence, pas une réservation : nous la confirmons avec vous selon la date.</p>
+      <p class="form-note" id="ficheNote">Une préférence, pas une réservation : nous la confirmons avec vous selon la date.</p>
       <div class="fiche-actions">
         <a class="btn btn-encre" id="ficheDemander" href="/devis-mariage">Demander ce DJ</a>
         <a id="ficheInsta" class="btn-ligne" href="#" target="_blank" rel="noopener">Instagram</a>
@@ -358,7 +358,7 @@
   $('#grilleDjs').innerHTML = djs.map((d, i) =>
     `<button type="button" class="dj" data-i="${i}" aria-haspopup="dialog">
       <span class="photo"><img src="${esc(d.photo)}" alt="Portrait de ${esc(d.name)}" loading="lazy"></span>
-      <span class="dj-infos"><b>${esc(d.name)}</b></span></button>`).join('');
+      <span class="dj-infos"><b>${esc(d.name)}</b>${d.role ? `<span>${esc(d.role)}</span>` : ''}</span></button>`).join('');
   const fiche = $('#ficheDj');
   function ouvrirFiche(i) {
     const d = djs[i]; if (!d) return;
@@ -369,6 +369,8 @@
     const insta = $('#ficheInsta'); insta.href = d.instagram || '#'; insta.hidden = !d.instagram;
     // La préférence part avec la demande, marquée « à confirmer » là-bas.
     $('#ficheDemander').href = url('/devis-mariage', { dj: d.name });
+    // Le fondateur ne se réserve pas : ni bouton, ni note de préférence.
+    $('#ficheDemander').hidden = $('#ficheNote').hidden = d.demande === false;
     fiche.showModal();
   }
   document.querySelectorAll('.dj').forEach(b => b.addEventListener('click', () => ouvrirFiche(+b.dataset.i)));

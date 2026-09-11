@@ -371,8 +371,11 @@ const SITE_CONFIG = {
     // Raphaël, le fondateur, n'a pas de fiche à l'accueil : son entrée est
     // complète ici (« c'est moi Raphaël », 11 septembre 2026).
     djs: [
-      { name: "Raphaël",    photo: "assets/djs/wedding/raphael.webp", role: "Fondateur de MGR Events · DJ", instagram: "https://instagram.com/mgr.events" },
-      { name: "DJ Jem",     photo: "assets/djs/wedding/jem.webp" },
+    // `role` s'affiche sous le nom et en tête de la fiche ; `demande: false`
+    // retire « Demander ce DJ » de la fiche (« pour moi on peut retirer la
+    // réservation DJ — Jem responsable mariage », 11 septembre 2026).
+      { name: "Raphaël",    photo: "assets/djs/wedding/raphael.webp", role: "Fondateur de MGR Events", instagram: "https://instagram.com/mgr.events", demande: false },
+      { name: "DJ Jem",     photo: "assets/djs/wedding/jem.webp", role: "Responsable mariage" },
       { name: "DJ Ny Aina", photo: "assets/djs/wedding/nyaina.webp" },
       { name: "DJ Deloums", photo: "assets/djs/wedding/deloums.webp" },
     ],
