@@ -83,7 +83,7 @@
         <p id="heroSub"></p>
         <div class="hero-actions">
           <a href="/devis-mariage" class="btn btn-encre">Demander mon devis</a>
-          <a href="/offres-mariage" class="btn-ligne">Découvrir nos formules →</a>
+          <a href="#formules" class="btn-ligne">Voir nos formules ↓</a>
         </div>
       </div>
       <div class="hero-photos" id="heroPhotos"></div>
@@ -138,7 +138,7 @@
         <span id="etatTexte"></span>
         <a href="/devis-mariage" class="btn btn-encre">Demander mon devis</a>
       </div>
-      <p class="formules-note">Les options — photobooth, sonorisation de cérémonie, heure supplémentaire… — se choisissent en plus de la formule, dans le catalogue ou directement dans votre demande.</p>
+      <p class="formules-note">Les options — photobooth, sonorisation de cérémonie, heure supplémentaire… — se choisissent directement dans votre demande de devis.</p>
     </div>
   </section>
 
@@ -209,7 +209,7 @@
     <div>© <span id="annee"></span> MGR Wedding · <a href="/">By MGR Events Paris</a></div>
     <nav aria-label="Pied de page">
       <a href="/">MGR Events Paris</a>
-      <a href="/offres-mariage">Nos formules</a>
+      <a href="/devis-mariage">Demander un devis</a>
       <a href="mailto:contact@mgrevents.fr">Contact</a>
       <a href="https://instagram.com/mgr.events" target="_blank" rel="noopener">Instagram</a>
       <a href="/mentions.html">Mentions légales</a>
@@ -307,7 +307,6 @@
         ${Array.isArray(o.contenu) && o.contenu.length ? `<details><summary>Ce qui est inclus</summary><ul>${o.contenu.map(l => `<li>${esc(l)}</li>`).join('')}</ul></details>` : ''}
         <div class="formule-actions">
           <a class="btn btn-encre" href="${url('/devis-mariage', { formule: o.nom })}">Demander cette formule</a>
-          <a class="btn-ligne" href="/offres-mariage">Découvrir cette formule →</a>
         </div></article>`;
     }).join('');
     // Les mêmes offres, structurées pour les moteurs — les noms affichés,
