@@ -372,8 +372,9 @@ const SITE_CONFIG = {
       { quote: "Nous n'avons que des éloges à faire sur Raphaël. Nous l'avons rencontré au Salon du Mariage par hasard et ça a été une connexion instantanée. Il a été le DJ de notre mariage et a dépassé toutes nos attentes. Il a su lire la piste de danse à la perfection, a fait danser tout le monde et a créé exactement l'ambiance dont nous rêvions. Professionnel, ponctuel et avec un goût musical impeccable. Un remerciement tout particulier à Raphaël et son épouse : très attentifs, ils nous ont aidés à organiser le moment surprise où mon père a chanté au mariage — un souvenir INOUBLIABLE. Si vous cherchez un DJ pour votre mariage, Raphaël est LE choix. Merci pour tout ! ❤️", name: "Melissa T.", event: "Mariage" },
       { quote: "Un grand merci à MGR Wedding pour leur superbe prestation lors de notre mariage. Nous avons adoré être accompagnés et suivis par DJ Jem, avec beaucoup de bienveillance. Il a su comprendre et appréhender nos goûts afin de nous proposer une offre sur-mesure adaptée à nos besoins ! Résultat : une ambiance de folie, des effets spectaculaires sur la piste (machines à fumée lourde et étincelles) et des souvenirs pour toujours ! Nous recommandons MGR Wedding à tous les futurs mariés !", name: "Alexandre V.", event: "Mariage" },
     ],
-    // D'où viennent ces avis : à préciser (Google, e-mail…) avant de le publier.
-    testimonialsSource: "Avis de couples accompagnés par MGR Wedding, publiés avec leur accord — prénom et initiale.",
+    // Les avis viennent de la fiche Google de MGR Events (le patron, 11
+    // septembre 2026). Prénom et initiale seulement.
+    testimonialsSource: "Avis publiés sur la fiche Google de MGR Events — prénom et initiale.",
 
     faq: [
       { q: "Intervenez-vous partout en Île-de-France ?", a: "Oui — Paris et toute l’Île-de-France, et au-delà sur demande. Le déplacement est précisé dans votre devis." },
