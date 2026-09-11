@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://spsnpknxqmogwymutvqu.supabase.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.fr https://googleads.g.doubleclick.net https://td.doubleclick.net; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="MGR Wedding — DJ de mariage à Paris et en Île-de-France. Nous préparons avec vous la musique et les temps forts de votre mariage, de la cérémonie à la soirée.">
-<meta name="keywords" content="DJ mariage Paris, DJ mariage Île-de-France, prestation DJ mariage, MGR Wedding, ouverture de bal, devis DJ mariage">
+<meta name="description" content="MGR Wedding — DJ de mariage, basés à Paris, partout en France et à l’étranger. Nous préparons avec vous la musique et les temps forts de votre mariage, de la cérémonie à la soirée.">
+<meta name="keywords" content="DJ mariage Paris, DJ mariage France, DJ mariage destination wedding, prestation DJ mariage, MGR Wedding, ouverture de bal, devis DJ mariage">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.mgrevents.fr/mariage">
 <meta name="theme-color" content="#FAF7F1">
@@ -315,7 +315,7 @@
     s.textContent = JSON.stringify({
       '@context': 'https://schema.org', '@type': 'Service', 'serviceType': 'DJ de mariage', 'name': 'MGR Wedding — DJ de mariage',
       'provider': { '@type': 'LocalBusiness', 'name': 'MGR Events Paris', 'url': 'https://www.mgrevents.fr' },
-      'areaServed': ['Paris', 'Île-de-France'], 'url': 'https://www.mgrevents.fr/mariage',
+      'url': 'https://www.mgrevents.fr/mariage',
       'offers': offres.map(o => ({ '@type': 'Offer', 'name': o.nom, 'url': 'https://www.mgrevents.fr/devis-mariage' })),
       'review': (W.testimonials || []).map(t => ({ '@type': 'Review', 'author': { '@type': 'Person', 'name': t.name }, 'reviewBody': t.quote })),
     });

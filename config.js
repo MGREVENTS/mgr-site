@@ -310,7 +310,7 @@ const SITE_CONFIG = {
   weddingPage: {
     // Le premier écran : la composition de l'accueil, en Wedding clair.
     hero: {
-      eyebrow: "DJ pour votre mariage · Paris & Île-de-France",
+      eyebrow: "DJ pour votre mariage",
       title: "L’<em>émotion</em> en musique.",
       subtitle: "Nous préparons avec vous la musique et les temps forts de votre mariage, de la cérémonie à la soirée.",
       // Trois photos, une rangée : une émotion, une ouverture de bal, une piste.
@@ -377,7 +377,7 @@ const SITE_CONFIG = {
     testimonialsSource: "Avis publiés sur la fiche Google de MGR Events — prénom et initiale.",
 
     faq: [
-      { q: "Intervenez-vous partout en Île-de-France ?", a: "Oui — Paris et toute l’Île-de-France, et au-delà sur demande. Le déplacement est précisé dans votre devis." },
+      { q: "Où intervenez-vous ?", a: "Partout. Basés à Paris, nous accompagnons des mariages dans toute la France et à l’étranger. Le déplacement est précisé dans votre devis." },
       { q: "Peut-on choisir les musiques ?", a: "Absolument. Nous construisons ensemble une trame — moments forts, incontournables, titres à éviter — et le DJ adapte en lisant la piste le jour J." },
       { q: "Que se passe-t-il en cas d’imprévu ?", a: "Notre réseau de DJs résidents nous permet de proposer un remplacement en cas d’empêchement. Les modalités figurent dans votre contrat." },
       { q: "Le matériel est-il inclus ?", a: "Oui : sonorisation, éclairage et effets selon la formule choisie. Tout est installé et testé avant l’arrivée de vos invités." },
