@@ -50,6 +50,8 @@ html{color-scheme:light}
 .djs{background:var(--fond-2)}
 .dj{background:var(--clair)}
 dialog.fiche::backdrop{background:rgba(36,30,21,.62)}
+/* Le bouton est en display:inline-flex : l'attribut hidden doit gagner. */
+dialog.fiche [hidden]{display:none}
 footer{border-top-color:var(--bord)}
 
 /* ── Formules : le même catalogue que /offres-mariage ─────────────────── */
