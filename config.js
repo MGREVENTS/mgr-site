@@ -308,56 +308,77 @@ const SITE_CONFIG = {
   // et les témoignages "Exemple" par de vrais avis clients.
   // ═══════════════════════════════════════════════════
   weddingPage: {
+    // Le premier écran : la composition de l'accueil, en Wedding clair.
     hero: {
-      eyebrow: "MGR Wedding · Paris & Île-de-France",
-      title: "L'<em>émotion</em><br>en musique",
-      subtitle: "Du premier slow à la dernière danse, nous orchestrons la bande-son de votre journée. Une prestation DJ sur mesure, pensée pour que chaque instant reste gravé.",
+      eyebrow: "DJ pour votre mariage · Paris & Île-de-France",
+      title: "L’<em>émotion</em> en musique.",
+      subtitle: "Nous préparons avec vous la musique et les temps forts de votre mariage, de la cérémonie à la soirée.",
+      // Trois photos, une rangée : une émotion, une ouverture de bal, une piste.
+      photos: [
+        { src: "assets/photos/wedding/ceremonie.webp",      legende: "La cérémonie, en extérieur" },
+        { src: "assets/photos/wedding/premiere-danse.webp", legende: "L’ouverture de bal" },
+        { src: "assets/photos/wedding/soiree.webp",         legende: "La soirée" },
+      ],
       videoId: "Iy-Wbd6jF5c",
       poster: "assets/photos/wedding.jpg",
     },
-    reassurance: [
-      { value: "5★",   label: "Note moyenne" },
-      { value: "10h",  label: "De prestation" },
-    ],
-    ticker: ["Cérémonie", "Vin d'honneur", "Dîner", "Première danse", "Dancefloor", "Paris & Île-de-France"],
-    // « Le fil de votre journée » — scrollytelling chronologique
-    chaptersTitle: "Le fil de votre journée",
-    chapters: [
-      { eyebrow: "01 · Cérémonie",     title: "L'instant suspendu",        text: "Entrée, sortie, moments forts : une sonorisation discrète et des choix musicaux justes pour sublimer l'émotion sans jamais la couvrir.", photo: "assets/photos/wedding/ceremonie.webp" },
-      { eyebrow: "02 · Vin d'honneur", title: "La parenthèse",             text: "Une ambiance lounge et chaleureuse pendant que vos invités se retrouvent. Le ton est donné, tout en douceur.", photo: "assets/photos/wedding/vin-honneur.webp" },
-      { eyebrow: "03 · Dîner",         title: "Les émotions à table",      text: "Playlist feutrée, gestion des discours et des animations, montée progressive de l'énergie vers la piste.", photo: "assets/photos/wedding/diner.webp" },
-      { eyebrow: "04 · Première danse",title: "Votre moment",              text: "Votre chanson, votre mise en lumière. On répète, on cale l'instant à la seconde près.", photo: "assets/photos/wedding/premiere-danse.webp" },
-      { eyebrow: "05 · Soirée",        title: "Jusqu'au bout de la nuit",  text: "Open format, lecture du dancefloor en temps réel, lumières et effets : une piste qui ne désemplit pas.", photo: "assets/photos/wedding/soiree.webp" },
-    ],
-    momentsTitle: "Nos moments",
-    momentsIntro: "Quelques instants capturés au fil de nos mariages.",
+
+    // Savoir-faire : un moment par onglet. Ce que MGR prépare, concrètement,
+    // et « selon la formule » là où c'est le cas.
     moments: [
-      "assets/photos/wedding/moment-1.webp","assets/photos/wedding/moment-2.webp",
-      "assets/photos/wedding/moment-3.webp","assets/photos/wedding/moment-4.webp",
-      "assets/photos/wedding/moment-5.webp","assets/photos/wedding/moment-6.webp",
-      "assets/photos/wedding/moment-7.webp","assets/photos/wedding/moment-8.webp",
+      { id: "ceremonie", label: "Cérémonie", title: "Une sonorisation discrète, des choix justes.",
+        text: "Entrée, échange des vœux, sortie : nous sonorisons la cérémonie quand le lieu le demande, et nous calons chaque musique avec vous.",
+        points: ["Micro pour l’officiant et les lectures, selon la formule", "Vos musiques d’entrée et de sortie, préparées ensemble", "Une installation qui ne se voit pas"],
+        photo: "assets/photos/wedding/ceremonie.webp", alt: "Cérémonie en extérieur, invités sous des ombrelles blanches" },
+      { id: "cocktail", label: "Cocktail", title: "Le ton est donné, tout en douceur.",
+        text: "Pendant que vos invités se retrouvent, une ambiance chaleureuse qui laisse parler — et qui prépare la suite.",
+        points: ["Volume et sélection adaptés aux conversations", "Sonorisation extérieure possible, selon la formule", "Coordination avec le traiteur et les photographes"],
+        photo: "assets/photos/wedding/vin-honneur.webp", alt: "Le cocktail, invités réunis" },
+      { id: "diner", label: "Dîner", title: "Les émotions à table.",
+        text: "Une playlist feutrée, les discours et animations coordonnés, et une énergie qui monte sans brusquer vers la piste.",
+        points: ["Micros sans fil pour les discours", "Les surprises préparées en amont, calées à la seconde", "La transition vers l’ouverture de bal"],
+        photo: "assets/photos/wedding/diner.webp", alt: "La salle du dîner, tables et bougies" },
+      { id: "ouverture", label: "Ouverture de bal", title: "Votre chanson, votre lumière.",
+        text: "La version, la durée, la mise en lumière : nous répétons l’enchaînement avec vous. L’instant est à vous, et il invite vos proches sur la piste.",
+        points: ["La version et la durée du titre, travaillées avec vous", "Mise en lumière et effets, selon la formule", "La transition qui fait venir vos invités"],
+        photo: "assets/photos/wedding/premiere-danse.webp", alt: "Les mariés enlacés pour l’ouverture de bal" },
+      { id: "soiree", label: "Soirée", title: "Lire la piste, tenir la nuit.",
+        text: "Open format : le DJ lit la salle, alterne les univers et relance au bon moment — jusqu’à la dernière danse, choisie à l’avance.",
+        points: ["Une trame construite ensemble : incontournables et titres à éviter", "Lumières et effets, selon la formule", "Une dernière danse décidée avec vous"],
+        photo: "assets/photos/wedding/soiree.webp", alt: "La piste de danse, invités et mariée" },
     ],
-    formulesTitle: "Nos formules",
-    formulesIntro: "Trois prestations clé en main, ajustables à votre lieu et votre nombre d'invités.",
-    formules: [
-      { name: "Economic Wedding", price: "dès 999€",   desc: "L'essentiel pour une soirée réussie.", features: ["DJ avec stand & platines","2 micros HF","8h de prestation"] },
-      { name: "Basic Wedding", price: "dès 1 899€", desc: "Prestation clé en main, 10h.",         features: ["Régie complète","Enceintes jusqu'à 200 pers.","Lumières haut de gamme, lyres","Vidéoprojecteur & écran"], highlight: true },
-      { name: "Mon Sublime Mariage", price: "dès 3 999€", desc: "L'excellence absolue.",      features: ["Tout le Basic Wedding, et plus","Machine à fumée & bulles","6 pars LED · fumée lourde","Étincelles froides","Sono extérieure sans fil"] },
+
+    // Réalisations : sept photos, trois rangées pleines comme sur l'accueil.
+    // Une légende seulement quand on sait ce qu'on montre.
+    realisations: [
+      { photo: "assets/photos/wedding/diner.webp",       legende: "Le dîner",   format: "large" },
+      { photo: "assets/photos/wedding/moment-1.webp" },
+      { photo: "assets/photos/wedding/moment-2.webp" },
+      { photo: "assets/photos/wedding/moment-3.webp" },
+      { photo: "assets/photos/wedding/moment-4.webp" },
+      { photo: "assets/photos/wedding/moment-5.webp" },
+      { photo: "assets/photos/wedding/vin-honneur.webp", legende: "Le cocktail", format: "large" },
     ],
-    testimonialsTitle: "Ils nous ont fait confiance",
+
+    // Les DJs présentés aux couples : une sélection, par leur nom dans `djs`.
+    // À confirmer avec Raphaël — la liste n'est pas le roster entier.
+    djs: ["DJ Jem"],
+
     testimonials: [
-      { quote: "Un énorme merci à notre DJ qui a été juste incroyable du début à la fin ! 🎉 Grâce à lui, l'ambiance était au rendez-vous toute la soirée. Il a su s'adapter à tous les goûts et faire danser toutes les générations. Super sympa, professionnel et à l'écoute. On le recommande à 1000 %, les yeux fermés. Merci encore pour tous ces magnifiques souvenirs.", name: "Anna O.", event: "Mariage", rating: 5 },
-      { quote: "Un grand merci à Jean-Christophe de MGR Events pour l'animation de notre mariage ! Ambiance au top du début à la fin, piste de danse toujours pleine et invités ravis. Professionnel, à l'écoute et très sympathique. Nous recommandons sans hésiter !", name: "Tania S.", event: "Mariage", rating: 5 },
-      { quote: "Nous n'avons que des éloges à faire sur Raphaël. Nous l'avons rencontré au Salon du Mariage par hasard et ça a été une connexion instantanée. Il a été le DJ de notre mariage et a dépassé toutes nos attentes. Il a su lire la piste de danse à la perfection, a fait danser tout le monde et a créé exactement l'ambiance dont nous rêvions. Professionnel, ponctuel et avec un goût musical impeccable. Un remerciement tout particulier à Raphaël et son épouse : très attentifs, ils nous ont aidés à organiser le moment surprise où mon père a chanté au mariage — un souvenir INOUBLIABLE. Si vous cherchez un DJ pour votre mariage, Raphaël est LE choix. Merci pour tout ! ❤️", name: "Melissa T.", event: "Mariage", rating: 5 },
-      { quote: "Un grand merci à MGR Wedding pour leur superbe prestation lors de notre mariage. Nous avons adoré être accompagnés et suivis par DJ Jem, avec beaucoup de bienveillance. Il a su comprendre et appréhender nos goûts afin de nous proposer une offre sur-mesure adaptée à nos besoins ! Résultat : une ambiance de folie, des effets spectaculaires sur la piste (machines à fumée lourde et étincelles) et des souvenirs pour toujours ! Nous recommandons MGR Wedding à tous les futurs mariés !", name: "Alexandre V.", event: "Mariage", rating: 5 },
+      { quote: "Un énorme merci à notre DJ qui a été juste incroyable du début à la fin ! 🎉 Grâce à lui, l'ambiance était au rendez-vous toute la soirée. Il a su s'adapter à tous les goûts et faire danser toutes les générations. Super sympa, professionnel et à l'écoute. On le recommande à 1000 %, les yeux fermés. Merci encore pour tous ces magnifiques souvenirs.", name: "Anna O.", event: "Mariage" },
+      { quote: "Un grand merci à Jean-Christophe de MGR Events pour l'animation de notre mariage ! Ambiance au top du début à la fin, piste de danse toujours pleine et invités ravis. Professionnel, à l'écoute et très sympathique. Nous recommandons sans hésiter !", name: "Tania S.", event: "Mariage" },
+      { quote: "Nous n'avons que des éloges à faire sur Raphaël. Nous l'avons rencontré au Salon du Mariage par hasard et ça a été une connexion instantanée. Il a été le DJ de notre mariage et a dépassé toutes nos attentes. Il a su lire la piste de danse à la perfection, a fait danser tout le monde et a créé exactement l'ambiance dont nous rêvions. Professionnel, ponctuel et avec un goût musical impeccable. Un remerciement tout particulier à Raphaël et son épouse : très attentifs, ils nous ont aidés à organiser le moment surprise où mon père a chanté au mariage — un souvenir INOUBLIABLE. Si vous cherchez un DJ pour votre mariage, Raphaël est LE choix. Merci pour tout ! ❤️", name: "Melissa T.", event: "Mariage" },
+      { quote: "Un grand merci à MGR Wedding pour leur superbe prestation lors de notre mariage. Nous avons adoré être accompagnés et suivis par DJ Jem, avec beaucoup de bienveillance. Il a su comprendre et appréhender nos goûts afin de nous proposer une offre sur-mesure adaptée à nos besoins ! Résultat : une ambiance de folie, des effets spectaculaires sur la piste (machines à fumée lourde et étincelles) et des souvenirs pour toujours ! Nous recommandons MGR Wedding à tous les futurs mariés !", name: "Alexandre V.", event: "Mariage" },
     ],
-    faqTitle: "Questions fréquentes",
+    // D'où viennent ces avis : à préciser (Google, e-mail…) avant de le publier.
+    testimonialsSource: "Avis de couples accompagnés par MGR Wedding, publiés avec leur accord — prénom et initiale.",
+
     faq: [
-      { q: "Intervenez-vous partout en Île-de-France ?", a: "Oui — Paris et toute l'Île-de-France, et au-delà sur demande. Le déplacement est précisé dans votre devis." },
-      { q: "Peut-on choisir les musiques ?", a: "Absolument. Nous construisons ensemble une trame (moments forts, must-play, no-play) et le DJ adapte en lecture du dancefloor le jour J." },
-      { q: "Que se passe-t-il en cas d'imprévu ?", a: "Notre organisation garantit un remplacement en 2h via notre réseau de DJs résidents — votre soirée n'est jamais menacée." },
-      { q: "Le matériel est-il inclus ?", a: "Oui : sonorisation, éclairage et effets selon la formule choisie. Tout est installé et testé avant l'arrivée de vos invités." },
-      { q: "Comment réserver ?", a: "Demandez un devis via le formulaire : nous revenons vers vous sous 24h pour un échange et une proposition personnalisée." },
+      { q: "Intervenez-vous partout en Île-de-France ?", a: "Oui — Paris et toute l’Île-de-France, et au-delà sur demande. Le déplacement est précisé dans votre devis." },
+      { q: "Peut-on choisir les musiques ?", a: "Absolument. Nous construisons ensemble une trame — moments forts, incontournables, titres à éviter — et le DJ adapte en lisant la piste le jour J." },
+      { q: "Que se passe-t-il en cas d’imprévu ?", a: "Notre réseau de DJs résidents nous permet de proposer un remplacement en cas d’empêchement. Les modalités figurent dans votre contrat." },
+      { q: "Le matériel est-il inclus ?", a: "Oui : sonorisation, éclairage et effets selon la formule choisie. Tout est installé et testé avant l’arrivée de vos invités." },
+      { q: "Comment réserver ?", a: "Demandez un devis via le formulaire : nous revenons vers vous sous 24 h avec un échange et une proposition personnalisée." },
     ],
   },
 

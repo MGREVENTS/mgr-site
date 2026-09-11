@@ -1,0 +1,123 @@
+/* assets/wedding.css — LA VARIANTE WEDDING de la base graphique.
+   Même largeur, même header, mêmes boutons, mêmes proportions que l'accueil
+   (assets/base.css) : seules les couleurs changent, et quelques composants
+   propres à la page mariage s'ajoutent. Blanc écru, encre chaude, or en
+   détail — la palette de /offres-mariage (VitrinePublique). */
+
+:root{
+  --fond:#FAF7F1; --fond-2:#F1EBE1;
+  --or:#B08D3F;
+  /* L'or de la marque ne tient pas le contraste en petit texte sur écru
+     (2,7:1). Les petits libellés — eyebrow, signature, légendes — prennent
+     ce ton plus profond (5,0:1) ; l'or clair reste aux filets et accents. */
+  --or-fonce:#7E6427;
+  --clair:#FFFFFF; --clair-2:#F1EBE1;
+  --encre:#241E15; --encre-2:#6B6154;
+  --texte:#241E15; --texte-2:#6B6154; --texte-3:rgba(36,30,21,.55);
+  --bord:rgba(36,30,21,.12); --bord-clair:rgba(36,30,21,.12);
+}
+/* La page est claire d'emblée : aucun choix sombre hérité d'ailleurs. */
+html{color-scheme:light}
+.eyebrow{color:var(--or-fonce)}
+:focus-visible{outline-color:var(--encre)}
+
+/* Actions : l'encre chaude porte l'action principale, l'or reste un détail. */
+.btn-or,.nav-cta{background:var(--encre);color:var(--fond)}
+.btn-or:hover,.nav-cta:hover,.btn-encre:hover{background:#3A3227}
+.btn-ligne{color:var(--encre);border-bottom-color:var(--or)}
+.btn-ligne:hover{color:var(--or-fonce)}
+.skip{background:var(--encre);color:var(--fond)}
+
+/* Header : la signature Wedding sur deux lignes, deux liens distincts. */
+.nav{background:var(--fond)}
+.nav-liens a{color:var(--texte-2)}
+.nav-liens a:hover,.nav-liens a[aria-current]{color:var(--texte)}
+.burger span,.burger span::before,.burger span::after{background:var(--encre)}
+.marque{display:flex;flex-direction:column;justify-content:center;gap:1px;min-height:44px}
+.marque a{display:block;line-height:1.2}
+.marque .nom{font-weight:600;letter-spacing:.2em;font-size:.86rem;text-transform:uppercase;color:var(--encre)}
+.marque .signature{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or-fonce);white-space:nowrap}
+.marque .signature:hover{color:var(--encre)}
+@media(max-width:400px){.marque .nom{letter-spacing:.14em}.marque .signature{letter-spacing:.16em}}
+
+/* Sections : écru en majorité, blanc pour ce qui doit se détacher. */
+.hero .eyebrow{white-space:nowrap}
+@media(max-width:640px){.hero .eyebrow{white-space:normal}}
+.surface-claire{background:var(--clair)}
+.sec-tete p{color:var(--texte-2)}
+.photo{background:var(--fond-2)}
+.mosaique figcaption span{color:rgba(250,247,241,.82)}
+.djs{background:var(--fond-2)}
+.dj{background:var(--clair)}
+dialog.fiche::backdrop{background:rgba(36,30,21,.62)}
+footer{border-top-color:var(--bord)}
+
+/* ── Formules : le même catalogue que /offres-mariage ─────────────────── */
+.formules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+@media(max-width:900px){.formules{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.formules{grid-template-columns:1fr}}
+.formule{background:var(--clair);border:1px solid var(--bord);border-radius:var(--rayon);padding:clamp(1.2rem,2.4vw,1.7rem);display:flex;flex-direction:column;gap:.7rem}
+.formule.mise-en-avant{border-color:var(--or)}
+.formule-tete{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem}
+.formule h3{font-size:1.45rem}
+.badge{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or-fonce);font-weight:600;white-space:nowrap}
+.formule .desc{color:var(--texte-2)}
+.prix{font-size:1.5rem;font-weight:600;color:var(--encre)}
+.prix small{font-size:.8rem;font-weight:500;color:var(--texte-2);margin-left:.3rem}
+.prix s{font-size:1rem;font-weight:400;color:var(--texte-3);margin-right:.5rem}
+.remise{font-size:.82rem;color:var(--or-fonce);font-weight:500}
+.duree{font-size:.9rem;color:var(--texte-2)}
+.formule details{border-top:1px solid var(--bord);padding-top:.7rem;margin-top:.2rem}
+.formule summary{cursor:pointer;font-weight:500;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:1rem;color:var(--encre);list-style:none}
+.formule summary::-webkit-details-marker{display:none}
+.formule summary::after{content:'+';color:var(--or-fonce);font-size:1.3rem;flex-shrink:0}
+.formule details[open] summary::after{content:'–'}
+.formule details ul{display:grid;gap:.45rem;margin:.4rem 0 .2rem}
+.formule details li{padding-left:1.2rem;position:relative;color:var(--texte-2);font-size:.95rem}
+.formule details li::before{content:'';position:absolute;left:0;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--or)}
+.formule-actions{display:flex;flex-direction:column;gap:.9rem;margin-top:auto;padding-top:.6rem}
+.formule-actions .btn{width:100%}
+.formules-note{color:var(--texte-2);font-size:.95rem;margin-top:1.6rem;max-width:640px}
+.etat{background:var(--clair);border:1px solid var(--bord);border-radius:var(--rayon);padding:1.4rem 1.5rem;color:var(--texte-2);display:flex;gap:1rem 2rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.etat[hidden]{display:none}
+
+/* ── Aftermovie : une façade, le lecteur ne se charge qu'au clic ───────── */
+.aftermovie{margin-top:14px;position:relative;border-radius:var(--rayon);overflow:hidden;background:var(--fond-2);aspect-ratio:16/9}
+.aftermovie img{width:100%;height:100%;object-fit:cover}
+.aftermovie iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.aftermovie .lire{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:.9rem;color:#FAF7F1;font-weight:600;font-size:1.05rem;background:rgba(36,30,21,.28);transition:background var(--t)}
+.aftermovie .lire:hover{background:rgba(36,30,21,.42)}
+.aftermovie .lire span{width:64px;height:64px;border-radius:50%;background:#FAF7F1;color:var(--encre);display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;padding-left:4px}
+.aftermovie figcaption{position:absolute;left:0;bottom:0;padding:1rem 1.2rem;font-size:.9rem;color:#FAF7F1}
+
+/* ── Nos DJs (variante Wedding : une sélection, une explication) ───────── */
+.djs-wedding{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(1.6rem,4vw,3.6rem);align-items:start}
+.djs-wedding .grille-djs{grid-template-columns:repeat(2,1fr)}
+.djs-wedding ol{list-style:none;counter-reset:etape;display:grid;gap:1rem;margin-top:1.4rem}
+.djs-wedding ol li{counter-increment:etape;padding-left:2.4rem;position:relative;color:var(--texte-2)}
+.djs-wedding ol li b{display:block;color:var(--encre);font-weight:600}
+.djs-wedding ol li::before{content:counter(etape,decimal-leading-zero);position:absolute;left:0;top:.15em;font-size:.72rem;letter-spacing:.12em;color:var(--or-fonce);font-weight:600}
+@media(max-width:860px){.djs-wedding{grid-template-columns:1fr}}
+
+/* ── Témoignages et questions ──────────────────────────────────────────── */
+.temoignages{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.temoignages{grid-template-columns:1fr}}
+.temoignage{background:var(--fond);border:1px solid var(--bord);border-radius:var(--rayon);padding:clamp(1.2rem,2.4vw,1.7rem);display:flex;flex-direction:column;gap:.9rem}
+.temoignage blockquote{color:var(--encre);font-size:1rem;line-height:1.65}
+.temoignage figcaption{color:var(--texte-2);font-size:.9rem;margin-top:auto}
+.temoignage figcaption b{color:var(--encre);font-weight:600}
+.source{color:var(--texte-3);font-size:.85rem;margin-top:1.2rem}
+.faq{display:grid;gap:0;border-top:1px solid var(--bord);margin-top:.4rem}
+.faq details{border-bottom:1px solid var(--bord)}
+.faq summary{cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-weight:500;font-size:1.05rem;color:var(--encre);list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--or-fonce);font-size:1.3rem;flex-shrink:0}
+.faq details[open] summary::after{content:'–'}
+.faq details p{color:var(--texte-2);padding:0 0 1.1rem;max-width:720px}
+
+/* ── Dernière invitation ───────────────────────────────────────────────── */
+.fin{text-align:center;padding:clamp(3.6rem,8vw,6.5rem) 0}
+.fin h2{font-size:clamp(1.9rem,4vw,3rem);margin:.8rem 0 1rem}
+.fin p{color:var(--texte-2);max-width:520px;margin:0 auto 1.8rem}
+.fin address{font-style:normal;margin-top:1.4rem;color:var(--texte-2);font-size:.95rem}
+.fin address a{color:var(--encre);font-weight:500;border-bottom:1px solid var(--or)}
