@@ -90,6 +90,9 @@ footer{border-top-color:var(--bord)}
 .djs-wedding{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(1.6rem,4vw,3.6rem);align-items:start}
 .djs-wedding.sans-portraits{grid-template-columns:1fr;max-width:720px}
 .djs-wedding .grille-djs{grid-template-columns:repeat(2,1fr)}
+/* Trois portraits : une seule rangée plutôt qu'un orphelin sous les deux
+   autres. Sur téléphone, trois colonnes seraient trop étroites : on garde deux. */
+@media(min-width:601px){.djs-wedding .grille-djs:has(> :nth-child(3):last-child){grid-template-columns:repeat(3,1fr)}}
 .djs-wedding .grille-djs[hidden]{display:none}
 .djs-wedding ol{list-style:none;counter-reset:etape;display:grid;gap:1rem;margin-top:1.4rem}
 .djs-wedding ol li{counter-increment:etape;padding-left:2.4rem;position:relative;color:var(--texte-2)}

@@ -361,10 +361,16 @@ const SITE_CONFIG = {
     ],
 
     // Les DJs présentés aux couples : une sélection, par leur nom dans `djs`.
-    // Vide pour l'instant — d'autres photos arrivent. La section garde le
-    // déroulé de la préparation et se passe de portraits tant que la liste
-    // est vide.
-    djs: [],
+    // Style, lieux et Instagram viennent de la fiche du DJ ; seule la photo
+    // change. Les portraits de l'accueil sont ceux des clubs — pour un
+    // mariage, on montre les portraits en tenue (assets/djs/wedding/, 3:4,
+    // détourés sur fond écru). LA DEMANDE : « photos à rajouter pour la
+    // partie DJ dans wedding » (11 septembre 2026).
+    djs: [
+      { name: "DJ Jem",     photo: "assets/djs/wedding/jem.webp" },
+      { name: "DJ Ny Aina", photo: "assets/djs/wedding/nyaina.webp" },
+      { name: "DJ Lixx",    photo: "assets/djs/wedding/lixx.webp" },
+    ],
 
     testimonials: [
       { quote: "Un énorme merci à notre DJ qui a été juste incroyable du début à la fin ! 🎉 Grâce à lui, l'ambiance était au rendez-vous toute la soirée. Il a su s'adapter à tous les goûts et faire danser toutes les générations. Super sympa, professionnel et à l'écoute. On le recommande à 1000 %, les yeux fermés. Merci encore pour tous ces magnifiques souvenirs.", name: "Anna O.", event: "Mariage" },

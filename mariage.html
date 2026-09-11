@@ -331,7 +331,13 @@
     .catch(() => afficherEtat('Le catalogue est momentanément indisponible. Demandez votre devis : nous vous répondons avec les formules.'));
 
   // ── E. Nos DJs : la sélection Wedding, fiche au clic ──────────────────
-  const djs = (C.djs || []).filter(d => (W.djs || []).includes(d.name));
+  // La sélection Wedding : un nom (fiche telle quelle) ou { name, photo }
+  // pour remplacer le portrait de club par le portrait en tenue.
+  const djs = (W.djs || []).map(s => {
+    const sel = typeof s === 'string' ? { name: s } : s;
+    const base = (C.djs || []).find(d => d.name === sel.name);
+    return base ? { ...base, ...sel } : null;
+  }).filter(Boolean);
   // Sans sélection, la section garde son texte et se passe de portraits :
   // une grille vide à côté d'un paragraphe ressemblerait à un oubli.
   document.querySelector('.djs-wedding').classList.toggle('sans-portraits', djs.length === 0);
