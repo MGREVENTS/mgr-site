@@ -225,8 +225,10 @@
     <div class="fiche-texte">
       <p class="eyebrow">Fiche DJ</p>
       <h3 id="ficheNom"></h3>
+      <!-- Pas de style musical ici : pour un mariage, le DJ s'adapte au
+           couple, pas l'inverse. LA DEMANDE : « on retire les styles
+           musicaux des DJ » (11 septembre 2026). -->
       <dl class="fiche-ligne">
-        <dt>Univers</dt><dd id="ficheStyle"></dd>
         <dt>Lieux</dt><dd id="ficheLieux"></dd>
       </dl>
       <p class="form-note">Une préférence, pas une réservation : nous la confirmons avec vous selon la date.</p>
@@ -345,12 +347,12 @@
   $('#grilleDjs').innerHTML = djs.map((d, i) =>
     `<button type="button" class="dj" data-i="${i}" aria-haspopup="dialog">
       <span class="photo"><img src="${esc(d.photo)}" alt="Portrait de ${esc(d.name)}" loading="lazy"></span>
-      <span class="dj-infos"><b>${esc(d.name)}</b><span>${esc(d.style)}</span></span></button>`).join('');
+      <span class="dj-infos"><b>${esc(d.name)}</b></span></button>`).join('');
   const fiche = $('#ficheDj');
   function ouvrirFiche(i) {
     const d = djs[i]; if (!d) return;
     $('#ficheImg').src = d.photo; $('#ficheImg').alt = 'Portrait de ' + d.name;
-    $('#ficheNom').textContent = d.name; $('#ficheStyle').textContent = d.style;
+    $('#ficheNom').textContent = d.name;
     $('#ficheLieux').textContent = d.venues || '';
     $('#ficheLieux').hidden = $('#ficheLieux').previousElementSibling.hidden = !d.venues;
     const insta = $('#ficheInsta'); insta.href = d.instagram || '#'; insta.hidden = !d.instagram;
