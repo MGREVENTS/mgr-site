@@ -319,7 +319,7 @@ const SITE_CONFIG = {
         { src: "assets/photos/wedding/premiere-danse.webp", legende: "L’ouverture de bal" },
         { src: "assets/photos/wedding/soiree.webp",         legende: "La soirée" },
       ],
-      videoId: "Iy-Wbd6jF5c",
+      videoId: "uJQA-2tTGTw",
       poster: "assets/photos/wedding.jpg",
     },
 
