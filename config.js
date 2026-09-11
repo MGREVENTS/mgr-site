@@ -361,16 +361,22 @@ const SITE_CONFIG = {
     ],
 
     // Les DJs présentés aux couples : une sélection, par leur nom dans `djs`.
-    // Style, lieux et Instagram viennent de la fiche du DJ ; seule la photo
+    // Lieux et Instagram viennent de la fiche du DJ ; seule la photo
     // change. Les portraits de l'accueil sont ceux des clubs — pour un
     // mariage, on montre les portraits en tenue (assets/djs/wedding/, 3:4,
     // détourés sur fond écru). LA DEMANDE : « photos à rajouter pour la
-    // partie DJ dans wedding » (11 septembre 2026).
+    // partie DJ dans wedding » (11 septembre 2026), puis « remplace la
+    // photo de jem » : le portrait chemise blanche, sourire, remplace celui
+    // au casque.
     djs: [
       { name: "DJ Jem",     photo: "assets/djs/wedding/jem.webp" },
       { name: "DJ Ny Aina", photo: "assets/djs/wedding/nyaina.webp" },
-      { name: "DJ Lixx",    photo: "assets/djs/wedding/lixx.webp" },
+      { name: "DJ Deloums", photo: "assets/djs/wedding/deloums.webp" },
     ],
+    // La photo de groupe au-dessus des portraits (« les autres photos des
+    // DJ », 11 septembre 2026) : les trois en veste, détourés. Retirer la
+    // ligne pour n'afficher que les portraits.
+    equipe: { photo: "assets/photos/wedding/equipe.webp", alt: "DJ Ny Aina, DJ Jem et DJ Deloums, en tenue de soirée" },
 
     testimonials: [
       { quote: "Un énorme merci à notre DJ qui a été juste incroyable du début à la fin ! 🎉 Grâce à lui, l'ambiance était au rendez-vous toute la soirée. Il a su s'adapter à tous les goûts et faire danser toutes les générations. Super sympa, professionnel et à l'écoute. On le recommande à 1000 %, les yeux fermés. Merci encore pour tous ces magnifiques souvenirs.", name: "Anna O.", event: "Mariage" },
