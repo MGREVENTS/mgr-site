@@ -154,6 +154,24 @@ Site statique one-page (HTML/CSS/JS) hébergé sur Hostinger.
 ```
 Ou upload manuel via hPanel → Gestionnaire de fichiers → /public_html/
 
+## Google Ads et consentement
+
+- `assets/ads.js` prépare la balise (`AW-18438953840`) et ne la charge **que
+  sur `mgrevents.fr` / `www.mgrevents.fr`** et **qu'après accord** du
+  visiteur. Il expose `window.mgrAds.charger()`.
+- `assets/consent.js` est le bandeau (chargé juste après `ads.js` dans le
+  `<head>` de **toutes** les pages). Choix retenu 6 mois en `localStorage`,
+  clé `mgr_consent`, valeur `{ "choix": "accepte"|"refuse", "date": ISO }`.
+  Le lien « Cookies » du pied de page (`data-cookies`) le rouvre.
+- **Le même choix vaut sur les pages PlanniFlow** servies sous
+  `www.mgrevents.fr` (`/devis-mariage`, `/offres-mariage`,
+  `/salon-du-mariage`) : même origine, même clé — `lib/consentement.mjs` et
+  `components/BandeauCookies.js` là-bas. **Changer le format ici impose de
+  le changer là-bas.**
+- Sur un aperçu Vercel, ni balise ni bandeau : il n'y a rien à consentir.
+- Pour tester en local, servir la page sous le vrai nom d'hôte (Playwright :
+  `page.route('https://www.mgrevents.fr/**', …)` vers le serveur local).
+
 ## Stack
 - HTML/CSS/JS vanilla (pas de framework, pas de build)
 - Fonts : Google Fonts (DM Sans + Playfair Display)

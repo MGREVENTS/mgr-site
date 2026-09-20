@@ -24,6 +24,10 @@
   --wrap:1180px; --gout:clamp(20px,4vw,48px);
   --rayon:14px; --rayon-s:10px;
   --t:.18s ease;
+  /* L'action principale de la page, pour les composants partagés qui ne
+     connaissent pas le thème (le bandeau cookies, assets/consent.js) :
+     ici l'or, sur /mariage l'encre. */
+  --action-fond:var(--or); --action-texte:var(--encre);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--fond);color:var(--texte);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
