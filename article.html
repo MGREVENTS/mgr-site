@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <script src="assets/ads.js"></script>
+<script src="assets/consent.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.fr https://googleads.g.doubleclick.net https://td.doubleclick.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,7 +79,7 @@ const fmt=d=>{try{return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',m
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="/#djs">Nos DJs</a></div></nav>`;}
-function footHTML(){return `<footer><div class="fnav"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/mentions.html">Mentions légales</a></div><div class="fbottom">© ${new Date().getFullYear()} ${B.name}</div></footer>`;}
+function footHTML(){return `<footer><div class="fnav"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/mentions.html">Mentions légales</a><a href="/mentions.html#cookies" data-cookies>Cookies</a></div><div class="fbottom">© ${new Date().getFullYear()} ${B.name}</div></footer>`;}
 
 if(!a){
   document.title='Article introuvable — '+B.name;

@@ -15,6 +15,7 @@
   --encre:#241E15; --encre-2:#6B6154;
   --texte:#241E15; --texte-2:#6B6154; --texte-3:rgba(36,30,21,.55);
   --bord:rgba(36,30,21,.12); --bord-clair:rgba(36,30,21,.12);
+  --action-fond:var(--encre); --action-texte:var(--fond);
 }
 /* La page est claire d'emblée : aucun choix sombre hérité d'ailleurs. */
 html{color-scheme:light}

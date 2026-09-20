@@ -26,32 +26,56 @@ var MGR_ADS_ID = 'AW-18438953840';
 // l'audience, et sur lequel elle apprendrait.
 var MGR_ADS_HOTES = ['mgrevents.fr', 'www.mgrevents.fr'];
 
+// ET SEULEMENT AVEC L'ACCORD DU VISITEUR.
+//
+// La balise pose un cookie publicitaire : en France, il faut le consentement
+// AVANT, pas après (CNIL, lignes directrices cookies). Ce fichier ne charge
+// donc plus rien de lui-même. Il prépare la balise et expose `mgrAds.charger`
+// ; c'est assets/consent.js — le bandeau — qui l'appelle, tout de suite si
+// le visiteur a déjà accepté, au clic sinon, jamais s'il a refusé.
+// LA DEMANDE : « bandeau cookies pour Google Ads » (20 septembre 2026).
+//
 // LA MÊME BALISE DOIT VIVRE DANS PLANNIFLOW, sinon la moitié du chemin
 // manque. Le visiteur clique sur l'annonce, arrive ici, puis termine sa
 // demande sur /devis-mariage — une page de l'app. Sans balise là-bas, on
 // paie des clics dont on ne saura jamais lesquels ont abouti.
 // Côté PlanniFlow, l'identifiant se règle par la variable d'environnement
-// NEXT_PUBLIC_ADS_ID (voir components/VitrinePublique.js).
+// NEXT_PUBLIC_ADS_ID (voir components/VitrinePublique.js), et le même
+// consentement s'y applique : même domaine, même clé de stockage
+// (lib/consentement.mjs là-bas, assets/consent.js ici).
 //
 // Le domaine est le même des deux côtés — www.mgrevents.fr, le catch-all
 // s'en charge — il n'y a donc AUCUN suivi inter-domaines à configurer.
 
 (function () {
   var id = String(MGR_ADS_ID || '').trim();
-  if (!/^AW-\d{6,}$/.test(id)) return;
-  if (MGR_ADS_HOTES.indexOf(location.hostname) === -1) return;
+  var actif = /^AW-\d{6,}$/.test(id) && MGR_ADS_HOTES.indexOf(location.hostname) !== -1;
+  var charge = false;
 
-  // La file d'attente de gtag doit exister AVANT le script distant : les
-  // appels faits pendant le chargement s'y empilent et partent ensuite.
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { window.dataLayer.push(arguments); };
-  window.gtag('js', new Date());
-  window.gtag('config', id);
+  function charger() {
+    if (!actif || charge) return;
+    charge = true;
+    // La file d'attente de gtag doit exister AVANT le script distant : les
+    // appels faits pendant le chargement s'y empilent et partent ensuite.
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', id);
 
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
-  document.head.appendChild(s);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+    document.head.appendChild(s);
+  }
+
+  window.mgrAds = {
+    // Vrai quand la balise A UNE RAISON de se charger ici : identifiant
+    // valide, vrai domaine. C'est aussi ce qui décide si le bandeau
+    // s'affiche — sans balise, il n'y a rien à consentir.
+    actif: actif,
+    charger: charger,
+    chargee: function () { return charge; }
+  };
 })();
 
 // SIGNALER UNE CONVERSION DEPUIS LE SITE.
@@ -61,7 +85,8 @@ var MGR_ADS_HOTES = ['mgrevents.fr', 'www.mgrevents.fr'];
 // formulaire du site devra compter — le formulaire de contact de l'accueil,
 // par exemple — afin qu'on n'aille pas réécrire la mécanique à côté.
 //
-// Sans balise chargée, elle ne fait rien et ne casse rien.
+// Sans balise chargée (identifiant vide, aperçu, ou refus du visiteur), elle
+// ne fait rien et ne casse rien.
 window.mgrConversion = function (evenement, parametres) {
   if (typeof window.gtag !== 'function' || !evenement) return;
   window.gtag('event', evenement, parametres || {});
