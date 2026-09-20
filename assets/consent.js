@@ -56,23 +56,28 @@
   var choix = lire();
   if (choix === 'accepte') ads.charger();
 
+  // UNE SEULE LIGNE, FINE, SUR TOUTE LA LARGEUR, collée au bas de l'écran —
+  // « le bandeau est vraiment trop gros » (20 septembre 2026). Le texte à
+  // gauche, les deux boutons à droite, même hauteur. Sur téléphone, le texte
+  // passe au-dessus des boutons, qui gardent la même largeur l'un que l'autre.
   var STYLE = [
-    '.mgr-cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:300;margin:0 auto;max-width:640px;',
-    'background:var(--fond-2,#181916);color:var(--texte,var(--blanc,#F5F4EF));border:1px solid var(--bord,rgba(245,244,239,.14));',
-    'border-radius:var(--rayon,14px);padding:1.1rem 1.25rem;box-shadow:0 18px 50px rgba(0,0,0,.28);',
-    'font-family:var(--sans,var(--ff-body,"DM Sans",system-ui,sans-serif));font-size:.95rem;line-height:1.55}',
+    '.mgr-cookies{position:fixed;left:0;right:0;bottom:0;z-index:300;',
+    'background:var(--fond-2,#181916);color:var(--texte,var(--blanc,#F5F4EF));border-top:1px solid var(--bord,rgba(245,244,239,.14));',
+    'padding:.55rem clamp(16px,4vw,48px) calc(.55rem + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(0,0,0,.18);',
+    'font-family:var(--sans,var(--ff-body,"DM Sans",system-ui,sans-serif));font-size:.84rem;line-height:1.4;',
+    'display:flex;align-items:center;justify-content:space-between;gap:.6rem 1.5rem;flex-wrap:wrap}',
     '.mgr-cookies[hidden]{display:none}',
-    '.mgr-cookies p{margin:0 0 .9rem}',
-    '.mgr-cookies a{color:inherit;text-decoration:underline;text-underline-offset:3px}',
+    '.mgr-cookies p{margin:0;flex:1 1 320px;min-width:0}',
+    '.mgr-cookies a{color:inherit;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}',
     '.mgr-cookies a:hover{color:var(--or,#C7AC72)}',
-    '.mgr-cookies-actions{display:flex;gap:.6rem;flex-wrap:wrap}',
-    '.mgr-cookies-btn{flex:1 1 140px;min-height:44px;padding:0 1.2rem;border-radius:var(--rayon-s,10px);border:1px solid var(--bord,rgba(245,244,239,.2));',
-    'background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer;transition:background .18s ease,color .18s ease}',
-    '.mgr-cookies-btn:hover{background:rgba(127,127,127,.12)}',
+    '.mgr-cookies-actions{display:flex;gap:.5rem;flex:0 0 auto;margin-left:auto}',
+    '.mgr-cookies-btn{min-height:34px;padding:0 1rem;border-radius:999px;border:1px solid var(--bord,rgba(245,244,239,.25));',
+    'background:transparent;color:inherit;font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:background .18s ease,color .18s ease}',
+    '.mgr-cookies-btn:hover{background:rgba(127,127,127,.14)}',
     '.mgr-cookies-btn:focus-visible{outline:2px solid var(--or,#C7AC72);outline-offset:2px}',
     '.mgr-cookies-btn.oui{background:var(--action-fond,var(--or,#C7AC72));color:var(--action-texte,var(--encre,#20211E));border-color:transparent}',
     '.mgr-cookies-btn.oui:hover{filter:brightness(1.08)}',
-    '@media(max-width:480px){.mgr-cookies{left:10px;right:10px;bottom:10px;padding:1rem}}'
+    '@media(max-width:640px){.mgr-cookies{padding-top:.7rem}.mgr-cookies-actions{width:100%;margin-left:0}.mgr-cookies-btn{flex:1 1 0;min-height:38px}}'
   ].join('');
 
   var bandeau = null;
@@ -89,8 +94,7 @@
     bandeau.setAttribute('aria-label', 'Cookies');
     bandeau.hidden = true;
     bandeau.innerHTML =
-      '<p>Nous utilisons un cookie Google Ads, uniquement pour savoir si nos annonces mènent à des demandes de devis. ' +
-      'Aucune autre mesure, aucune revente. <a href="/mentions.html#cookies">En savoir plus</a></p>' +
+      '<p>Un cookie Google Ads, uniquement pour savoir si nos annonces mènent à des demandes de devis. <a href="/mentions.html#cookies">En savoir plus</a></p>' +
       '<div class="mgr-cookies-actions">' +
       '<button type="button" class="mgr-cookies-btn non" id="mgrCookiesNon">Refuser</button>' +
       '<button type="button" class="mgr-cookies-btn oui" id="mgrCookiesOui">Accepter</button>' +
