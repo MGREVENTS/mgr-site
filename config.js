@@ -545,8 +545,9 @@ const SITE_CONFIG = {
     // veut une photo en paysage. Une entrée peut être une vidéo courte :
     // { video: "assets/videos/x.mp4", photo: "<image d'attente>", ... } —
     // muette, en boucle, lue seulement quand elle est à l'écran.
-    // La soirée tropicale est une soirée d'équipe (le logo Médecins du Monde
-    // est sur les photos : la grande case le recadre, pas la petite).
+    // La soirée tropicale est une soirée d'équipe chez un client. Son logo a
+    // été retiré des photos — bas rogné, livret retouché — à la demande du
+    // 30 septembre 2026 : ne jamais republier les originaux tels quels.
     realisations: [
       { photo: "assets/photos/celebration/soiree-equipe-costumes.webp", lieu: "Soirée d’équipe", legende: "Thème tropical, costumes compris", format: "large" },
       { photo: "assets/photos/celebration/dj-jem-platines.webp",        lieu: "DJ Jem",          legende: "Aux platines" },
