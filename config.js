@@ -590,7 +590,10 @@ const SITE_CONFIG = {
         category: "Mariage",
         date: "2026-06-15",
         readingTime: "5 min",
-        cover: "assets/photos/wedding/blog-choisir-dj.webp",
+        // Couvertures : de vraies photos de mariages MGR, en attendant des
+        // visuels dédiés (blog-*.webp, jamais déposés — liste dans
+        // assets/photos/wedding/README.md). Changer le chemin suffit.
+        cover: "assets/photos/wedding/soiree.webp",
         excerpt: "Expérience, matériel, feeling, contrat… les vrais critères pour choisir le DJ qui fera danser vos invités jusqu'au bout de la nuit.",
         body: `
           <p>Le DJ est le chef d'orchestre invisible de votre soirée : c'est lui qui transforme un dîner réussi en une piste de danse mémorable. Voici les critères qui comptent vraiment.</p>
@@ -615,7 +618,7 @@ const SITE_CONFIG = {
         category: "Conseils",
         date: "2026-05-28",
         readingTime: "6 min",
-        cover: "assets/photos/wedding/blog-deroule.webp",
+        cover: "assets/photos/wedding/diner.webp",
         excerpt: "Du vin d'honneur à la dernière danse : comment construire une montée en énergie qui garde la piste pleine toute la nuit.",
         body: `
           <p>Une soirée qui fonctionne n'est pas une succession de tubes : c'est une <strong>courbe d'énergie</strong> maîtrisée. Voici une trame éprouvée.</p>
@@ -637,7 +640,7 @@ const SITE_CONFIG = {
         category: "Inspiration",
         date: "2026-05-10",
         readingTime: "4 min",
-        cover: "assets/photos/wedding/blog-premiere-danse.webp",
+        cover: "assets/photos/wedding/premiere-danse.webp",
         excerpt: "Choisir LA chanson, gérer le trac, soigner la mise en lumière : tout pour réussir votre premier slow.",
         body: `
           <p>La première danse est l'un des moments les plus regardés de la soirée. Quelques principes pour qu'elle soit à votre image.</p>
