@@ -80,10 +80,11 @@ var MGR_ADS_HOTES = ['mgrevents.fr', 'www.mgrevents.fr'];
 
 // SIGNALER UNE CONVERSION DEPUIS LE SITE.
 //
-// Inutilisée aujourd'hui : la demande de devis se conclut sur PlanniFlow,
-// c'est donc là que l'événement part. Elle est ici pour le jour où un
-// formulaire du site devra compter — le formulaire de contact de l'accueil,
-// par exemple — afin qu'on n'aille pas réécrire la mécanique à côté.
+// La demande de devis mariage se conclut sur PlanniFlow, c'est donc là que
+// son événement part. Celle de /celebration se conclut ICI : son formulaire
+// appelle cette fonction à l'envoi réussi, avec le même nom d'événement
+// que PlanniFlow (celebration.html). Le formulaire de l'accueil, lui, ne
+// compte toujours pas.
 //
 // Sans balise chargée (identifiant vide, aperçu, ou refus du visiteur), elle
 // ne fait rien et ne casse rien.

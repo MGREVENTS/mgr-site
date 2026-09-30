@@ -23,6 +23,7 @@
 
   "rewrites": [
     { "source": "/mariage", "destination": "/mariage.html" },
+    { "source": "/celebration", "destination": "/celebration.html" },
     { "source": "/blog", "destination": "/blog.html" },
     { "source": "/blog/:slug", "destination": "/article.html" },
 

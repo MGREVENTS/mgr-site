@@ -9,7 +9,8 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0A0A0A">
 <title>Le Journal — MGR Events Paris</title>
-<link rel="icon" type="image/webp" href="assets/waveform.webp">
+<link rel="icon" type="image/png" href="assets/favicon-mgr.png">
+<link rel="apple-touch-icon" href="assets/icone-mgr-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -25,7 +26,7 @@ em{font-style:italic;color:var(--or)}
 .eyebrow{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or);font-weight:500}
 .fx-grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:2;opacity:.045;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
 nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08)}
-.nav-logo img{height:30px;filter:brightness(1.1)}
+.nav-logo img{height:36px;width:auto}
 .nav-links{display:flex;gap:2rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 .nav-links a{color:var(--gris-texte);transition:color .25s}.nav-links a:hover{color:var(--blanc)}
 .nav-item{position:relative;display:inline-flex;align-items:center}
@@ -92,7 +93,7 @@ if(!a){
   setMeta('og:title',a.title,true);setMeta('og:description',a.excerpt,true);setMeta('og:type','article',true);
   setMeta('og:url','https://www.mgrevents.fr/blog/'+a.slug,true);setMeta('og:image','https://www.mgrevents.fr/'+a.cover,true);
   const ld={"@context":"https://schema.org","@type":"BlogPosting","headline":a.title,"description":a.excerpt,
-    "datePublished":a.date,"author":{"@type":"Organization","name":B.name},"publisher":{"@type":"Organization","name":B.name,"logo":{"@type":"ImageObject","url":"https://www.mgrevents.fr/assets/waveform.png"}},
+    "datePublished":a.date,"author":{"@type":"Organization","name":B.name},"publisher":{"@type":"Organization","name":B.name,"logo":{"@type":"ImageObject","url":"https://www.mgrevents.fr/assets/logo-mgr-events-carre.png"}},
     "image":"https://www.mgrevents.fr/"+a.cover,"mainEntityOfPage":"https://www.mgrevents.fr/blog/"+a.slug,"articleSection":a.category};
   const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
 
