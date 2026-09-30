@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<script src="assets/ads.js"></script>
-<script src="assets/consent.js"></script>
+<!-- CHEMINS ABSOLUS, partout sur cette page : elle est servie sous
+     /blog/<article> (rewrite vercel.json). Un chemin relatif y devient
+     /blog/config.js — que la même rewrite sert… en HTML, et l'article reste
+     vide — ou /blog/assets/…, qui tombe dans le catch-all PlanniFlow. -->
+<script src="/assets/ads.js"></script>
+<script src="/assets/consent.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.fr https://googleads.g.doubleclick.net https://td.doubleclick.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0A0A0A">
 <title>Le Journal — MGR Events Paris</title>
-<link rel="icon" type="image/webp" href="assets/waveform.webp">
+<link rel="icon" type="image/png" href="/assets/favicon-mgr.png">
+<link rel="apple-touch-icon" href="/assets/icone-mgr-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -25,7 +30,7 @@ em{font-style:italic;color:var(--or)}
 .eyebrow{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or);font-weight:500}
 .fx-grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:2;opacity:.045;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
 nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08)}
-.nav-logo img{height:30px;filter:brightness(1.1)}
+.nav-logo img{height:36px;width:auto}
 .nav-links{display:flex;gap:2rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 .nav-links a{color:var(--gris-texte);transition:color .25s}.nav-links a:hover{color:var(--blanc)}
 .nav-item{position:relative;display:inline-flex;align-items:center}
@@ -68,7 +73,7 @@ footer .fnav a:hover{color:var(--or)}
 <body>
 <div class="fx-grain" aria-hidden="true"></div>
 <div id="app"></div>
-<script src="config.js"></script>
+<script src="/config.js"></script>
 <script>
 const BL=SITE_CONFIG.blog, B=SITE_CONFIG.brand;
 const seg=location.pathname.split('/').filter(Boolean).pop()||'';
@@ -77,8 +82,11 @@ const slug=qs||seg;
 const a=BL.articles.find(x=>x.slug===slug);
 const fmt=d=>{try{return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}catch(e){return d;}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// Les chemins de config.js partent de la racine du site (« assets/… ») :
+// sous /blog/<article>, ils doivent commencer par « / ».
+const abs=p=>/^(https?:)?\/\//.test(p)||String(p).startsWith('/')?p:'/'+p;
 
-function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${B.logo}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="/#djs">Nos DJs</a></div></nav>`;}
+function navHTML(){return `<nav><a href="/" class="nav-logo"><img src="${abs(B.logo)}" alt="${B.name}"></a><div class="nav-links"><a href="/">Accueil</a><a href="/#brands">Nos univers</a><a href="/mariage">Mariage</a><a href="/#djs">Nos DJs</a></div></nav>`;}
 function footHTML(){return `<footer><div class="fnav"><a href="/">Accueil</a><a href="/mariage">Mariage</a><a href="/mentions.html">Mentions légales</a><a href="/mentions.html#cookies" data-cookies>Cookies</a></div><div class="fbottom">© ${new Date().getFullYear()} ${B.name}</div></footer>`;}
 
 if(!a){
@@ -92,7 +100,7 @@ if(!a){
   setMeta('og:title',a.title,true);setMeta('og:description',a.excerpt,true);setMeta('og:type','article',true);
   setMeta('og:url','https://www.mgrevents.fr/blog/'+a.slug,true);setMeta('og:image','https://www.mgrevents.fr/'+a.cover,true);
   const ld={"@context":"https://schema.org","@type":"BlogPosting","headline":a.title,"description":a.excerpt,
-    "datePublished":a.date,"author":{"@type":"Organization","name":B.name},"publisher":{"@type":"Organization","name":B.name,"logo":{"@type":"ImageObject","url":"https://www.mgrevents.fr/assets/waveform.png"}},
+    "datePublished":a.date,"author":{"@type":"Organization","name":B.name},"publisher":{"@type":"Organization","name":B.name,"logo":{"@type":"ImageObject","url":"https://www.mgrevents.fr/assets/logo-mgr-events-carre.png"}},
     "image":"https://www.mgrevents.fr/"+a.cover,"mainEntityOfPage":"https://www.mgrevents.fr/blog/"+a.slug,"articleSection":a.category};
   const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
 
@@ -101,7 +109,7 @@ if(!a){
     <a class="back" href="/blog">← Le Journal</a>
     <div class="a-meta"><span class="eyebrow">${esc(a.category)}</span><span class="dot">·</span>${fmt(a.date)}${a.readingTime?'<span class="dot">·</span>'+a.readingTime:''}</div>
     <h1>${esc(a.title)}</h1>
-    <div class="a-cover"><img src="${a.cover}" alt="${esc(a.title)}" onerror="this.style.display='none';this.parentElement.classList.add('ph');this.parentElement.setAttribute('data-label','${esc(a.category)}')"></div>
+    <div class="a-cover"><img src="${abs(a.cover)}" alt="${esc(a.title)}" onerror="this.style.display='none';this.parentElement.classList.add('ph');this.parentElement.setAttribute('data-label','${esc(a.category)}')"></div>
     <div class="a-body">${a.body}</div>
     <div class="a-cta"><h3>Un projet de mariage ou d'événement ?</h3><p>Parlons-en — réponse sous 24h.</p><a class="btn" href="/mariage#devis">Demander un devis</a></div>
   </article>`+footHTML();

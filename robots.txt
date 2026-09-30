@@ -12,6 +12,7 @@
 User-agent: *
 Allow: /$
 Allow: /mariage
+Allow: /celebration
 Allow: /blog
 Allow: /mentions.html
 Allow: /salon-du-mariage

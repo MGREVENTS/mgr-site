@@ -40,11 +40,12 @@ statique** vers PlanniFlow :
 
 1. **`redirects`** — les 301 historiques (`/real`, `/dj-*`…)
 2. **Fichiers statiques et fonctions `api/`** — `index.html`, `mariage.html`,
-   `blog.html`, `article.html`, `mentions.html`, `assets/*`, `robots.txt`,
-   `sitemap.xml`, `/api/lead`, `/api/catalogue-mariage`.
+   `celebration.html`, `blog.html`, `article.html`, `mentions.html`,
+   `assets/*`, `robots.txt`, `sitemap.xml`, `/api/lead`,
+   `/api/catalogue-mariage`.
    Ils sont servis **ici**, donc aucune rewrite ne peut les intercepter.
 3. **`rewrites`**, dans l'ordre — la première qui correspond gagne :
-   - `/mariage`, `/blog`, `/blog/:slug` → pages statiques du site
+   - `/mariage`, `/celebration`, `/blog`, `/blog/:slug` → pages statiques du site
    - `/app`, `/app/*` → PlanniFlow **en retirant le préfixe** `/app`
      (seules règles qui transforment le chemin : à conserver)
    - `/:path*` → **catch-all PlanniFlow**
@@ -53,7 +54,7 @@ statique** vers PlanniFlow :
 
 | URL | Servie par |
 |---|---|
-| `/`, `/mariage`, `/blog`, `/blog/:slug`, `/mentions.html` | site statique (ce repo) |
+| `/`, `/mariage`, `/celebration`, `/blog`, `/blog/:slug`, `/mentions.html` | site statique (ce repo) |
 | `/api/lead`, `/api/catalogue-mariage` | fonctions serverless de **ce** repo |
 | `/salon-du-mariage` | **PlanniFlow** (l'ancienne page statique est dans `archive/`, non déployée — voir `.vercelignore`) |
 | tout le reste | **PlanniFlow** |
@@ -104,6 +105,46 @@ sur `https://www.mgrevents.fr`. Toute redirection doit donc aller **apex →
 Les deux hôtes sont attachés au projet Vercel. Un cookie de session posé sur
 l'un n'est pas envoyé à l'autre : traverser les deux pendant une connexion
 provoque des déconnexions apparemment aléatoires.
+
+### Trois univers, trois pages d'arrivée
+
+MGR reste la marque mère ; chaque intention commerciale a sa page et son
+tunnel, pour que les posts Google et les campagnes arrivent au bon endroit :
+
+| Univers | Pour qui | Page | Devis |
+|---|---|---|---|
+| **MGR Events** | clubs, établissements, entreprises (B2B) | `/` | formulaire de l'accueil |
+| **MGR Wedding** | mariages | `/mariage` | `/devis-mariage` (PlanniFlow) |
+| **MGR Célébration** | anniversaires dès 18 ans, fiançailles, noces, baby showers, fêtes privées | `/celebration` | formulaire en bas de page |
+
+### MGR Célébration — `/celebration`
+
+- `celebration.html` + `assets/celebration.css` (variante de `base.css` :
+  noir chaud, bordeaux, or, crème — la palette des flyers Célébration). Tout
+  le contenu est dans `config.js`, `celebrationPage` ; les sections suivent
+  le brief du 30 septembre 2026, de 1 à 10.
+- **Le formulaire** poste sur `/api/send-contact` (PlanniFlow), comme
+  l'accueil. La route n'accepte que sa liste de types : la demande part en
+  `Booking DJ — Événement privé`, et le détail (occasion, date, lieu,
+  invités, prestations, univers, provenance utm) ouvre le message.
+  **Un type « Célébration » dédié, ou un rangement dans le CRM, se fait côté
+  PlanniFlow** (« change sur planning »).
+- À l'envoi réussi, il déclenche la conversion Google Ads
+  `ads_conversion_Demande_de_devis_1` (le même nom que PlanniFlow,
+  `lib/ads.mjs`) via `window.mgrConversion` — seulement si le visiteur a
+  accepté les cookies.
+- Liens de campagne : `/celebration?occasion=18-ans` arrive avec l'occasion
+  déjà cochée (les `id` de `celebrationPage.evenements`).
+- Photos : uniquement de vraies photos MGR. Ce qu'il manque :
+  `assets/photos/celebration/README.md`.
+
+### Logo (nouvelle DA MGR Events, septembre 2026)
+
+« MGR » bordeaux, « EVENTS PARIS » or, fond transparent :
+`assets/logo-mgr-events.webp` (en-tête de l'accueil et de `/celebration`,
+`brand.logo` pour le blog), `.png` (source), `logo-mgr-events-carre.png`
+(fond blanc, JSON-LD), `favicon-mgr.png` et `icone-mgr-180.png`. **MGR
+Wedding garde sa propre identité** (et encore le favicon `waveform`).
 
 ### Workflow type
 - « **change sur planning** ajoute une page `/devis` » → modif côté repo

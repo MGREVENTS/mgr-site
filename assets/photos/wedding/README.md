@@ -21,5 +21,8 @@ Format web conseillé : largeur ~1600 px, poids < 400 Ko, qualité ~80.
 ## Couvertures du Journal (blog)
 `blog-choisir-dj.webp` · `blog-deroule.webp` · `blog-premiere-danse.webp`
 
+(En attendant, `config.js` utilise `soiree.webp`, `diner.webp` et
+`premiere-danse.webp` : déposer un visuel dédié, puis changer son chemin.)
+
 > Toute image absente affiche un placeholder élégant : rien n'est cassé tant
 > que tout n'est pas fourni.

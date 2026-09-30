@@ -11,7 +11,10 @@ const SITE_CONFIG = {
     name: "MGR Events Paris",
     email: "contact@mgrevents.fr",
     since: 2016,
-    logo: "assets/waveform.webp",
+    // Le logo MGR Events (nouvelle DA, septembre 2026) : « MGR » bordeaux,
+    // « EVENTS PARIS » or, fond transparent. Le blog et les articles le lisent
+    // ici ; l'accueil et /celebration le posent en dur dans leur en-tête.
+    logo: "assets/logo-mgr-events.webp",
     socials: {
       instagram: "https://instagram.com/mgr.events",
       facebook: "https://facebook.com/MGR.Eventsparis",
@@ -46,14 +49,28 @@ const SITE_CONFIG = {
       points: ["Direction artistique et sélection des DJs", "Programmation régulière", "Suivi des artistes et des prestations"],
       cta: { label: "Parlons de votre établissement", type: "Booking DJ — Établissement" },
     },
+    // Les fêtes privées ont leur page (/celebration) : cet onglet garde
+    // l'événementiel d'entreprise — MGR Events = clubs, établissements, B2B
+    // (brief MGR Célébration, 30 septembre 2026). `type` reste celui que la
+    // route de contact connaît.
     {
       id: "evenements",
-      label: "Événements",
-      title: "Soirées & événements",
-      photo: "assets/photos/nomames-sinlimites-1.webp",
-      text: "Un DJ et une équipe pour une soirée privée, un événement d'entreprise ou une production comme No Mames, nos soirées latino au Duplex.",
+      label: "Entreprises",
+      title: "Soirées d'entreprise & événements",
+      photo: "assets/photos/celebration/soiree-equipe-costumes.webp",
+      text: "Un DJ et une équipe pour votre soirée d'entreprise, un lancement, un séminaire ou une production comme No Mames, nos soirées latino au Duplex.",
       points: ["Un DJ choisi pour le public et le lieu", "Son et lumière si le lieu n'en a pas", "Coordination avec vous le jour J"],
       cta: { label: "Organiser votre événement", type: "Booking DJ — Événement privé" },
+    },
+    {
+      id: "celebrations",
+      label: "Célébrations",
+      title: "Anniversaires & fêtes privées",
+      photo: "assets/photos/celebration/photobooth-1.webp",
+      text: "Anniversaire dès 18 ans, fiançailles, baby shower : MGR Célébration réunit DJ, son, lumière, photobooth et vidéo autour de votre fête.",
+      points: ["Un DJ et une musique choisis pour vos invités", "Photobooth et film souvenir", "Un seul interlocuteur, une réponse sous 24 h"],
+      cta: { label: "Créer ma célébration", href: "/celebration#devis" },
+      lien: { label: "Découvrir MGR Célébration", href: "/celebration" },
     },
     {
       id: "mariages",
@@ -404,6 +421,163 @@ const SITE_CONFIG = {
   },
 
   // ═══════════════════════════════════════════════════
+  // PAGE CÉLÉBRATION — /celebration  (rendue par celebration.html)
+  // MGR Célébration : la branche de MGR Events pour les fêtes privées —
+  // anniversaires dès 18 ans, fiançailles, noces, baby showers — à Paris et
+  // en Île-de-France. Plus festive que MGR Wedding, aussi sérieuse que MGR
+  // Events. LA DEMANDE : « une nouvelle page ou un nouvel onglet » pour MGR
+  // Célébration, puis le brief site du 30 septembre 2026 : les sections de
+  // la page suivent son ordre, de 1 à 10.
+  //
+  // PHOTOS : uniquement de vraies photos MGR (MGR Prod), jamais de banque
+  // d'images — celles des soirées envoyées le 30 septembre 2026, dans
+  // assets/photos/celebration/. Les légendes décrivent l'image, jamais un
+  // faux « anniversaire », et aucune photo où l'on voit une mariée : pas de
+  // codes du mariage ici. Ce qui manque encore : README.md du même dossier.
+  // ═══════════════════════════════════════════════════
+  celebrationPage: {
+    hero: {
+      eyebrow: "DJ · Photobooth · Son & lumière — Paris & Île-de-France",
+      // Les trois phrases du brief, une par ligne.
+      title: "Votre événement.<br>Votre ambiance.<br><em>Votre célébration.</em>",
+      subtitle: "Anniversaire, fiançailles ou événement privé : MGR Célébration imagine avec vous une soirée qui vous ressemble.",
+      // Trois photos, une rangée : la plus large au centre.
+      photos: [
+        { src: "assets/photos/celebration/discours-micro.webp",  legende: "Le discours" },
+        { src: "assets/photos/celebration/piste-foule.webp",     legende: "La piste" },
+        { src: "assets/photos/celebration/ambiance-soiree.webp", legende: "L’ambiance" },
+      ],
+    },
+
+    // Sous le premier écran : ce qu'on comprend en trois secondes — un seul
+    // interlocuteur pour tout ça. Chaque mot mène à sa section.
+    prestations: [
+      { label: "DJ",            cible: "#dj" },
+      { label: "Son",           cible: "#son-lumiere" },
+      { label: "Lumière",       cible: "#son-lumiere" },
+      { label: "Photobooth",    cible: "#photobooth" },
+      { label: "Photo & vidéo", cible: "#photo-video" },
+    ],
+
+    // 1 — LES ÉVÉNEMENTS. Une carte = une occasion ; au clic, elle se coche
+    // dans le formulaire. `id` sert aussi aux liens de campagne :
+    // /celebration?occasion=18-ans arrive avec « 18 ans et + » déjà choisi.
+    evenements: [
+      { id: "anniversaire",            titre: "Anniversaire",            texte: "30, 40, 50 ans et plus : trois générations sur la même piste." },
+      { id: "18-ans",                  titre: "18 ans et +",             texte: "Une vraie soirée, avec l’énergie d’un club." },
+      { id: "fiancailles",             titre: "Fiançailles",             texte: "Avant le grand jour, la fête entre proches." },
+      { id: "anniversaire-de-mariage", titre: "Anniversaire de mariage", texte: "10, 20 ou 25 ans : la musique repart, vos proches avec." },
+      { id: "baby-shower",             titre: "Baby shower",             texte: "Une annonce qui se danse, gender reveal compris." },
+      { id: "celebration-privee",      titre: "Célébration privée",      texte: "Fête de famille, retrouvailles, soirée entre amis : dites-nous l’occasion." },
+    ],
+
+    // 2 — UNE EXPÉRIENCE PENSÉE AUTOUR DE VOUS : ce dont on parle avant de
+    // parler matériel.
+    experience: [
+      { titre: "Votre événement",    texte: "L’occasion, la surprise ou non, le ton de la soirée." },
+      { titre: "Vos invités",        texte: "Combien, quels âges : de quoi dimensionner le son et la piste." },
+      { titre: "Le lieu",            texte: "Salle, maison, péniche, restaurant privatisé : ce qui est équipé, ce qui manque." },
+      { titre: "Vos goûts musicaux", texte: "Vos incontournables, et ce que vous ne voulez pas entendre." },
+      { titre: "L’ambiance",         texte: "Un dîner qui glisse vers la piste, ou la fête dès la première heure." },
+      { titre: "La technique",       texte: "Sono, lumière, micro, photobooth : seulement ce qui sert votre soirée." },
+    ],
+
+    // 3 — DJ & AMBIANCE MUSICALE.
+    dj: {
+      photo: "assets/photos/celebration/dj-jem.webp", alt: "DJ Jem, en chemise MGR Events, aux platines",
+      univers: [
+        { titre: "Généraliste", texte: "Les tubes qui rassemblent toutes les générations." },
+        { titre: "80’s",        texte: "Pop, disco, funk : les refrains que tout le monde connaît." },
+        { titre: "90’s",        texte: "Dance, R&B, hip-hop : l’énergie des années 90." },
+        { titre: "2000’s",      texte: "R&B, hip-hop, pop : la décennie qui fait chanter la salle." },
+        { titre: "Club",        texte: "Les hits du moment et les tendances : un club, chez vous." },
+        { titre: "Latino",      texte: "Reggaeton, salsa, bachata, dembow : la chaleur latine." },
+        { titre: "Urbain",      texte: "Rap, afro, amapiano, shatta, R&B : les sons d’aujourd’hui." },
+        { titre: "Sur mesure",  texte: "Votre playlist, vos incontournables, vos interdits." },
+      ],
+      // « Une ambiance pour chaque âge » : les repères des flyers Célébration.
+      ages: [
+        { age: "18 – 25 ans", ambiance: "Club actuel",       detail: "Hits, rap, afro, latino, shatta" },
+        { age: "25 – 35 ans", ambiance: "2000’s & R&B",      detail: "Hip-hop, afro, latino, club" },
+        { age: "35 – 50 ans", ambiance: "80’s · 90’s",       detail: "Pop, disco, funk, R&B, club" },
+        { age: "50 ans et +", ambiance: "Grands classiques", detail: "Disco, funk, variété, tubes fédérateurs" },
+      ],
+    },
+
+    // 4 — SON & LUMIÈRE.
+    sonLumiere: {
+      photo: "assets/photos/celebration/scene-plein-air.webp", alt: "Une scène montée en plein air : tente, son et lumières face au public",
+      points: [
+        "Une sonorisation dimensionnée pour le lieu et vos invités",
+        "La lumière de l’espace et de la piste, qui monte avec la soirée",
+        "Un micro pour les discours et les surprises, selon la formule",
+        "Tout est installé et testé avant l’arrivée de vos invités",
+      ],
+    },
+
+    // 5 — PHOTOBOOTH : mis en avant, avec son prix d'appel. Le prix est
+    // celui de la communication en cours (flyers, septembre 2026) ; le
+    // contenu exact de la prestation se lit dans le devis.
+    photobooth: {
+      photo: "assets/photos/celebration/photobooth-1.webp", alt: "Des invitées déguisées posent devant le photobooth MGR",
+      prix: "599 €", mention: "TTC",
+      points: [
+        "Des accessoires pour jouer le jeu",
+        "Un cadre à vos couleurs, pensé pour votre fête",
+        "Vos invités créent leurs souvenirs, et les gardent",
+      ],
+    },
+
+    // 6 — PHOTO & VIDÉO.
+    photoVideo: {
+      photo: "assets/photos/celebration/danse-plein-air.webp", alt: "Des invités de tous âges dansent en plein air, sous les projecteurs",
+      points: [
+        "La captation des temps forts : arrivées, discours, surprises, piste",
+        "Un film souvenir monté, à revoir et à partager",
+        "Des images vraies : vos invités, pas une mise en scène",
+      ],
+    },
+
+    // 7 — NOS RÉALISATIONS : grille de trois colonnes, `format: "large"` en
+    // prend deux. L'ordre compte pour qu'aucune rangée ne reste trouée :
+    // quatre photos = une grande + une petite, puis une petite + une grande
+    // (cinq : une grande + une petite, puis trois petites). Une grande case
+    // veut une photo en paysage. Une entrée peut être une vidéo courte :
+    // { video: "assets/videos/x.mp4", photo: "<image d'attente>", ... } —
+    // muette, en boucle, lue seulement quand elle est à l'écran.
+    // La soirée tropicale est une soirée d'équipe (le logo Médecins du Monde
+    // est sur les photos : la grande case le recadre, pas la petite).
+    realisations: [
+      { photo: "assets/photos/celebration/soiree-equipe-costumes.webp", lieu: "Soirée d’équipe", legende: "Thème tropical, costumes compris", format: "large" },
+      { photo: "assets/photos/celebration/dj-jem-platines.webp",        lieu: "DJ Jem",          legende: "Aux platines" },
+      { photo: "assets/photos/celebration/soiree-equipe-invites.webp",  lieu: "Soirée d’équipe", legende: "Avant la piste" },
+      { photo: "assets/photos/celebration/soiree-equipe-piste.webp",    lieu: "Soirée d’équipe", legende: "La piste", format: "large" },
+    ],
+
+    // 8 — COMMENT ÇA FONCTIONNE ? Les quatre étapes du brief.
+    etapes: [
+      { titre: "Parlez-nous de votre événement", texte: "La date, le lieu, vos invités, vos envies : deux minutes de formulaire. Nous vous répondons sous 24 h." },
+      { titre: "Nous construisons votre prestation", texte: "DJ, son, lumière, photobooth, vidéo : seulement ce qui sert votre soirée, dans un devis écrit." },
+      { titre: "Nous préparons votre soirée", texte: "Un rendez-vous pour la musique, les temps forts — entrée, gâteau, surprise — et le lieu." },
+      { titre: "Profitez de votre célébration", texte: "Nous installons, nous testons, nous faisons danser. Vous, vous profitez de vos invités." },
+    ],
+
+    // 9 — AVIS CLIENTS. Un nom = l'avis Google de ce client, repris de
+    // weddingPage.testimonials (même texte, même occasion affichée : ce sont
+    // des mariages, la carte le dit). Un avis de fête s'ajoute en entier :
+    // { quote: "…", name: "Prénom I.", event: "Anniversaire 40 ans" }.
+    avis: ["Anna O.", "Tania S.", "Alexandre V."],
+    avisSource: "Avis publiés sur la fiche Google de MGR Events — prénom et initiale.",
+
+    // 10 — LE FORMULAIRE : les réponses proposées. Les occasions viennent de
+    // `evenements`, les univers de `dj.univers`.
+    formulaire: {
+      invites: ["Moins de 30", "30 à 60", "60 à 100", "100 à 150", "Plus de 150"],
+      prestations: ["DJ", "Sonorisation", "Éclairage", "Photobooth", "Photo & vidéo"],
+    },
+  },
+
+  // ═══════════════════════════════════════════════════
   // BLOG — /blog (liste) et /blog/:slug (article via article.html)
   // ═══════════════════════════════════════════════════
   blog: {
@@ -416,7 +590,10 @@ const SITE_CONFIG = {
         category: "Mariage",
         date: "2026-06-15",
         readingTime: "5 min",
-        cover: "assets/photos/wedding/blog-choisir-dj.webp",
+        // Couvertures : de vraies photos de mariages MGR, en attendant des
+        // visuels dédiés (blog-*.webp, jamais déposés — liste dans
+        // assets/photos/wedding/README.md). Changer le chemin suffit.
+        cover: "assets/photos/wedding/soiree.webp",
         excerpt: "Expérience, matériel, feeling, contrat… les vrais critères pour choisir le DJ qui fera danser vos invités jusqu'au bout de la nuit.",
         body: `
           <p>Le DJ est le chef d'orchestre invisible de votre soirée : c'est lui qui transforme un dîner réussi en une piste de danse mémorable. Voici les critères qui comptent vraiment.</p>
@@ -441,7 +618,7 @@ const SITE_CONFIG = {
         category: "Conseils",
         date: "2026-05-28",
         readingTime: "6 min",
-        cover: "assets/photos/wedding/blog-deroule.webp",
+        cover: "assets/photos/wedding/diner.webp",
         excerpt: "Du vin d'honneur à la dernière danse : comment construire une montée en énergie qui garde la piste pleine toute la nuit.",
         body: `
           <p>Une soirée qui fonctionne n'est pas une succession de tubes : c'est une <strong>courbe d'énergie</strong> maîtrisée. Voici une trame éprouvée.</p>
@@ -463,7 +640,7 @@ const SITE_CONFIG = {
         category: "Inspiration",
         date: "2026-05-10",
         readingTime: "4 min",
-        cover: "assets/photos/wedding/blog-premiere-danse.webp",
+        cover: "assets/photos/wedding/premiere-danse.webp",
         excerpt: "Choisir LA chanson, gérer le trac, soigner la mise en lumière : tout pour réussir votre premier slow.",
         body: `
           <p>La première danse est l'un des moments les plus regardés de la soirée. Quelques principes pour qu'elle soit à votre image.</p>
