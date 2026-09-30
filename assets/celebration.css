@@ -107,6 +107,9 @@ html{color-scheme:dark}
 
 .ages-grille{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
 .ages-grille .photo{aspect-ratio:4/5;max-height:560px}
+/* Un portrait de DJ : cadré sur le visage quand la photo passe en bandeau
+   (téléphone), comme les fiches DJ de l'accueil. */
+.ages-grille .photo img{object-position:center 22%}
 .ages h3{font-size:clamp(1.6rem,2.8vw,2.2rem);margin-bottom:1.3rem}
 .ages dl{border-top:1px solid var(--bord)}
 .ages dl div{display:grid;grid-template-columns:130px 1fr;gap:.2rem 1.2rem;padding:1rem 0;border-bottom:1px solid var(--bord)}

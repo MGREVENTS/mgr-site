@@ -1,26 +1,35 @@
-# Photos MGR Célébration — à déposer ici
+# Photos MGR Célébration
 
-La page `/celebration` n'utilise que de **vraies photos MGR** (jamais de banque
-d'images). En attendant celles des fêtes, elle emprunte des soirées des autres
-pages (clubs, No Mames) : chaque photo déposée ici en remplace une.
+La page `/celebration` n'utilise que de **vraies photos MGR** (MGR Prod),
+jamais de banque d'images. Celles de ce dossier viennent des soirées envoyées
+le 30 septembre 2026 ; la photo du photobooth vient des flyers Célébration.
 
-Format web conseillé : **.webp**, largeur ~1600 px, moins de 400 Ko, qualité
-~80. Des originaux (JPG, HEIC, PNG) conviennent aussi : ils seront convertis.
-L'humain d'abord : invités, piste, DJ, interactions, photobooth, détails.
-**Pas de mariée à l'image** — la page ne doit pas parler « mariage ».
-
-| Emplacement | Ce qu'il faudrait | Remplace aujourd'hui |
+| Fichier | Où | Ce qu'on voit |
 |---|---|---|
-| Premier écran (×3) | une fête vue large, des invités qui dansent, le DJ au micro | `wedding/moment-1`, `wedding/moment-2`, `nomames-5` |
-| DJ & ambiance | un DJ MGR aux platines pendant une fête privée | `gatsby1` |
-| Son & lumière | une salle équipée par MGR, la piste éclairée | `duplex-1` |
-| Photobooth | d'autres photos du photobooth en situation | (la photo actuelle vient des flyers) |
-| Photo & vidéo | un moment pris sur le vif, ou une image de l'aftermovie | `wedding/moment-7` |
-| Nos réalisations (×5 ou plus) | anniversaires, fiançailles, soirées d'entreprise… | soirées Duplex, Fluctuart, No Mames |
+| `discours-micro.webp` | premier écran | un invité prend le micro |
+| `piste-foule.webp` | premier écran (au centre) | une foule qui danse, en plein air |
+| `ambiance-soiree.webp` | premier écran | une invitée danse, lumière rose |
+| `dj-jem.webp` | DJ & ambiance | DJ Jem, chemise MGR Events |
+| `scene-plein-air.webp` | Son & lumière | tente, son et lumières montés en plein air |
+| `photobooth-1.webp` | Photobooth | des invitées déguisées devant le photobooth |
+| `danse-plein-air.webp` | Photo & vidéo | tous âges sur la piste, sous les projecteurs |
+| `soiree-equipe-*.webp` | Nos réalisations (+ onglet « Entreprises » de l'accueil) | la soirée d'équipe tropicale |
+| `dj-jem-platines.webp` | Nos réalisations | DJ Jem derrière la cabine |
 
-**Vidéos courtes** : la galerie « Nos réalisations » accepte aussi des clips
-(`.mp4`, muets, 5 à 15 s, moins de 5 Mo) — ils se lisent en boucle, sans son,
-seulement quand ils sont à l'écran.
+## Ce qui manque encore
+
+- **Des fêtes privées** : anniversaires (18, 30, 40, 50 ans…), fiançailles,
+  baby showers — le cœur de cible de la page.
+- **D'autres photos du photobooth** en situation.
+- **Des vidéos courtes** : la galerie « Nos réalisations » accepte des clips
+  (`.mp4`, muets, 5 à 15 s, moins de 5 Mo), lus en boucle, sans son,
+  seulement quand ils sont à l'écran.
+
+Format web conseillé : **.webp**, côté long ~1500 px, moins de 400 Ko,
+qualité ~80. Des originaux (JPG, HEIC, PNG) conviennent : ils seront convertis
+(et débarrassés de leurs métadonnées). L'humain d'abord : invités, piste, DJ,
+interactions, photobooth, détails. **Pas de mariée à l'image**, et pas de gros
+plan sur des visages de mineurs sans autorisation écrite.
 
 Le chemin et la légende de chaque photo se règlent dans `config.js`,
 `celebrationPage`. Une légende décrit ce qu'on voit (le lieu, le moment) :

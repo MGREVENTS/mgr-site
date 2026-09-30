@@ -57,7 +57,7 @@ const SITE_CONFIG = {
       id: "evenements",
       label: "Entreprises",
       title: "Soirées d'entreprise & événements",
-      photo: "assets/photos/nomames-sinlimites-1.webp",
+      photo: "assets/photos/celebration/soiree-equipe-costumes.webp",
       text: "Un DJ et une équipe pour votre soirée d'entreprise, un lancement, un séminaire ou une production comme No Mames, nos soirées latino au Duplex.",
       points: ["Un DJ choisi pour le public et le lieu", "Son et lumière si le lieu n'en a pas", "Coordination avec vous le jour J"],
       cta: { label: "Organiser votre événement", type: "Booking DJ — Événement privé" },
@@ -429,11 +429,11 @@ const SITE_CONFIG = {
   // Célébration, puis le brief site du 30 septembre 2026 : les sections de
   // la page suivent son ordre, de 1 à 10.
   //
-  // PHOTOS : uniquement de vraies photos MGR, jamais de banque d'images.
-  // En attendant celles des fêtes (la liste : assets/photos/celebration/
-  // README.md), la page emprunte des moments de soirée aux autres pages,
-  // avec des légendes qui décrivent l'image — jamais un faux « anniversaire »,
-  // et aucune photo où l'on voit une mariée : pas de codes du mariage ici.
+  // PHOTOS : uniquement de vraies photos MGR (MGR Prod), jamais de banque
+  // d'images — celles des soirées envoyées le 30 septembre 2026, dans
+  // assets/photos/celebration/. Les légendes décrivent l'image, jamais un
+  // faux « anniversaire », et aucune photo où l'on voit une mariée : pas de
+  // codes du mariage ici. Ce qui manque encore : README.md du même dossier.
   // ═══════════════════════════════════════════════════
   celebrationPage: {
     hero: {
@@ -443,9 +443,9 @@ const SITE_CONFIG = {
       subtitle: "Anniversaire, fiançailles ou événement privé : MGR Célébration imagine avec vous une soirée qui vous ressemble.",
       // Trois photos, une rangée : la plus large au centre.
       photos: [
-        { src: "assets/photos/wedding/moment-1.webp", legende: "Au micro" },
-        { src: "assets/photos/wedding/moment-2.webp", legende: "La piste" },
-        { src: "assets/photos/nomames-5.webp",        legende: "Entre amies" },
+        { src: "assets/photos/celebration/discours-micro.webp",  legende: "Le discours" },
+        { src: "assets/photos/celebration/piste-foule.webp",     legende: "La piste" },
+        { src: "assets/photos/celebration/ambiance-soiree.webp", legende: "L’ambiance" },
       ],
     },
 
@@ -484,7 +484,7 @@ const SITE_CONFIG = {
 
     // 3 — DJ & AMBIANCE MUSICALE.
     dj: {
-      photo: "assets/photos/gatsby1.webp", alt: "Un DJ MGR aux platines",
+      photo: "assets/photos/celebration/dj-jem.webp", alt: "DJ Jem, en chemise MGR Events, aux platines",
       univers: [
         { titre: "Généraliste", texte: "Les tubes qui rassemblent toutes les générations." },
         { titre: "80’s",        texte: "Pop, disco, funk : les refrains que tout le monde connaît." },
@@ -506,7 +506,7 @@ const SITE_CONFIG = {
 
     // 4 — SON & LUMIÈRE.
     sonLumiere: {
-      photo: "assets/photos/duplex-1.webp", alt: "Des mains levées sous les lumières de la piste",
+      photo: "assets/photos/celebration/scene-plein-air.webp", alt: "Une scène montée en plein air : tente, son et lumières face au public",
       points: [
         "Une sonorisation dimensionnée pour le lieu et vos invités",
         "La lumière de l’espace et de la piste, qui monte avec la soirée",
@@ -530,7 +530,7 @@ const SITE_CONFIG = {
 
     // 6 — PHOTO & VIDÉO.
     photoVideo: {
-      photo: "assets/photos/wedding/moment-7.webp", alt: "Une invitée, tout sourire, à table",
+      photo: "assets/photos/celebration/danse-plein-air.webp", alt: "Des invités de tous âges dansent en plein air, sous les projecteurs",
       points: [
         "La captation des temps forts : arrivées, discours, surprises, piste",
         "Un film souvenir monté, à revoir et à partager",
@@ -539,18 +539,19 @@ const SITE_CONFIG = {
     },
 
     // 7 — NOS RÉALISATIONS : grille de trois colonnes, `format: "large"` en
-    // prend deux. Cinq photos = deux rangées pleines (une grande + une
-    // petite, puis trois petites). Une entrée peut être une vidéo courte :
+    // prend deux. L'ordre compte pour qu'aucune rangée ne reste trouée :
+    // quatre photos = une grande + une petite, puis une petite + une grande
+    // (cinq : une grande + une petite, puis trois petites). Une grande case
+    // veut une photo en paysage. Une entrée peut être une vidéo courte :
     // { video: "assets/videos/x.mp4", photo: "<image d'attente>", ... } —
     // muette, en boucle, lue seulement quand elle est à l'écran.
-    // PROVISOIRE : ce sont des soirées MGR (clubs, No Mames) en attendant
-    // les photos de fêtes privées.
+    // La soirée tropicale est une soirée d'équipe (le logo Médecins du Monde
+    // est sur les photos : la grande case le recadre, pas la petite).
     realisations: [
-      { photo: "assets/photos/nomames.jpg",    lieu: "No Mames · Duplex", legende: "La piste", format: "large" },
-      { photo: "assets/photos/duplex-2.webp",  lieu: "Duplex · Paris",    legende: "L’ambiance" },
-      { photo: "assets/photos/fluctuart.webp", lieu: "Fluctuart · Paris", legende: "Aux platines" },
-      { photo: "assets/photos/duplex-3.webp",  lieu: "Duplex · Paris",    legende: "Derrière la cabine" },
-      { photo: "assets/photos/duplex-4.webp",  lieu: "Duplex · Paris",    legende: "Le show" },
+      { photo: "assets/photos/celebration/soiree-equipe-costumes.webp", lieu: "Soirée d’équipe", legende: "Thème tropical, costumes compris", format: "large" },
+      { photo: "assets/photos/celebration/dj-jem-platines.webp",        lieu: "DJ Jem",          legende: "Aux platines" },
+      { photo: "assets/photos/celebration/soiree-equipe-invites.webp",  lieu: "Soirée d’équipe", legende: "Avant la piste" },
+      { photo: "assets/photos/celebration/soiree-equipe-piste.webp",    lieu: "Soirée d’équipe", legende: "La piste", format: "large" },
     ],
 
     // 8 — COMMENT ÇA FONCTIONNE ? Les quatre étapes du brief.
