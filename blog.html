@@ -4,7 +4,7 @@
 <script src="assets/ads.js"></script>
 <script src="assets/consent.js"></script>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.fr https://googleads.g.doubleclick.net https://td.doubleclick.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://tracker.metricool.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://mgrevents.fr https://www.mgrevents.fr https://planniflow-4jrm.vercel.app https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.fr https://googleads.g.doubleclick.net https://td.doubleclick.net https://tracker.metricool.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Le Journal MGR Events — conseils, coulisses et inspiration pour des mariages et événements inoubliables à Paris.">
 <meta name="robots" content="index, follow">
@@ -83,6 +83,8 @@ footer .fnav a:hover{color:var(--or)}
 @media(max-width:900px){nav{padding:.8rem 1.4rem}.nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:1.1rem;padding:1.4rem;background:rgba(8,8,8,.97);transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s,visibility 0s .3s}nav.open .nav-links{transform:none;opacity:1;visibility:visible;pointer-events:all;transition:opacity .3s,transform .3s,visibility 0s}.burger{display:block}.head{padding:7rem 1.4rem 2rem}.grid{grid-template-columns:1fr;padding:1.5rem 1.4rem 4rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.001ms!important}[data-reveal]{opacity:1!important;transform:none!important}.fx-grain{display:none!important}}
 </style>
+<!-- Metricool tracker -->
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"8d1f10810f195f7e1658da39485729d4"})});</script>
 </head>
 <body>
 <div class="fx-grain" aria-hidden="true"></div>
