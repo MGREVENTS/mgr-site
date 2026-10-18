@@ -58,7 +58,7 @@ const SITE_CONFIG = {
       label: "Entreprises",
       title: "Soirées d'entreprise & événements",
       photo: "assets/photos/celebration/soiree-equipe-costumes.webp",
-      text: "Un DJ et une équipe pour votre soirée d'entreprise, un lancement, un séminaire ou une production comme No Mames, nos soirées latino au Duplex.",
+      text: "Un DJ et une équipe pour votre soirée d'entreprise, un lancement, un séminaire ou une production comme No Mames, nos soirées latino : quatre éditions au Duplex, retrouvez-nous maintenant à L'Indus.",
       points: ["Un DJ choisi pour le public et le lieu", "Son et lumière si le lieu n'en a pas", "Coordination avec vous le jour J"],
       cta: { label: "Organiser votre événement", type: "Booking DJ — Événement privé" },
     },
@@ -279,17 +279,16 @@ const SITE_CONFIG = {
     nomames: {
       tag: "Événements · Soirées Latino",
       title: "La <em>fiesta</em> parisienne",
-      description: "No Mames est notre marque événementielle dédiée aux soirées latines. Nous produisons des événements dans les plus beaux lieux de la capitale.",
+      description: "No Mames est notre marque événementielle dédiée aux soirées latines : quatre éditions au Duplex, retrouvez-nous maintenant à L'Indus.",
       description2: "Une communauté fidèle, une programmation pointue et une ambiance qui ne ressemble à rien d'autre.",
       features: [
         { title: "Soirées signature", desc: "Reggaeton, Dembow, Baile Funk, Salsa — des line-ups curatés pour une énergie maximale." },
-        { title: "Communauté", desc: "+500 followers engagés et une base fidèle qui attend chaque édition avec impatience." },
-        { title: "Lieu d'exception", desc: "Le Duplex, club mythique des Champs-Élysées — notre résidence exclusive pour des soirées inoubliables." },
+        { title: "Communauté", desc: "Près de 500 abonnés sur @nomames_paris et une base fidèle qui attend chaque édition." },
+        { title: "Du Duplex à L'Indus", desc: "Quatre éditions au Duplex, sur les Champs-Élysées. Retrouvez-nous maintenant à L'Indus, à Morangis." },
       ],
       stats: [
-        { value: "12", label: "Événements / an" },
-        { value: "500+", label: "Communauté" },
-        { value: "100%", label: "Sold out" },
+        { value: "4", label: "Éditions au Duplex" },
+        { value: "~500", label: "Abonnés Instagram" },
       ],
       gallery: [
         "assets/photos/nomames-bichotas-1.webp",
