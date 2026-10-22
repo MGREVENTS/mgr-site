@@ -205,7 +205,7 @@ const SITE_CONFIG = {
       name: "DJ Real",
       photo: "assets/djs/real.webp",
       style: "Latino · Reggaeton",
-      venues: "Radio Latina, Duplex, No Mames",
+      venues: "Latina, Duplex, No Mames",
       instagram: "https://www.instagram.com/dj__real_/",
       soundcloud: "",
     },
